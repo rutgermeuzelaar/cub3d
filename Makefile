@@ -17,7 +17,7 @@ MLX_LIB = ./utils/MLX42
 LIBFT_LIB = utils/libft
 LIBFT = $(LIBFT_LIB)/libft.a
 HEADERS = -I ./include -I $(MLX_LIB)/include
-LIBS = $(MLX_LIB)/build/libmlx42.a -ldl -lglfw -pthread -lm
+LIBS = $(MLX_LIB)/build/libmlx42.a -ldl -lglfw3 -pthread -lm
 NAME = cub3D
 
 
