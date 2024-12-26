@@ -2,11 +2,22 @@ GREEN =\033[0;32m
 RED = \033[0;31m
 NO_COLOUR =\033[0m
 
+CC = cc
+MLX_LIB_PATH = utils/MLX42
+LIBFT_LIB_PATH = utils/libft
+LIBFT = $(LIBFT_LIB_PATH)/libft.a
+MLX := $(MLX_LIB_PATH)/build/libmlx42.a
+INC_DIRS := $(LIBFT_LIB_PATH)/include $(MLX_LIB_PATH)/include include
+HEADERS = $(foreach dir, $(INC_DIRS), -I$(dir)) $(addprefix -I,$(SRCDIR))
+LIBS = $(LIBFT) $(MLX)
+NAME = cub3D
+
 MAKEFLAGS += --no-print-directory
-VALGRIND_FLAGS := --suppressions=readline.supp --track-fds=yes \
---leak-check=full --show-leak-kinds=all --trace-children=yes --track-origins=yes
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address -v
-LFLAGS :=
+VALGRIND_FLAGS := --suppressions=MLX42.supp --track-fds=yes \
+--leak-check=full --show-leak-kinds=all --track-origins=yes
+CFLAGS = -Wall -Wextra -Werror -g $(HEADERS) #-fsanitize=address -v
+LFLAGS := -ldl -lglfw3 -pthread -lm
+
 MODULES := main parsing utils
 MAIN_SRCDIR := src
 MAIN_OBJDIR := build
@@ -18,14 +29,6 @@ SRC_UTILS := $(addprefix utils/, basic_utils.c)
 SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) \
 $(SRC_UTILS))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))
-CC = cc
-MLX_LIB = ./utils/MLX42
-LIBFT_LIB = utils/libft
-LIBFT = $(LIBFT_LIB)/libft.a
-INC_DIRS := $(LIBFT_LIB)/include $(MLX_LIB)/include include
-HEADERS = $(foreach dir, $(INC_DIRS), -I$(dir)) $(addprefix -I,$(SRCDIR))
-LIBS = $(MLX_LIB)/build/libmlx42.a -ldl -lglfw3 -pthread -lm
-NAME = cub3D
 
 .PHONY: all clean flcean re MLX_LIB
 
@@ -40,11 +43,19 @@ $(OBJDIR): | $(MAIN_OBJDIR)
 $(OBJ): $(MAIN_OBJDIR)/%.o: $(MAIN_SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS)
 
-$(NAME): $(OBJ)
-	@make -C $(LIBFT_LIB) all
-	@cmake $(MLX_LIB) -B $(MLX_LIB)/build && make -C $(MLX_LIB)/build -j4
-	$(CC) $(OBJ) $(LIBS) $(LIBFT) $(HEADERS) -o $(NAME)
+$(NAME): $(OBJ) $(LIBS)
+	$(CC) $(OBJ) $(LIBS) $(LFLAGS) -o $(NAME)
 	@echo "${GREEN}BUILT PROGRAM${NO_COLOUR}"
+
+$(LIBFT):
+	@make -C $(LIBFT_LIB_PATH) all
+
+$(MLX):
+	@cmake $(MLX_LIB_PATH) -B $(MLX_LIB_PATH)/build && make -C \
+	$(MLX_LIB_PATH)/build -j4
+
+valgrind: $(NAME)
+	valgrind $(VALGRIND_FLAGS) ./$(NAME)
 
 clean:
 	@echo "${RED}Cleaning ${NAME} object files...${NO_COLOUR}"
@@ -53,7 +64,7 @@ clean:
 fclean: clean
 	@echo "${RED}Removing ${NAME}...${NO_COLOUR}"
 	@rm -rf $(NAME)
-	@make -C $(LIBFT_LIB) fclean
-	@rm -rf $(MLX_LIB)/build
+	@make -C $(LIBFT_LIB_PATH) fclean
+	@rm -rf $(MLX_LIB_PATH)/build
 
 re: fclean all
