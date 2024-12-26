@@ -1,7 +1,3 @@
-src/main/*.o
-src/parsing/*.o
-src/utils/*.o
+*.o
+*.a
 cub3D
-
-utils/libft/*.o
-utils/libft/*.a
