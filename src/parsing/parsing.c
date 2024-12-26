@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
-/*   Updated: 2024/12/22 14:26:56 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parsing.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/22 13:35:14 by nleusden      #+#    #+#                 */
+/*   Updated: 2024/12/26 21:35:15 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 char	*file_check(char *file)
 {

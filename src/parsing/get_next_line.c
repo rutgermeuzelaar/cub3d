@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/22 13:33:14 by nleusden          #+#    #+#             */
-/*   Updated: 2024/12/22 14:11:48 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   get_next_line.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/22 13:33:14 by nleusden      #+#    #+#                 */
+/*   Updated: 2024/12/26 21:35:11 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 char	*reading_f(int fd, char *tempstr)
 {

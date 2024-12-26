@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   basic_utils.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/22 13:46:56 by nleusden          #+#    #+#             */
-/*   Updated: 2024/12/22 15:34:54 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   basic_utils.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/22 13:46:56 by nleusden      #+#    #+#                 */
+/*   Updated: 2024/12/26 21:35:24 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3d.h"
+#include "cub3d.h"
 
 char	*ft_strjoin2(char *s1, char const *s2)
 {
