@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
-/*   Updated: 2024/12/22 15:41:10 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/19 17:11:19 by nleusden      #+#    #+#                 */
+/*   Updated: 2024/12/26 22:18:01 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,12 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
-
+# ifndef WINDOW_WIDTH
+#  define wINDOW_WIDTH 1280
+# endif
+# ifndef WINDOW_HEIGHT
+#  define WINDOW_HEIGHT 720
+# endif
 # include "../utils/MLX42/include/MLX42/MLX42.h"
 # include "../utils/libft/libft.h"
 # include <ctype.h>
@@ -44,7 +49,7 @@ typedef struct		s_game
 }					t_game;
 
 // main processing
-int		main(int argc, char **argv);
+// int		main(int argc, char **argv);
 
 //parsing
 char	*get_next_line(int fd);

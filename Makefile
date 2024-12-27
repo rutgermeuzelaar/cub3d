@@ -7,7 +7,7 @@ MLX_LIB_PATH = utils/MLX42
 LIBFT_LIB_PATH = utils/libft
 LIBFT = $(LIBFT_LIB_PATH)/libft.a
 MLX := $(MLX_LIB_PATH)/build/libmlx42.a
-INC_DIRS := $(LIBFT_LIB_PATH)/include $(MLX_LIB_PATH)/include include
+INC_DIRS := $(LIBFT_LIB_PATH) $(MLX_LIB_PATH)/include include
 HEADERS = $(foreach dir, $(INC_DIRS), -I$(dir)) $(addprefix -I,$(SRCDIR))
 LIBS = $(LIBFT) $(MLX)
 NAME = cub3D
@@ -18,7 +18,7 @@ VALGRIND_FLAGS := --suppressions=MLX42.supp --track-fds=yes \
 CFLAGS = -Wall -Wextra -Werror -g $(HEADERS) #-fsanitize=address -v
 LFLAGS := -ldl -lglfw3 -pthread -lm
 
-MODULES := main parsing utils
+MODULES := main parsing utils minimap
 MAIN_SRCDIR := src
 MAIN_OBJDIR := build
 SRCDIR := $(addprefix $(MAIN_SRCDIR)/, $(MODULES))
@@ -26,8 +26,9 @@ OBJDIR := $(addprefix $(MAIN_OBJDIR)/, $(MODULES))
 SRC_MAIN := $(addprefix main/, cub3d.c)
 SRC_PARSING := $(addprefix parsing/, get_next_line.c parsing.c)
 SRC_UTILS := $(addprefix utils/, basic_utils.c)
+SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
 SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) \
-$(SRC_UTILS))
+$(SRC_UTILS) $(SRC_MINIMAP))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))
 
 .PHONY: all clean flcean re MLX_LIB
@@ -41,7 +42,7 @@ $(OBJDIR): | $(MAIN_OBJDIR)
 	mkdir -p $(OBJDIR)
 
 $(OBJ): $(MAIN_OBJDIR)/%.o: $(MAIN_SRCDIR)/%.c | $(OBJDIR)
-	$(CC) $(CFLAGS) -c -o $@ $< $(HEADERS)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJ) $(LIBS)
 	$(CC) $(OBJ) $(LIBS) $(LFLAGS) -o $(NAME)
