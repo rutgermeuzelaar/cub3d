@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2024/12/30 21:28:00 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2024/12/30 22:58:36 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ int	main(void)
 	}
 	ft_memset(minimap->pixels, 255, minimap->width * minimap->height * BPP);
 	draw_minimap(&map, minimap);
+	draw_line(5, 4, 12, 50, minimap, 0xff69b4);
 	mlx_image_to_window(mlx, minimap, 100, 300);
 	mlx_loop(mlx);
 	return (EXIT_SUCCESS);

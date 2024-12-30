@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/27 10:16:48 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2024/12/30 21:35:30 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2024/12/30 22:49:24 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ typedef struct s_rectangle
 
 void	draw_rectangle(mlx_image_t *image, t_rectangle rectangle, \
 		uint32_t color);
-
+void	draw_line(int x1, int y1, int x2, int y2, mlx_image_t *image, \
+		uint32_t color);
 #endif
