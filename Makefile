@@ -18,7 +18,7 @@ VALGRIND_FLAGS := --suppressions=MLX42.supp --track-fds=yes \
 CFLAGS = -Wall -Wextra -Werror -g $(HEADERS) #-fsanitize=address -v
 LFLAGS := -ldl -lglfw3 -pthread -lm
 
-MODULES := main parsing utils minimap
+MODULES := main parsing utils minimap shapes player
 MAIN_SRCDIR := src
 MAIN_OBJDIR := build
 SRCDIR := $(addprefix $(MAIN_SRCDIR)/, $(MODULES))
@@ -27,8 +27,9 @@ SRC_MAIN := $(addprefix main/, cub3d.c)
 SRC_PARSING := $(addprefix parsing/, get_next_line.c parsing.c)
 SRC_UTILS := $(addprefix utils/, basic_utils.c)
 SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
+SRC_SHAPES :=  $(addprefix shapes/, rectangle.c)
 SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) \
-$(SRC_UTILS) $(SRC_MINIMAP))
+$(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))
 
 .PHONY: all clean flcean re MLX_LIB

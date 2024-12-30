@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   drawing.h                                          :+:    :+:            */
+/*   shapes.h                                           :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/27 10:16:48 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2024/12/27 19:40:17 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2024/12/30 21:35:30 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DRAWING_H
-# define DRAWING_H
+#ifndef SHAPES_H
+# define SHAPES_H
+# include <inttypes.h>
 # ifndef BPP
 #  define BPP sizeof(int32_t)
 # endif
@@ -22,15 +23,27 @@ typedef struct s_vector2d
 	float	y;
 }	t_vector2d;
 
-typedef struct s_index2d
+typedef struct s_vector2dint
 {
 	uint32_t	x;
 	uint32_t	y;
-}	t_index2d;
+}	t_vector2dint;
 
 typedef struct s_dimensions
 {
 	uint32_t	width;
 	uint32_t	height;
 }	t_dimensions;
+
+typedef struct s_rectangle
+{
+	uint32_t	x;
+	uint32_t	y;
+	uint32_t	width;
+	uint32_t	height;
+}	t_rectangle;
+
+void	draw_rectangle(mlx_image_t *image, t_rectangle rectangle, \
+		uint32_t color);
+
 #endif
