@@ -6,13 +6,14 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/27 10:16:48 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2024/12/30 22:49:24 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/01 21:58:05 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHAPES_H
 # define SHAPES_H
 # include <inttypes.h>
+# include "MLX42/MLX42.h"
 # ifndef BPP
 #  define BPP sizeof(int32_t)
 # endif
@@ -37,8 +38,8 @@ typedef struct s_dimensions
 
 typedef struct s_rectangle
 {
-	uint32_t	x;
-	uint32_t	y;
+	float		x;
+	float		y;
 	uint32_t	width;
 	uint32_t	height;
 }	t_rectangle;

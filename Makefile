@@ -28,7 +28,7 @@ SRC_PARSING := $(addprefix parsing/, get_next_line.c parsing.c)
 SRC_UTILS := $(addprefix utils/, basic_utils.c basic_utils2.c)
 SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
 SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c)
-SRC_PLAYER := $(addprefix player/, movement.c)
+SRC_PLAYER := $(addprefix player/, movement.c player.c)
 SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) \
 $(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES) $(SRC_PLAYER))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))

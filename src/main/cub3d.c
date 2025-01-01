@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/01 21:35:53 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/01 22:41:17 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,17 @@ void	mlx_esc(mlx_key_data_t keydata, void *param)
 	}
 }
 
+void	draw_routine(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	ft_memset(game->minimap->pixels, 255, \
+	game->minimap->width * game->minimap->height * BPP);
+	draw_minimap(&game->map, game->minimap);
+	draw_player(&game->player, game->minimap);
+}
+
 int	main(void)
 {
 	t_game	game;
@@ -60,11 +71,9 @@ int	main(void)
 	{
 		return (EXIT_FAILURE);
 	}
-	ft_memset(game.minimap->pixels, 255, \
-	game.minimap->width * game.minimap->height * BPP);
-	draw_minimap(&game.map, game.minimap);
 	mlx_image_to_window(game.mlx, game.minimap, 100, 300);
-	mlx_loop_hook(game.mlx, move_player, game.mlx);
+	mlx_loop_hook(game.mlx, move_player, &game);
+	mlx_loop_hook(game.mlx, draw_routine, &game);
 	mlx_key_hook(game.mlx, mlx_esc, game.mlx);
 	mlx_close_hook(game.mlx, mlx_stop_loop, NULL);
 	mlx_loop(game.mlx);

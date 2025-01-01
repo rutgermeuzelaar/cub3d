@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/01 21:02:39 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/01 22:07:04 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "libft.h"
 #include "minimap.h"
 #include "utilities.h"
+#include "player.h"
 
 bool	init_map(t_map *const map)
 {
@@ -81,5 +82,6 @@ bool	init_game(t_game *const game)
 		free_pointer_array((void **)game->map.map, game->map.height);
 		return (false);
 	}
+	init_player(&game->player);
 	return (true);
 }
