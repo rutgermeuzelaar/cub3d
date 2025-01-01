@@ -6,11 +6,12 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/22 13:33:14 by nleusden      #+#    #+#                 */
-/*   Updated: 2024/12/26 21:35:11 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/01 21:00:28 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "utilities.h"
 
 char	*reading_f(int fd, char *tempstr)
 {

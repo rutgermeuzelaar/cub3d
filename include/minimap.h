@@ -6,20 +6,21 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:04:20 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2024/12/27 20:45:24 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/01 21:33:54 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIMAP_H
 # define MINIMAP_H
+# include "utilities.h"
 # ifndef TILE_SIZE
 #  define TILE_SIZE 64
 # endif
 # ifndef WALL_COLOR
-#  define WALL_COLOR 0x000080
+#  define WALL_COLOR get_rgba(0x000000, 255)
 # endif
 # ifndef FLOOR_COLOR
-#  define FLOOR_COLOR 0xffc0cb
+#  define FLOOR_COLOR get_rgba(0x00ffff, 255)
 # endif
 # ifndef LINE_WEIGHT_PX
 #  define LINE_WEIGHT_PX 1

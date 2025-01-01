@@ -6,11 +6,12 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/22 13:35:14 by nleusden      #+#    #+#                 */
-/*   Updated: 2024/12/26 21:35:15 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/01 20:59:21 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "utilities.h"
 
 char	*file_check(char *file)
 {
@@ -98,6 +99,6 @@ int	check_file(char *str, t_game *game_s)
 	map = ft_split(str_map, '\n');
 	if (!map)
 		return (SYS_ERROR);
-	game_s->map = map;
+	game_s->map.map = map;
 	return (SUCCESS);
 }

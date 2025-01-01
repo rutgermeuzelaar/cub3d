@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2024/12/30 22:58:36 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/01 21:35:53 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "minimap.h"
 #include "libft.h"
 #include "shapes.h"
+#include "player.h"
 
 // int	main(int argc, char **argv)
 // {
@@ -34,65 +35,38 @@
 // 	return (ERROR);
 // }
 
-// https://github.com/codam-coding-college/MLX42/blob/master/docs/Colors.md
-int get_rgba(int r, int g, int b, int a)
+void	mlx_stop_loop(void *param)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	mlx_close_window((mlx_t *)param);
+}
+
+void	mlx_esc(mlx_key_data_t keydata, void *param)
+{
+	if (keydata.action != MLX_PRESS && keydata.action != MLX_REPEAT)
+	{
+		return ;
+	}
+	if (keydata.key == MLX_KEY_ESCAPE)
+	{
+		mlx_stop_loop(param);
+	}
 }
 
 int	main(void)
 {
-	mlx_t	*mlx;
-	mlx_image_t	*minimap;
-	t_map	map;
-	const char *cheese[] = {
-		"111111",
-		"100101",
-		"101001",
-		"1100N1",
-		"111111"
-	};
-	size_t i;
+	t_game	game;
 
-	i = 0;
-	mlx = mlx_init(wINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
-	if (!mlx)
+	if (!init_game(&game))
 	{
 		return (EXIT_FAILURE);
 	}
-	map.height = 5;
-	map.width = 6;
-	map.map = malloc(sizeof(char *) * map.height);
-	if (!map.map)
-	{
-		mlx_terminate(mlx);
-		return (EXIT_FAILURE);
-	}
-	while (i < map.height)
-	{
-		map.map[i] = ft_strdup(cheese[i]);
-		if (!map.map[i])
-		{
-			while (i != 0)
-			{
-				free(map.map[i]);
-				i--;
-			}
-			free(map.map);
-			mlx_terminate(mlx);
-			return (EXIT_SUCCESS);
-		}
-		i++;
-	}
-	minimap = mlx_new_image(mlx, map.width * TILE_SIZE, map.height * TILE_SIZE);\
-	if (!minimap)
-	{
-		return (EXIT_FAILURE);
-	}
-	ft_memset(minimap->pixels, 255, minimap->width * minimap->height * BPP);
-	draw_minimap(&map, minimap);
-	draw_line(5, 4, 12, 50, minimap, 0xff69b4);
-	mlx_image_to_window(mlx, minimap, 100, 300);
-	mlx_loop(mlx);
+	ft_memset(game.minimap->pixels, 255, \
+	game.minimap->width * game.minimap->height * BPP);
+	draw_minimap(&game.map, game.minimap);
+	mlx_image_to_window(game.mlx, game.minimap, 100, 300);
+	mlx_loop_hook(game.mlx, move_player, game.mlx);
+	mlx_key_hook(game.mlx, mlx_esc, game.mlx);
+	mlx_close_hook(game.mlx, mlx_stop_loop, NULL);
+	mlx_loop(game.mlx);
 	return (EXIT_SUCCESS);
 }
