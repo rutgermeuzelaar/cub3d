@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/01 22:41:17 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/03 17:02:11 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	draw_routine(void *param)
 	game->minimap->width * game->minimap->height * BPP);
 	draw_minimap(&game->map, game->minimap);
 	draw_player(&game->player, game->minimap);
+	draw_line(56, 69, 7, 63, game->minimap, get_rgba(0xffd700, 255));
+	// draw_line(0, 0, 7, 63, game->minimap, get_rgba(0xffd700, 255));
 }
 
 int	main(void)
