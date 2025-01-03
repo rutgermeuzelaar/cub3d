@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/01 22:47:39 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/03 01:08:01 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@
 
 typedef struct s_player
 {
-	t_rectangle		rectangle;	
+	t_rectangle		rectangle;
+	t_rectangle		dir;
 	int32_t			color;
+	float			dir_x;
+	float			dir_y;
+	float			dir_angle;
 }	t_player;
 
 void	init_player(t_player *const player);
