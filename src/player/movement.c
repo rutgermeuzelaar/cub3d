@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 15:06:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/03 01:19:52 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/04 16:15:47 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void move_right(float *x, double delta_time, uint32_t max)
 
 void	move_dir_right(t_player *player)
 {
-	player->dir_angle += 0.1;
+	player->dir_angle -= 0.1;
 	if (player->dir_angle >= (2 * M_PI))
 	{
 		player->dir_angle -= 2 * M_PI;
@@ -68,7 +68,7 @@ void	move_dir_right(t_player *player)
 
 void	move_dir_left(t_player *player)
 {
-	player->dir_angle -= 0.1;
+	player->dir_angle += 0.1;
 	if (player->dir_angle <= 0)
 	{
 		player->dir_angle += 2 * M_PI;
@@ -77,6 +77,7 @@ void	move_dir_left(t_player *player)
 
 	player->dir.y = player->rectangle.y + sin(player->dir_angle) * 50;
 }
+
 void	move_player(void *param)
 {
 	t_game	*game;

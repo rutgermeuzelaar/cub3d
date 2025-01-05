@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:11:19 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/01 20:54:06 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/04 17:09:54 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct		s_game
 	mlx_t			*mlx;
 	mlx_image_t		*screen;
 	mlx_image_t		*minimap;
+	mlx_image_t		*debug;
 	t_player		player;
 }					t_game;
 

@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/27 10:16:48 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/01 21:58:05 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/04 13:43:16 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ typedef struct s_rectangle
 	uint32_t	width;
 	uint32_t	height;
 }	t_rectangle;
+
+typedef struct s_ray
+{
+	t_vector2d	position;
+	t_vector2d	direction;
+}	t_ray;
 
 void	draw_rectangle(mlx_image_t *image, t_rectangle rectangle, \
 		uint32_t color);

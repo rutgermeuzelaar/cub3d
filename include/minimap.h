@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:04:20 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/01 21:33:54 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/04 13:50:52 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #  define WALL_COLOR get_rgba(0x000000, 255)
 # endif
 # ifndef FLOOR_COLOR
-#  define FLOOR_COLOR get_rgba(0x00ffff, 255)
+#  define FLOOR_COLOR get_rgba(0x808080, 255)
 # endif
 # ifndef LINE_WEIGHT_PX
 #  define LINE_WEIGHT_PX 1

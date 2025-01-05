@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/03 21:09:42 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/04 16:14:19 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,10 @@ void	init_player(t_player *const player)
 	player->dir.width = 4;
 	player->dir.x = 50;
 	player->dir.y = 10;
-	player->dir_angle = M_PI/2;
+	player->dir_angle = 0;
 }
 
 void	draw_player(const t_player *const player, mlx_image_t *minimap)
 {
 	draw_rectangle(minimap, player->rectangle, player->color);
-	draw_rectangle(minimap, player->dir, player->color);
-	draw_line(player->rectangle.x, player->rectangle.y, player->dir.x, \
-	player->dir.y,minimap, player->color);
 }

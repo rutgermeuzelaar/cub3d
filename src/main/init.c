@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/01 22:07:04 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/04 17:10:44 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ bool	init_mlx_objects(t_game *const game)
 		mlx_terminate(game->mlx);
 		return false;
 	}
+	game->debug = NULL;
 	return (true);
 }
 
