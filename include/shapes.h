@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/27 10:16:48 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/04 13:43:16 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/06 20:09:49 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,6 @@ void	draw_rectangle(mlx_image_t *image, t_rectangle rectangle, \
 		uint32_t color);
 void	draw_line(int x1, int y1, int x2, int y2, mlx_image_t *image, \
 		uint32_t color);
+void	draw_circle_line(mlx_image_t *image, t_vector2d center, float radius, \
+		int32_t color);
 #endif

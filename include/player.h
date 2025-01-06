@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/04 16:03:11 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/06 20:46:30 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # ifndef MOVE_STEPS
 #  define MOVE_STEPS 400
 # endif
+# ifndef ROTATION_SPEED
+#  define ROTATION_SPEED 0.1f
+# endif
+# ifndef DIRECTION_LINE_LENGTH
+#  define DIRECTION_LINE_LENGTH 40
+# endif
 
 typedef struct s_player
 {
@@ -24,6 +30,8 @@ typedef struct s_player
 	t_rectangle		dir;
 	t_ray			ray; // make array later
 	int32_t			color;
+	float			x;
+	float			y;
 	float			dir_x;
 	float			dir_y;
 	float			dir_angle;

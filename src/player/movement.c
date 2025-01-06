@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 15:06:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/04 16:15:47 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/06 20:29:18 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,24 @@ static void move_right(float *x, double delta_time, uint32_t max)
 
 void	move_dir_right(t_player *player)
 {
-	player->dir_angle -= 0.1;
+	player->dir_angle += ROTATION_SPEED;
 	if (player->dir_angle >= (2 * M_PI))
 	{
 		player->dir_angle -= 2 * M_PI;
 	}
-	player->dir.x = player->rectangle.x + cos(player->dir_angle) * 50;
-
-	player->dir.y = player->rectangle.y + sin(player->dir_angle) * 50;
+	player->dir.x = player->rectangle.x + (cos(player->dir_angle) * DIRECTION_LINE_LENGTH);
+	player->dir.y = player->rectangle.y + (sin(player->dir_angle) * DIRECTION_LINE_LENGTH);
 }
 
 void	move_dir_left(t_player *player)
 {
-	player->dir_angle += 0.1;
+	player->dir_angle -= ROTATION_SPEED;
 	if (player->dir_angle <= 0)
 	{
 		player->dir_angle += 2 * M_PI;
 	}
-	player->dir.x = player->rectangle.x + cos(player->dir_angle) * 50;
-
-	player->dir.y = player->rectangle.y + sin(player->dir_angle) * 50;
+	player->dir.x = player->rectangle.x + (cos(player->dir_angle) * DIRECTION_LINE_LENGTH);
+	player->dir.y = player->rectangle.y + (sin(player->dir_angle) * DIRECTION_LINE_LENGTH);
 }
 
 void	move_player(void *param)
