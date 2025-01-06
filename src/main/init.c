@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/04 17:10:44 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/06 21:18:41 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,6 @@ bool	init_game(t_game *const game)
 		free_pointer_array((void **)game->map.map, game->map.height);
 		return (false);
 	}
-	init_player(&game->player);
+	init_player(&game->player, 50, 50);
 	return (true);
 }

@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/06 20:46:30 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/06 21:18:26 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_player
 	float			dir_angle;
 }	t_player;
 
-void	init_player(t_player *const player);
+void	init_player(t_player *const player, float spawn_x, float spawn_y);
 void	move_player(void *param);
 void	draw_player(const t_player *const player, mlx_image_t *minimap);
 #endif
