@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/06 20:23:27 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/07 17:41:29 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ void	draw_info(t_game *game)
 	"PLAYER XY: %f / %f\n \
 	ANGLE: %f\n" \
 	"DIRECTION XY: %f / %f\n", \
-	game->player.rectangle.x, \
-	game->player.rectangle.y, \
+	game->player.x, \
+	game->player.y, \
 	game->player.dir_angle, \
 	game->player.dir.x, \
 	game->player.dir.y);

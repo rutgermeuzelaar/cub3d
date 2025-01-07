@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/06 20:45:27 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/07 16:59:34 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ void	init_player(t_player *const player, float spawn_x, float spawn_y)
 
 void	draw_player(const t_player *const player, mlx_image_t *minimap)
 {
-	draw_rectangle(minimap, player->rectangle, player->color);
-	draw_line(player->rectangle.x, \
-	player->rectangle.y, player->dir.x, \
+	draw_rectangle(minimap, (t_rectangle){player->x - \
+	(player->rectangle.width / 2), player->y - (player->rectangle.height / 2), \
+	player->rectangle.width, player->rectangle.height}, player->color);
+	draw_line(player->x, \
+	player->y, player->dir.x, \
 	player->dir.y, minimap, player->color);
 }
