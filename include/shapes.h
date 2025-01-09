@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/27 10:16:48 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/06 20:09:49 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/08 19:20:31 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ typedef struct s_vector2d
 
 typedef struct s_vector2dint
 {
-	uint32_t	x;
-	uint32_t	y;
+	int32_t	x;
+	int32_t	y;
 }	t_vector2dint;
 
 typedef struct s_dimensions
