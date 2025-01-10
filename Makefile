@@ -16,9 +16,9 @@ MAKEFLAGS += --no-print-directory
 VALGRIND_FLAGS := --suppressions=MLX42.supp --track-fds=yes \
 --leak-check=full --show-leak-kinds=all --track-origins=yes
 CFLAGS = -Wall -Wextra -Werror -g $(HEADERS) #-fsanitize=address -v
-LFLAGS := -ldl -lglfw3 -pthread -lm
+LFLAGS := -ldl -lglfw -pthread -lm
 
-MODULES := main parsing utils minimap shapes player
+MODULES := main parsing utils minimap shapes player raycasting
 MAIN_SRCDIR := src
 MAIN_OBJDIR := build
 SRCDIR := $(addprefix $(MAIN_SRCDIR)/, $(MODULES))
@@ -29,8 +29,9 @@ SRC_UTILS := $(addprefix utils/, basic_utils.c basic_utils2.c)
 SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
 SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c draw_circle.c)
 SRC_PLAYER := $(addprefix player/, movement.c player.c)
+SRC_RAYCASTING := $(addprefix raycasting/, nearest_hit.c draw_rays.c)
 SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) \
-$(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES) $(SRC_PLAYER))
+$(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES) $(SRC_PLAYER) $(SRC_RAYCASTING))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))
 
 .PHONY: all clean flcean re MLX_LIB
