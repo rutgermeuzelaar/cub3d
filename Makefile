@@ -56,11 +56,11 @@ $(NAME): $(OBJ) $(LIBS)
 $(LIBFT):
 	@make -C $(LIBFT_LIB_PATH) all
 
-$(MLX_LIB_PATH):
+$(MLX_LIB_PATH).git:
 	git submodule init
 	git submodule update
 
-$(MLX): $(MLX_LIB_PATH)
+$(MLX): $(MLX_LIB_PATH).git
 	@cmake $(MLX_LIB_PATH) -B $(MLX_LIB_PATH)/build && make -C \
 	$(MLX_LIB_PATH)/build -j4
 
