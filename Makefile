@@ -15,8 +15,10 @@ NAME = cub3D
 MAKEFLAGS += --no-print-directory
 VALGRIND_FLAGS := --suppressions=MLX42.supp --track-fds=yes \
 --leak-check=full --show-leak-kinds=all --track-origins=yes
+GLFW_NAME := $(shell if [ ! -f /usr/local/lib/libglfw3.a ]; then echo "glfw"; \
+else echo "glfw3"; fi)
 CFLAGS = -Wall -Wextra -Werror -g $(HEADERS) #-fsanitize=address -v
-LFLAGS := -ldl -lglfw -pthread -lm
+LFLAGS := -ldl -l$(GLFW_NAME) -pthread -lm
 
 MODULES := main parsing utils minimap shapes player raycasting
 MAIN_SRCDIR := src
@@ -54,7 +56,11 @@ $(NAME): $(OBJ) $(LIBS)
 $(LIBFT):
 	@make -C $(LIBFT_LIB_PATH) all
 
-$(MLX):
+$(MLX_LIB_PATH):
+	git submodule init
+	git submodule update
+
+$(MLX): $(MLX_LIB_PATH)
 	@cmake $(MLX_LIB_PATH) -B $(MLX_LIB_PATH)/build && make -C \
 	$(MLX_LIB_PATH)/build -j4
 
