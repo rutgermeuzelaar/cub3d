@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 13:21:49 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/10 13:25:00 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/13 14:52:13 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include "player.h"
 # include "map.h"
 
-t_vector2d	get_nearest_hit(t_player *player, t_map *map, float angle, \
-			mlx_image_t *minimap);
-void		draw_ray(t_player *player, t_map *map, mlx_image_t *minimap, \
-			t_ray *ray);
+void	cast_ray_horizontal(t_ray *ray, t_player *player, t_map *map, \
+		mlx_image_t *minimap);
+void	cast_ray_vertical(t_ray *ray, t_player *player, t_map *map, \
+		mlx_image_t *minimap);
+void	cast_ray(t_ray *ray, t_player *player, t_map *map, \
+		mlx_image_t *minimap);
 #endif
