@@ -6,13 +6,13 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/06 21:18:26 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/13 15:26:42 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PLAYER_H
 # define PLAYER_H
-# include <inttypes.h>
+# include "color.h"
 # include "shapes.h"
 # ifndef MOVE_STEPS
 #  define MOVE_STEPS 400
@@ -29,7 +29,8 @@ typedef struct s_player
 	t_rectangle		rectangle;
 	t_rectangle		dir;
 	t_ray			ray; // make array later
-	int32_t			color;
+	t_color			color;
+	t_color			ray_color;
 	float			x;
 	float			y;
 	float			dir_x;
