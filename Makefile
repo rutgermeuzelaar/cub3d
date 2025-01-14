@@ -32,7 +32,8 @@ SRC_UTILS := $(addprefix utils/, basic_utils.c basic_utils2.c)
 SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
 SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c draw_circle.c)
 SRC_PLAYER := $(addprefix player/, movement.c player.c)
-SRC_RAYCASTING := $(addprefix raycasting/, nearest_hit.c draw_rays.c)
+SRC_RAYCASTING := $(addprefix raycasting/, cast_ray_horizontal.c cast_ray.c \
+draw_rays.c)
 SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) \
 $(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES) $(SRC_PLAYER) $(SRC_RAYCASTING))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))
