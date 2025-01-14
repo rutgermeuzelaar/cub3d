@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/19 17:11:19 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/04 17:09:54 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/14 11:23:03 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include "libft.h"
 # include "player.h"
 # include "map.h"
+# include "color.h"
 # include <ctype.h>
 # include <errno.h>
 # include <fcntl.h>
@@ -45,7 +46,10 @@ typedef enum e_mini_error
 
 typedef struct		s_game
 {
+	char			*file_content;
 	t_map			map;
+	t_color			floor;
+	t_color			ceiling;
 	int				*res;
 	mlx_texture_t	*textures;
 	mlx_t			*mlx;
@@ -61,7 +65,11 @@ bool	init_game(t_game *const game);
 
 //parsing
 char	*get_next_line(int fd);
-int		check_file(char *str, t_game *game_s);
+int		fc_parsing(t_game *game);
+int		parsing(t_game *game, char *arg);
+int		texture_parsing(t_game *game);
+int		get_file_contents(t_game *game_s, char *str);
+int		find_fd(char *str, char *folder, char *format);
 
 //textures applying
 

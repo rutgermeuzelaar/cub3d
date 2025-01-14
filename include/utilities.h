@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   utilities.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/01 20:41:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/01 21:30:19 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   utilities.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/01 20:41:32 by rmeuzela          #+#    #+#             */
+/*   Updated: 2025/01/14 12:08:28 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,9 @@ char	*ft_strjoin2(char *s1, char const *s2);
 int		skip_whitespaces(char *str);
 int		ft_isspace(char c);
 int		get_rgba(int color_hex, int alpha);
+int		arrlen(char **arr);
+char	*check_folder(char *a, char *b);
+char	*file_check(char *file, char *format);
+char	**ft_arrndup(char **arr, size_t size);
+
 #endif
