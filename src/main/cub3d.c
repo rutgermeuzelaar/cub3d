@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/13 15:01:44 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:13:18 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/14 13:47:17 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,17 @@ void	draw_routine(void *param)
 	cast_ray(&game->player.ray, &game->player, &game->map, game->minimap);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	if (argc != 2 || argv[1] == NULL)
+		return (ERROR);
+	if (parsing(&game, argv[1]) != SUCCESS)
+	{
+		return (ERROR);
+	}
+	printf("finished parsing\n");
 	if (!init_game(&game))
 	{
 		return (EXIT_FAILURE);

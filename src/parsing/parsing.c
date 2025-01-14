@@ -6,39 +6,24 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/14 13:18:02 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:35:38 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "utilities.h"
 
-int	get_map(t_game *game)
+int	pre_parsing(char *str)
 {
 	int	ret;
-	char	**arr;
-	int	i;
-	int	j;
 
-	ret = 0;
-	arr = game->map.map;
-	i = 0;
-	j = 0;
-	while (arr[i])
-	{
-		j = skip_whitespaces(arr[i]);
-		if (arr[i][j] && ft_isdigit(arr[i][j]))
-		{
-			arr = ft_arrndup(arr + i, (arrlen(arr) - i));
-			if (!arr)
-				return (SYS_ERROR);
-			arr_free(game->map.map);
-			game->map.map = arr;
-			return (SUCCESS);
-		}
-		i++;
-	}
-	return (ERROR);
+	ret = find_all_prefix(str);
+	if (ret != SUCCESS)
+		return (ret);
+	// ret = check_map_format(str);
+	// if (ret != SUCCESS)
+	// 	return (ret);
+	return (SUCCESS);
 }
 
 int	find_keywords(t_game *game)
@@ -61,12 +46,18 @@ int	parsing(t_game *game, char *arg)
 	ret = get_file_contents(game, arg);
 	if (ret != SUCCESS)
 		return (ret);
+	// ret = pre_parsing(game->file_content);
+	// if (ret != SUCCESS)
+	// 	return (ERROR);
 	ret = find_keywords(game);
 	if (ret != SUCCESS)
 		return (ret);
 	ret = get_map(game);
+	if (ret != SUCCESS)
+		return (ret);
 	printf("map =\n");
 	print_arr(game->map.map);
+	ret = map_dimensions(game);
 	if (ret != SUCCESS)
 		return (ret);
 	return (SUCCESS);

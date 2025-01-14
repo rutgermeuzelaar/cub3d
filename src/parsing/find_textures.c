@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/14 11:19:23 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:36:31 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,11 @@ int	texture_parsing(t_game *game)
 		j = skip_whitespaces(file[i]);
 		if (file[i][j] && found_texture_prefix(file[i] + j) && &textures[i2])
 		{
-			//index the textures arr
 			if (assign_texture(&textures[i2], file[i] + j) != SUCCESS)
 			{
 				textures[i2] = *mlx_load_png("textures/gmod.png");
 				if (!&textures[i2])
-					return (ERROR);
+					return (free(textures), ERROR);
 			}
 			printf("found texture\n");
 			i2++;

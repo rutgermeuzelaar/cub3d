@@ -27,7 +27,7 @@ SRCDIR := $(addprefix $(MAIN_SRCDIR)/, $(MODULES))
 OBJDIR := $(addprefix $(MAIN_OBJDIR)/, $(MODULES))
 SRC_MAIN := $(addprefix main/, cub3d.c init.c)
 SRC_PARSING := $(addprefix parsing/, get_next_line.c parsing.c \
-find_file_contents.c rgba_parsing.c find_textures.c)
+find_file_contents.c rgba_parsing.c find_textures.c get_map.c)
 SRC_UTILS := $(addprefix utils/, basic_utils.c basic_utils2.c)
 SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
 SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c draw_circle.c)
@@ -43,10 +43,10 @@ OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))
 all: $(NAME)
 
 $(MAIN_OBJDIR):
-	mkdir $(MAIN_OBJDIR)
+	@mkdir $(MAIN_OBJDIR)
 
 $(OBJDIR): | $(MAIN_OBJDIR)
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 $(OBJ): $(MAIN_OBJDIR)/%.o: $(MAIN_SRCDIR)/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -c -o $@ $<
