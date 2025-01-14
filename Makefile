@@ -38,7 +38,7 @@ SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) \
 $(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES) $(SRC_PLAYER) $(SRC_RAYCASTING))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))
 
-.PHONY: all clean flcean re MLX_LIB
+.PHONY: all clean flcean re
 
 all: $(NAME)
 
@@ -58,11 +58,11 @@ $(NAME): $(OBJ) $(LIBS)
 $(LIBFT):
 	@make -C $(LIBFT_LIB_PATH) all
 
-$(MLX_LIB_PATH).git:
+$(MLX_LIB_PATH)/.git:
 	git submodule init
 	git submodule update
 
-$(MLX): $(MLX_LIB_PATH).git
+$(MLX): $(MLX_LIB_PATH)/.git
 	@cmake $(MLX_LIB_PATH) -B $(MLX_LIB_PATH)/build && make -C \
 	$(MLX_LIB_PATH)/build -j4
 
