@@ -6,23 +6,38 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/14 15:35:38 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:56:27 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "utilities.h"
 
+int	check_map_format(char *str)
+{
+	int	i;
+
+	i = 0;
+	printf("remaining map is =\n%s\n", str);
+	while (str[i])
+	{
+		i++;
+	}
+	return (0);
+}
+
 int	pre_parsing(char *str)
 {
 	int	ret;
+	int	i;
 
-	ret = find_all_prefix(str);
+	i = 0;
+	ret = find_all_prefix(str, &i);
 	if (ret != SUCCESS)
 		return (ret);
-	// ret = check_map_format(str);
-	// if (ret != SUCCESS)
-	// 	return (ret);
+	ret = check_map_format(str + i);
+	if (ret != SUCCESS)
+		return (ret);
 	return (SUCCESS);
 }
 
