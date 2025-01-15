@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   find_textures.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/14 11:19:23 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   find_textures.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 15:59:46 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/14 20:53:56 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	assign_texture(mlx_texture_t *texture, char *str)
 	char	*texture_path;
 	int		texture_index;
 
+	(void)texture_index;
 	texture_index = found_texture_prefix(str);
 	i = (skip_whitespaces(str + 2) + 2);
 	size = i;

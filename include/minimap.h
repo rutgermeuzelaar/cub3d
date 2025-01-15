@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:04:20 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/04 13:50:52 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/14 22:04:30 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINIMAP_H
 # include "utilities.h"
 # ifndef TILE_SIZE
-#  define TILE_SIZE 64
+#  define TILE_SIZE 32
 # endif
 # ifndef WALL_COLOR
 #  define WALL_COLOR get_rgba(0x000000, 255)

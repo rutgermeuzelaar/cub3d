@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/27 10:16:48 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/08 19:20:31 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/14 23:33:33 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ typedef struct s_ray
 
 void	draw_rectangle(mlx_image_t *image, t_rectangle rectangle, \
 		uint32_t color);
-void	draw_line(int x1, int y1, int x2, int y2, mlx_image_t *image, \
-		uint32_t color);
+void	draw_line_horizontal(t_vector2dint point_1, t_vector2dint point_2, \
+		mlx_image_t *image, uint32_t color);
+void	draw_line_vertical(t_vector2dint point_1, t_vector2dint point_2, \
+		mlx_image_t *image, uint32_t color);
+void	draw_line(t_vector2dint point_1, t_vector2dint point_2, \
+		mlx_image_t *image, uint32_t color);
 void	draw_circle_line(mlx_image_t *image, t_vector2d center, float radius, \
 		int32_t color);
 #endif

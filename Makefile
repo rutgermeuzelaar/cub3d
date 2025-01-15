@@ -30,7 +30,8 @@ SRC_PARSING := $(addprefix parsing/, get_next_line.c parsing.c \
 find_file_contents.c rgba_parsing.c find_textures.c)
 SRC_UTILS := $(addprefix utils/, basic_utils.c basic_utils2.c)
 SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
-SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c draw_circle.c)
+SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c draw_circle.c \
+draw_line_utilities.c)
 SRC_PLAYER := $(addprefix player/, movement.c player.c)
 SRC_RAYCASTING := $(addprefix raycasting/, cast_ray_horizontal.c cast_ray.c \
 draw_rays.c)
