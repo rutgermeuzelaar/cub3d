@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/14 10:45:07 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:46:09 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ int	get_file_contents(t_game *game_s, char *str)
 	map = ft_split(str_config, '\n');
 	if (!map)
 		return (SYS_ERROR);
-	print_arr(map);
 	game_s->file_content = str_config;
 	game_s->map.map = map;
 	return (SUCCESS);

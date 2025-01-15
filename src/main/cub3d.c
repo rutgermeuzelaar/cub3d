@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/14 23:35:24 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/15 20:25:05 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,17 @@ void	draw_routine(void *param)
 	// cast_ray(&game->player.ray, &game->player, &game->map, game->minimap);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	if (argc != 2 || argv[1] == NULL)
+		return (ERROR);
+	if (parsing(&game, argv[1]) != SUCCESS)
+	{
+		return (ERROR);
+	}
+	printf("finished parsing\n");
 	if (!init_game(&game))
 	{
 		return (EXIT_FAILURE);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   init.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/10 13:49:53 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/01 01:16:22 by rmeuzela          #+#    #+#             */
+/*   Updated: 2025/01/14 14:13:09 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,16 @@ bool	init_mlx_objects(t_game *const game)
 		return false;
 	}
 	game->debug = NULL;
-	return (true);
+	return (printf("finished mlx objects correctly\n"), true);
 }
 
 bool	init_game(t_game *const game)
 {
-	ft_memset(game, 0, sizeof(t_game));
-	if (!init_map(&game->map))
-	{
-		return (false);	
-	}
+	// ft_memset(game, 0, sizeof(t_game));
+	// if (!init_map(&game->map))
+	// {
+	// 	return (false);
+	// }
 	if (!init_mlx_objects(game))
 	{
 		free_pointer_array((void **)game->map.map, game->map.height);

@@ -6,11 +6,13 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:42:11 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/14 12:12:03 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/15 12:23:28 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
+#include <ctype.h>
 #include "libft.h"
 #include "utilities.h"
 

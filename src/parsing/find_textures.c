@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 15:59:46 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/14 20:53:56 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/15 20:26:04 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	assign_texture(mlx_texture_t *texture, char *str)
 	texture_path =  ft_substr(str, i, size);
 	texture = mlx_load_png(texture_path);
 	if (!texture)
-		return (printf("havent found texture mb gang, take this gmod texture\n"), ERROR);
-	return (SUCCESS);
+		return (printf("havent found %s mb gang, take this gmod texture\n", texture_path), free(texture_path), ERROR);
+	return (free(texture_path), SUCCESS);
 }
 
 int	texture_parsing(t_game *game)
@@ -70,12 +70,11 @@ int	texture_parsing(t_game *game)
 		j = skip_whitespaces(file[i]);
 		if (file[i][j] && found_texture_prefix(file[i] + j) && &textures[i2])
 		{
-			//index the textures arr
 			if (assign_texture(&textures[i2], file[i] + j) != SUCCESS)
 			{
 				textures[i2] = *mlx_load_png("textures/gmod.png");
 				if (!&textures[i2])
-					return (ERROR);
+					return (free(textures), ERROR);
 			}
 			printf("found texture\n");
 			i2++;
