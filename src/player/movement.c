@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 15:06:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/07 17:39:43 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/16 13:51:02 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,17 @@ void	move_angle_left(t_player *player)
 	player->dir.y = player->rectangle.y + (sin(player->dir_angle) * DIRECTION_LINE_LENGTH);
 }
 
+void	move_player_up(t_player *player, t_map *map, float delta_time)
+{
+	const float	new_y = player->y - (MOVE_STEPS * delta_time);
+
+	if (is_colliding((t_vector2d){player->x, new_y}, map))
+	{
+		return ;
+	}
+	player->y = new_y;
+}
+
 void	move_player(void *param)
 {
 	t_game	*game;
@@ -90,7 +101,8 @@ void	move_player(void *param)
 	
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
-		move_up(&game->player.y, game->mlx->delta_time, y_up_offset);
+		move_player_up(&game->player, &game->map, game->mlx->delta_time);
+		// move_up(&game->player.y, game->mlx->delta_time, y_up_offset);
 		move_up(&game->player.rectangle.y, game->mlx->delta_time, y_up_offset);
 		move_up(&game->player.dir.y, game->mlx->delta_time, y_up_offset);
 		printf("GO UP!\n");

@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/13 15:41:27 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/16 13:48:19 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PLAYER_H
 # include "color.h"
 # include "shapes.h"
+# include "map.h"
 # ifndef MOVE_STEPS
 #  define MOVE_STEPS 400
 # endif
@@ -38,6 +39,7 @@ typedef struct s_player
 	float			dir_angle;
 }	t_player;
 
+bool	is_colliding(t_vector2d point, t_map *map);
 void	init_player(t_player *const player, float spawn_x, float spawn_y);
 void	move_player(void *param);
 void	draw_player(const t_player *const player, mlx_image_t *minimap);
