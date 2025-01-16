@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:41:32 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/15 13:47:44 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:36:49 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <unistd.h>
 
 void	free_pointer_array(void **array, const int size);
-int		arr_free(char **arr);
+int		arr_free(void **arr);
 int		print_arr(char **arr);
 char	*ft_strjoin2(char *s1, char const *s2);
 int		skip_whitespaces(char *str);

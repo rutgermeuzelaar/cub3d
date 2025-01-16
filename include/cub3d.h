@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/15 13:46:51 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/16 15:31:18 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct		s_game
 	t_color			floor;
 	t_color			ceiling;
 	int				*res;
-	mlx_texture_t	*textures;
+	mlx_texture_t	**textures;
 	mlx_t			*mlx;
 	mlx_image_t		*screen;
 	mlx_image_t		*minimap;
