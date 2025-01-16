@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/13 14:53:15 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/16 19:54:42 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/16 22:38:08 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void get_ray_hit(t_ray *ray, t_map *map, float y_step, float x_step)
 	// printf("y_step: %f, x_step: %f\n", y_step, x_step);
 	while (true)
 	{
-		map_intersect.x = ceil(ray->direction.x / TILE_SIZE);
-		map_intersect.y = ceil(ray->direction.y / TILE_SIZE);
+		map_intersect.x = ray->direction.x / TILE_SIZE;
+		map_intersect.y = ray->direction.y / TILE_SIZE - 0.1f;
 		// printf("map_intersect.x: %d map_intersect.y: %d\n", map_intersect.x, map_intersect.y);
 		// printf("ray_dir_x: %f ray_dir_y: %f\n", ray->direction.x, ray->direction.y);
 		if (map_intersect.x < 0 || (size_t)map_intersect.x > (map->width))

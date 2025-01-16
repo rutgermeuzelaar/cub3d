@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:09:28 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/01 21:31:49 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/16 22:40:24 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void set_fill(char texture, t_vector2dint index2d, mlx_image_t *image)
 	{
 		color = WALL_COLOR;
 	}
-	if (texture == '0')
+	else
 	{
 		color = FLOOR_COLOR;
 	}
