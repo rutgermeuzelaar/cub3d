@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   get_map.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/14 13:28:51 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/16 16:34:09 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   get_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/14 13:28:51 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/16 17:09:03 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,18 @@ int	map_dimensions(t_game *game)
 		if (ft_strlen(game->map.map[i]) > maxlen)
 			maxlen = ft_strlen(game->map.map[i]);
 		if (find_pos(game->map.map[i]) > 0)
+		{
 			ppos[1] = find_pos(game->map.map[i]);
-		if (ppos[1] > 0)
 			ppos[0] = i;
+		}
 		i++;
 	}
 	printf("player position =\nx = %d\ny = %d\n", ppos[1], ppos[0]);
 	printf("width = %zu\nheight = %d\n", maxlen, i);
 	game->map.height = i;
 	game->map.width = maxlen;
-	game->map.player_y = ppos[0];
-	game->map.player_x = ppos[1];
+	game->map.player_y = ppos[1];
+	game->map.player_x = ppos[0];
 	return (SUCCESS);
 }
 
