@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   basic_utils2.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 20:42:11 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/15 12:23:28 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   basic_utils2.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/01 20:42:11 by rmeuzela      #+#    #+#                 */
+/*   Updated: 2025/01/16 16:35:11 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**ft_arrndup(char **arr, size_t size)
 	{
 		ret[i] = ft_strdup(arr[i]);
 		if (!ret[i])
-			return (arr_free(ret), NULL);
+			return (arr_free((void **)ret), NULL);
 		i++;
 	}
 	ret[i] = NULL;

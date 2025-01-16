@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 13:28:51 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/16 14:26:59 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   get_map.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/14 13:28:51 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/16 16:34:09 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	get_map(t_game *game)
 			arr = ft_arrndup(arr + i, (arrlen(arr) - i));
 			if (!arr)
 				return (SYS_ERROR);
-			arr_free(game->map.map);
+			arr_free((void **)game->map.map);
 			game->map.map = arr;
 			return (SUCCESS);
 		}

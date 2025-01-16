@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rgba_parsing.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 15:18:12 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/16 13:41:32 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   rgba_parsing.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/13 15:18:12 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/16 16:33:02 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	*rgb_to_int(char *rgb)
 		return (NULL);
 	ret = ft_calloc(3, sizeof(int));
 	if (!ret)
-		return (arr_free(arr), NULL);
+		return (arr_free((void**)arr), NULL);
 	while (arr[i])
 	{
 		ret[i] = ft_atoi(arr[i]);
