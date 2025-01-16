@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   basic_utils.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/22 13:46:56 by nleusden      #+#    #+#                 */
-/*   Updated: 2024/12/26 21:35:24 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   basic_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/22 13:46:56 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/16 15:36:11 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	print_arr(char **arr)
 	return (i);
 }
 
-int	arr_free(char **arr)
+int	arr_free(void **arr)
 {
 	int	i;
 

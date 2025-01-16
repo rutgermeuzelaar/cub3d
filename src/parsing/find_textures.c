@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   find_textures.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 15:59:46 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/15 20:26:04 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   find_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/16 15:41:00 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	found_texture_prefix(char *str)
 
 int	assign_texture(mlx_texture_t *texture, char *str)
 {
-	int	i;
-	int	size;
+	int		i;
+	int		size;
 	char	*texture_path;
 	int		texture_index;
 
@@ -42,7 +42,7 @@ int	assign_texture(mlx_texture_t *texture, char *str)
 	while (str[size] && !ft_isspace(str[size]))
 		size++;
 	size -= i;
-	texture_path =  ft_substr(str, i, size);
+	texture_path = ft_substr(str, i, size);
 	texture = mlx_load_png(texture_path);
 	if (!texture)
 		return (printf("havent found %s mb gang, take this gmod texture\n", texture_path), free(texture_path), ERROR);
@@ -51,35 +51,33 @@ int	assign_texture(mlx_texture_t *texture, char *str)
 
 int	texture_parsing(t_game *game)
 {
-	char	**file;
-	int		i;
-	int		j;
-	int		i2;
-	mlx_texture_t *textures;
+	char			**file;
+	int				i;
+	int				j;
+	int				i2;
+	// mlx_texture_t	**textures;
 
-	textures = (mlx_texture_t *)ft_calloc(5, sizeof(mlx_texture_t));
-	if (!textures)
+	game->textures = ft_calloc((5 + 1), sizeof(mlx_texture_t *));
+	if (!game->textures)
 		return (SYS_ERROR);
 	i = 0;
-	j = 0;
 	i2 = 0;
 	file = game->map.map;
-	printf("file begin = %s\n", game->map.map[0]);
 	while (file[i])
 	{
 		j = skip_whitespaces(file[i]);
-		if (file[i][j] && found_texture_prefix(file[i] + j) && &textures[i2])
+		if (file[i][j] && found_texture_prefix(file[i] + j) && game->textures[i2])
 		{
-			if (assign_texture(&textures[i2], file[i] + j) != SUCCESS)
+			if (assign_texture(game->textures[i2], file[i] + j) != SUCCESS)
 			{
-				textures[i2] = *mlx_load_png("textures/gmod.png");
-				if (!&textures[i2])
-					return (free(textures), ERROR);
+				game->textures[i2] = mlx_load_png("textures/gmod.png");
+				if (!game->textures[i2]->pixels)
+					return (arr_free((void **)game->textures), ERROR);
 			}
-			printf("found texture\n");
 			i2++;
 		}
 		i++;
 	}
+	printf("textures were applied\n");
 	return (SUCCESS);
 }

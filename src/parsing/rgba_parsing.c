@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:18:12 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/13 17:02:05 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:41:32 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	get_rgb_value(char *rgb, t_color *game)
 
 int	fc_parsing(t_game *game)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
 	char	**file;
 	int		ret;
 

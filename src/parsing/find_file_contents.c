@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/15 12:46:09 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/16 13:42:47 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ char	*check_folder(char *a, char *b)
 
 int	find_fd(char *str, char *folder, char *format)
 {
-	int		fd;
+	int	fd;
 
 	fd = 0;
 	folder = check_folder(folder, str);
