@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 01:16:22 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/14 14:13:09 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   init.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
+/*   Updated: 2025/01/16 17:11:34 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,12 @@ bool	init_mlx_objects(t_game *const game)
 
 bool	init_game(t_game *const game)
 {
-	// ft_memset(game, 0, sizeof(t_game));
-	// if (!init_map(&game->map))
-	// {
-	// 	return (false);
-	// }
 	if (!init_mlx_objects(game))
 	{
 		free_pointer_array((void **)game->map.map, game->map.height);
 		return (false);
 	}
-	init_player(&game->player, 50, 50);
+	init_player(&game->player, game->map.player_x * TILE_SIZE + (TILE_SIZE / 2), \
+	game->map.player_y * TILE_SIZE + (TILE_SIZE / 2));
 	return (true);
 }
