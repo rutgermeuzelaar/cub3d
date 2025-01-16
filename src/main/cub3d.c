@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/15 20:25:05 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/16 19:47:19 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	draw_routine(void *param)
 	game->minimap->width * game->minimap->height * BPP);
 	draw_minimap(&game->map, game->minimap);
 	draw_player(&game->player, game->minimap);
-	// cast_ray(&game->player.ray, &game->player, &game->map, game->minimap);
+	cast_ray(&game->player.ray, &game->player, &game->map, game->minimap);
 }
 
 int	main(int argc, char **argv)
