@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/17 15:03:52 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/17 17:34:31 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ void	mlx_esc(mlx_key_data_t keydata, void *param)
 	}
 }
 
+float	inverse_angle_y(float angle)
+{
+	const float	half = M_PI * 2;
+
+	return ((angle - half) * -1);
+}
+
 // Only for debugging, remove in final project.
 void	draw_info(t_game *game)
 {
@@ -63,14 +70,14 @@ void	draw_info(t_game *game)
 
 	sprintf(player, \
 	"PLAYER XY: %f / %f\n \
-	ANGLE: %f\n" \
+	ANGLE (Y INVERSE): %f\n" \
 	"DIRECTION XY: %f / %f\n \
 	FPS: %d\n", \
 	game->player.x, \
 	game->player.y, \
-	game->player.dir_angle, \
-	game->player.dir.x, \
-	game->player.dir.y,
+	inverse_angle_y(game->player.dir_angle), \
+	game->player.dir_x, \
+	game->player.dir_y,
 	(int)(1 / game->mlx->delta_time));
 	old_img = game->debug;
 	game->debug = mlx_put_string(game->mlx, player, 16, 16);
