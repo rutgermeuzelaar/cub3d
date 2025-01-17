@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/16 19:47:19 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/17 15:03:52 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,18 +58,20 @@ void	mlx_esc(mlx_key_data_t keydata, void *param)
 // Only for debugging, remove in final project.
 void	draw_info(t_game *game)
 {
-	char		player[100];
+	char		player[1000];
 	mlx_image_t	*old_img;
 
 	sprintf(player, \
 	"PLAYER XY: %f / %f\n \
 	ANGLE: %f\n" \
-	"DIRECTION XY: %f / %f\n", \
+	"DIRECTION XY: %f / %f\n \
+	FPS: %d\n", \
 	game->player.x, \
 	game->player.y, \
 	game->player.dir_angle, \
 	game->player.dir.x, \
-	game->player.dir.y);
+	game->player.dir.y,
+	(int)(1 / game->mlx->delta_time));
 	old_img = game->debug;
 	game->debug = mlx_put_string(game->mlx, player, 16, 16);
 	mlx_delete_image(game->mlx, old_img);
