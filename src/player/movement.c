@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 15:06:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/17 17:14:26 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/18 20:09:29 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,25 +104,21 @@ void	move_player(void *param)
 		move_player_up(&game->player, &game->map, game->mlx->delta_time);
 		// move_up(&game->player.y, game->mlx->delta_time, y_up_offset);
 		move_up(&game->player.rectangle.y, game->mlx->delta_time, y_up_offset);
-		printf("GO UP!\n");
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 	{
 		move_down(&game->player.y, game->mlx->delta_time, y_down_offset);
 		move_down(&game->player.rectangle.y, game->mlx->delta_time, y_down_offset);
-		printf("GO DOWN!\n");
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
 		move_left(&game->player.x, game->mlx->delta_time, x_left_offset);
 		move_left(&game->player.rectangle.x, game->mlx->delta_time, x_left_offset);
-		printf("GO LEFT!\n");
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
 		move_right(&game->player.x, game->mlx->delta_time, x_right_offset);
 		move_right(&game->player.rectangle.x, game->mlx->delta_time, x_right_offset);
-		printf("GO RIGHT!\n");
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	{

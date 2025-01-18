@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 22:55:55 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/17 17:46:25 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/18 20:04:44 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void get_ray_hit_right(t_ray *ray, t_map *map, float y_step, float x_step
 
 	while (!point_out_of_bounds(&ray->direction, height, width))
 	{
-		map_intersect.x = ray->direction.x / TILE_SIZE - 0.1f;
+		map_intersect.x = ray->direction.x / TILE_SIZE + 0.1f;
 		map_intersect.y = ray->direction.y / TILE_SIZE;
 		if (map->map[map_intersect.y][map_intersect.x] == '1')
 		{

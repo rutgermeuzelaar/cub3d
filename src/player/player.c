@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/17 17:15:29 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/18 15:03:25 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	init_player(t_player *const player, float spawn_x, float spawn_y)
 	player->rectangle.width = 16;
 	player->rectangle.x = 50;
 	player->rectangle.y = 50;
-	player->dir_angle = M_PI * 2;
+	player->dir_angle = 0;
 	player->dir_x = cos(player->dir_angle);
 	player->dir_y = sin(player->dir_angle);
 	ft_memset(&player->ray, 0, sizeof(t_ray));
