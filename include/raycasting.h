@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 13:21:49 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/17 16:43:53 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/18 22:50:19 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,16 @@
 
 bool	point_out_of_bounds(t_vector2d *point, const uint32_t height, \
 		const uint32_t width);
+int		ceil_multiple(float number, int multiple);
+int		floor_multiple(float number, int multiple);
+void	set_ray_distance(t_ray *ray, t_ray_collision *collision);
 void	cast_ray_horizontal(t_ray *ray, t_player *player, t_map *map, \
 		mlx_image_t *minimap);
 void	cast_ray_vertical(t_ray *ray, t_player *player, t_map *map, \
 		mlx_image_t *minimap);
+bool	almost_equal(float a, float b);
+t_ray_collision	get_ray_collision_horizontal(t_ray *ray, t_map *map, mlx_image_t *minimap);
+t_ray_collision	get_ray_collision_vertical(t_ray *ray, t_map *map);
 void	cast_ray(t_ray *ray, t_player *player, t_map *map, \
 		mlx_image_t *minimap);
 #endif
