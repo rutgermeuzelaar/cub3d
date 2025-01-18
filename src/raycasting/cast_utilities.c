@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:45:51 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/18 22:49:19 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 00:13:59 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "player.h"
 #include "map.h"
 #include "shapes.h"
+#include "raycasting.h"
 
 // the ray direction gets out of bounds
 bool	point_out_of_bounds(t_vector2d *point, const uint32_t height, \
@@ -80,4 +81,28 @@ void	set_ray_distance(t_ray *ray, t_ray_collision *collision)
 bool	almost_equal(float a, float b)
 {
 	return (fabs(fmax(a, b) - fmin(a, b)) <= FLT_EPSILON);
+}
+
+void	set_ray_angles(t_ray *rays, t_player *player)
+{
+	const float	fov = 66 * RADIAN;
+	const float	offset = fov / player->ray_count;
+	float		start;
+	int			i;
+
+	i = 0;
+	start = player->dir_angle + (fov / 2);
+	while (i < player->ray_count)
+	{
+		rays[i].angle = start - (offset * i);
+		if (rays[i].angle <= 0)
+		{
+			rays[i].angle += (M_PI * 2);
+		}
+		if (rays[i].angle >= (M_PI * 2))
+		{
+			rays[i].angle -= (M_PI * 2);
+		}
+		i++;
+	}
 }

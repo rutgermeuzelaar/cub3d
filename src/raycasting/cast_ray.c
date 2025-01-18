@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/18 22:56:45 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 00:19:47 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,29 @@ t_ray_collision	get_ray_collision(t_ray *ray, t_map *map, mlx_image_t *minimap)
 	return (collision_horizontal);
 }
 
-void	cast_ray(t_ray *ray, t_player *player, t_map *map, mlx_image_t *minimap)
+float	cast_ray(t_ray *ray, t_player *player, t_map *map, mlx_image_t *minimap)
 {
 	t_ray_collision	collision;
 
 	ray->position.x = player->x;
 	ray->position.y = player->y;
-	ray->angle = player->dir_angle;
 	collision = get_ray_collision(ray, map, minimap);
 	ray->direction = collision.point;
 	draw_line((t_vector2dint){ray->position.x, ray->position.y}, 
 	(t_vector2dint){ray->direction.x, ray->direction.y}, 
-	minimap, get_rgba(0xe6e6fa, 255));
+	minimap, player->ray_color.rgba);
+	return (collision.distance);
+}
+
+void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, mlx_image_t *minimap)
+{
+	int	i;
+
+	i = 0;
+	while (i < player->ray_count)
+	{
+		printf("rays[i] angle: %f\n", rays[i].angle);
+		cast_ray(&rays[i], player, map, minimap);
+		i++;
+	}
 }
