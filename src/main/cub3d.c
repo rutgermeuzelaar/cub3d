@@ -6,10 +6,11 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/19 00:07:17 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 14:44:04 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _XOPEN_SOURCE
 #include <math.h>
 #include <stdio.h>
 #include "cub3d.h"

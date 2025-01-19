@@ -6,10 +6,11 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/13 14:53:15 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 00:19:29 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 14:40:13 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _XOPEN_SOURCE
 #include <math.h>
 #include <stdio.h>
 #include <assert.h>

@@ -6,10 +6,11 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 15:06:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 00:11:53 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 14:44:22 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _XOPEN_SOURCE
 #include <stdio.h>
 #include <math.h>
 #include "MLX42/MLX42.h"
