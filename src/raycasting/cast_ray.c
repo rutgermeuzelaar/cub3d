@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 14:43:43 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 15:57:57 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include "minimap.h"
 #include "raycasting.h"
 
-t_ray_collision	get_ray_collision(t_ray *ray, t_map *map, mlx_image_t *minimap)
+t_ray_collision	get_ray_collision(t_ray *ray, t_map *map)
 {
 	t_ray_collision	collision_horizontal;
 	t_ray_collision	collision_vertical;
@@ -33,7 +33,7 @@ t_ray_collision	get_ray_collision(t_ray *ray, t_map *map, mlx_image_t *minimap)
 	if (!almost_equal(ray->angle, M_PI) && \
 	!(ray->angle <= FLT_EPSILON) && !almost_equal(ray->angle, M_PI * 2))
 	{
-		collision_horizontal = get_ray_collision_horizontal(ray, map, minimap);
+		collision_horizontal = get_ray_collision_horizontal(ray, map);
 	}
 	if (!(almost_equal(ray->angle, (M_PI / 2)) || 
 	almost_equal(ray->angle, (3 * M_PI) / 2)))
@@ -53,7 +53,7 @@ float	cast_ray(t_ray *ray, t_player *player, t_map *map, mlx_image_t *minimap)
 
 	ray->position.x = player->x;
 	ray->position.y = player->y;
-	collision = get_ray_collision(ray, map, minimap);
+	collision = get_ray_collision(ray, map);
 	ray->direction = collision.point;
 	draw_line((t_vector2dint){ray->position.x, ray->position.y}, 
 	(t_vector2dint){ray->direction.x, ray->direction.y}, 

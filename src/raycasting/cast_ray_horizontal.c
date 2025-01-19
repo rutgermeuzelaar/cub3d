@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/13 14:53:15 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 14:40:13 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 16:05:35 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,6 @@
 #include "minimap.h"
 #include "raycasting.h"
 
-static void loop_collision_up(t_ray_collision *collision, t_map *map, \
-			float y_step, float x_step)
-{
-	const uint32_t	height = map->height * TILE_SIZE;
-	const uint32_t	width = map->width * TILE_SIZE;
-	t_vector2dint	map_intersect;
-
-	while (!point_out_of_bounds(&collision->point, height, width))
-	{
-		map_intersect.x = collision->point.x / TILE_SIZE;
-		map_intersect.y = collision->point.y / TILE_SIZE;
-		if (map->map[map_intersect.y][map_intersect.x] == '1')
-		{
-			break ;
-		}
-		collision->point.x -= x_step;
-		collision->point.y -= y_step;
-	}
-}
-
 static t_ray_collision get_ray_collision_up(t_ray *ray, t_map *map)
 {
 	const float 	closest_y = ceil_multiple(ray->position.y, TILE_SIZE);
@@ -52,29 +32,9 @@ static t_ray_collision get_ray_collision_up(t_ray *ray, t_map *map)
 	collision.point.y = closest_y;
 	atan = -1 / tan(ray->angle);
 	collision.point.x = (delta_y * atan) + ray->position.x;
-	loop_collision_up(&collision, map, -TILE_SIZE, (atan * TILE_SIZE));
+	progress_collision(&collision, map, ray->cardinal, \
+	(t_vector2d){(atan * -TILE_SIZE), TILE_SIZE});
 	return (collision);
-}
-
-static void loop_collision_down(t_ray_collision *collision, t_map *map, \
-			float y_step, float x_step)
-{
-	const uint32_t	height = map->height * TILE_SIZE;
-	const uint32_t	width = map->width * TILE_SIZE;
-	t_vector2dint	map_intersect;
-
-	while (!point_out_of_bounds(&collision->point, height, width))
-	{
-		map_intersect.x = collision->point.x / TILE_SIZE;
-		map_intersect.y = collision->point.y / TILE_SIZE - 0.1f;
-		if (map->map[map_intersect.y][map_intersect.x] == '1')
-		{
-			collision->hit = true;
-			break ;
-		}
-		collision->point.x -= x_step;
-		collision->point.y -= y_step;
-	}
 }
 
 static t_ray_collision	get_ray_collision_down(t_ray *ray, t_map *map)
@@ -88,21 +48,23 @@ static t_ray_collision	get_ray_collision_down(t_ray *ray, t_map *map)
 	collision.point.y = closest_y;
 	atan = -1 / tan(ray->angle);
 	collision.point.x = (delta_y * atan) + ray->position.x;
-	loop_collision_down(&collision, map, TILE_SIZE, (atan * -TILE_SIZE));
+	progress_collision(&collision, map, ray->cardinal, \
+	(t_vector2d){(atan * TILE_SIZE), -TILE_SIZE});
 	return (collision);
 }
 
-t_ray_collision	get_ray_collision_horizontal(t_ray *ray, t_map *map, mlx_image_t *minimap)
+t_ray_collision	get_ray_collision_horizontal(t_ray *ray, t_map *map)
 {
 	t_ray_collision	collision;
 
-	(void)minimap;
 	if (ray->angle > M_PI)
 	{
+		ray->cardinal = SOUTH;
 		collision = get_ray_collision_down(ray, map);
 	}
 	if (ray->angle < M_PI)
 	{
+		ray->cardinal = NORTH;
 		collision = get_ray_collision_up(ray, map);
 	}
 	ray->direction = collision.point;

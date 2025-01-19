@@ -6,11 +6,12 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:45:51 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 14:44:39 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 16:19:54 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _XOPEN_SOURCE
+#define ROUNDING_ERROR 0.1f
 #include <math.h>
 #include <stdio.h>
 #include <float.h>
@@ -105,5 +106,49 @@ void	set_ray_angles(t_ray *rays, t_player *player)
 			rays[i].angle -= (M_PI * 2);
 		}
 		i++;
+	}
+}
+
+static void	set_intersection_cardinal(t_ray_collision *collision, \
+			t_vector2dint *map_intersection, t_cardinal_direction cardinal)
+{
+	if (cardinal == NORTH)
+	{
+		map_intersection->x = collision->point.x / TILE_SIZE;
+		map_intersection->y = collision->point.y / TILE_SIZE + ROUNDING_ERROR;
+	}
+	else if (cardinal == EAST)
+	{
+		map_intersection->x = collision->point.x / TILE_SIZE + ROUNDING_ERROR;
+		map_intersection->y = collision->point.y / TILE_SIZE;
+	}
+	else if (cardinal == SOUTH)
+	{
+		map_intersection->x = collision->point.x / TILE_SIZE;
+		map_intersection->y = collision->point.y / TILE_SIZE - ROUNDING_ERROR;
+	}
+	else if (cardinal == WEST)
+	{
+		map_intersection->x = collision->point.x / TILE_SIZE - ROUNDING_ERROR;
+		map_intersection->y = collision->point.y / TILE_SIZE;
+	}	
+}
+
+void	progress_collision(t_ray_collision *collision, t_map *map, \
+		t_cardinal_direction cardinal, t_vector2d step)
+{
+	const uint32_t	height = map->height * TILE_SIZE;
+	const uint32_t	width = map->width * TILE_SIZE;
+	t_vector2dint	map_intersect;
+
+	while (!point_out_of_bounds(&collision->point, height, width))
+	{
+		set_intersection_cardinal(collision, &map_intersect, cardinal);
+		if (map->map[map_intersect.y][map_intersect.x] == '1')
+		{
+			break ;
+		}
+		collision->point.x += step.x;
+		collision->point.y += step.y;
 	}
 }
