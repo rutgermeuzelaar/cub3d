@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/18 23:34:43 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 15:17:16 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "color.h"
 # include "shapes.h"
 # include "map.h"
+# include "raycasting_structs.h"
 # ifndef MOVE_STEPS
 #  define MOVE_STEPS 400
 # endif

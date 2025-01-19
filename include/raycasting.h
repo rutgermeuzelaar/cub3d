@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 13:21:49 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/18 23:56:06 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 15:17:06 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "shapes.h"
 # include "player.h"
 # include "map.h"
+# include "raycasting_structs.h"
 
 bool	point_out_of_bounds(t_vector2d *point, const uint32_t height, \
 		const uint32_t width);
