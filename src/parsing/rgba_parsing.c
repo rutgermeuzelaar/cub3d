@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/13 15:18:12 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/16 16:33:02 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 14:57:21 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ int	get_rgb_value(char *rgb, t_color *game)
 	ret = rgb_to_int(rgb);
 	if (!ret)
 		return (SYS_ERROR);
-	color.s_bytes.alpha = 255;
-	color.s_bytes.red = ret[0];
-	color.s_bytes.green = ret[1];
-	color.s_bytes.blue = ret[2];
+	color.bytes.alpha = 255;
+	color.bytes.red = ret[0];
+	color.bytes.green = ret[1];
+	color.bytes.blue = ret[2];
 	*game = color;
 	free(ret);
 	return (SUCCESS);
