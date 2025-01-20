@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   cub3d.c                                            :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/20 19:19:10 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 20:43:11 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2 || argv[1] == NULL)
+	if (argc != 2 || argv[1] == NULL || check_os_compatibility() == 1)
 		return (ERROR);
 	if (parsing(&game, argv[1]) != SUCCESS)
 	{

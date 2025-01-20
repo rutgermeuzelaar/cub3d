@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   basic_utils2.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/01 20:42:11 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/16 16:35:11 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   basic_utils2.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/01 20:42:11 by rmeuzela          #+#    #+#             */
+/*   Updated: 2025/01/20 14:55:21 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,16 @@ char	**ft_arrndup(char **arr, size_t size)
 	}
 	ret[i] = NULL;
 	return (ret);
+}
+
+int	check_os_compatibility(void)
+{
+	#ifdef _WIN32
+		printf("running on windows\n");
+	#elif __linux__
+		printf("running on linux\n");
+	#else
+		return (printf("Unknown OS, exiting program...\n"), 1);
+	#endif
+	return (0);
 }
