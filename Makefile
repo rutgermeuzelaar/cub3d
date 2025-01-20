@@ -34,7 +34,7 @@ SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c draw_circle.c \
 draw_line_utilities.c)
 SRC_PLAYER := $(addprefix player/, movement.c player.c collision_detection.c)
 SRC_RAYCASTING := $(addprefix raycasting/, cast_ray_horizontal.c cast_ray.c \
-draw_rays.c)
+cast_utilities.c cast_ray_vertical.c)
 SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) \
 $(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES) $(SRC_PLAYER) $(SRC_RAYCASTING))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))

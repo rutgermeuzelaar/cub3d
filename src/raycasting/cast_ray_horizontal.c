@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/13 14:53:15 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/15 18:20:56 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 00:19:29 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,118 +18,93 @@
 #include "player.h"
 #include "map.h"
 #include "minimap.h"
+#include "raycasting.h"
 
-// static void get_ray_hit(t_ray *ray, t_map *map, float y_step, float x_step)
-// {
-// 	t_vector2dint	map_intersect;
+static void loop_collision_up(t_ray_collision *collision, t_map *map, \
+			float y_step, float x_step)
+{
+	const uint32_t	height = map->height * TILE_SIZE;
+	const uint32_t	width = map->width * TILE_SIZE;
+	t_vector2dint	map_intersect;
 
-// 	// printf("y_step: %f, x_step: %f\n", y_step, x_step);
-// 	while (true)
-// 	{
-// 		map_intersect.x = (ray->direction.x - ((int)ray->direction.x % TILE_SIZE)) / TILE_SIZE;
-// 		map_intersect.y = (ray->direction.y - ((int)ray->direction.y % TILE_SIZE)) / TILE_SIZE;
-// 		// printf("map_intersect.x: %d map_intersect.y: %d\n", map_intersect.x, map_intersect.y);
-// 		// printf("ray_dir_x: %f ray_dir_y: %f\n", ray->direction.x, ray->direction.y);
-// 		if (map_intersect.x < 0 || (size_t)map_intersect.x > (map->width))
-// 		{
-// 			break ;
-// 		}
-// 		if (map_intersect.y < 0 || (size_t)map_intersect.y > (map->height))
-// 		{
-// 			break ;
-// 		}
-// 		if (map->map[map_intersect.y][map_intersect.x] == '1')
-// 		{
-// 			break ;
-// 		}
-// 		// check if wall is hit
-// 		ray->direction.y += y_step;
-// 		ray->direction.x += x_step;
-// 	}
-// }
+	while (!point_out_of_bounds(&collision->point, height, width))
+	{
+		map_intersect.x = collision->point.x / TILE_SIZE;
+		map_intersect.y = collision->point.y / TILE_SIZE;
+		if (map->map[map_intersect.y][map_intersect.x] == '1')
+		{
+			break ;
+		}
+		collision->point.x -= x_step;
+		collision->point.y -= y_step;
+	}
+}
 
-// static void	cast_ray_up(t_ray *ray, t_player *player, t_map *map, 
-// 			mlx_image_t *minimap)
-// {
-// 	const float closest_y = player->y - ((int)player->y % TILE_SIZE);
-// 	const float delta_y = player->y - closest_y;
-// 	float		x_step;
-	
-// 	ray->position.x = player->x;
-// 	ray->position.y = player->y;
-// 	ray->direction = ray->position;
-// 	x_step = -1 / tan(player->dir_angle);
-// 	ray->direction.x += (x_step * delta_y);
-// 	ray->direction.y -= delta_y;
-// 	get_ray_hit(ray, map, -TILE_SIZE, x_step * TILE_SIZE);
-// 	draw_line(ray->position.x, ray->position.y, ray->direction.x, ray->direction.y, 
-// 	minimap, get_rgba(0x87ceeb, 255));
-// }
+static t_ray_collision get_ray_collision_up(t_ray *ray, t_map *map)
+{
+	const float 	closest_y = ceil_multiple(ray->position.y, TILE_SIZE);
+	const float 	delta_y = ray->position.y - closest_y;
+	float			atan;
+	t_ray_collision	collision;
 
-// static void get_ray_hit_down(t_ray *ray, t_map *map, float y_step, float x_step)
-// {
-// 	t_vector2dint	map_intersect;
+	collision.point = ray->position;
+	collision.point.y = closest_y;
+	atan = -1 / tan(ray->angle);
+	collision.point.x = (delta_y * atan) + ray->position.x;
+	loop_collision_up(&collision, map, -TILE_SIZE, (atan * TILE_SIZE));
+	return (collision);
+}
 
-// 	printf("down: y_step: %f, x_step: %f\n", y_step, x_step);
-// 	while (true)
-// 	{
-// 		map_intersect.x = (ray->direction.x - ((int)ray->direction.x % TILE_SIZE)) / TILE_SIZE;
-// 		map_intersect.y = (ray->direction.y - ((int)ray->direction.y % TILE_SIZE)) / TILE_SIZE;
-// 		printf("map_intersect.x: %d map_intersect.y: %d\n", map_intersect.x, map_intersect.y);
-// 		// printf("ray_dir_x: %f ray_dir_y: %f\n", ray->direction.x, ray->direction.y);
-// 		if (map_intersect.x < 0 || (size_t)map_intersect.x > (map->width))
-// 		{
-// 			break ;
-// 		}
-// 		if (map_intersect.y < 0 || (size_t)map_intersect.y > (map->height))
-// 		{
-// 			break ;
-// 		}
-// 		if (map->map[map_intersect.y][map_intersect.x] == '1')
-// 		{
-// 			break ;
-// 		}
-// 		// check if wall is hit
-// 		ray->direction.y += y_step;
-// 		ray->direction.x -= x_step;
-// 	}
-// }
+static void loop_collision_down(t_ray_collision *collision, t_map *map, \
+			float y_step, float x_step)
+{
+	const uint32_t	height = map->height * TILE_SIZE;
+	const uint32_t	width = map->width * TILE_SIZE;
+	t_vector2dint	map_intersect;
 
+	while (!point_out_of_bounds(&collision->point, height, width))
+	{
+		map_intersect.x = collision->point.x / TILE_SIZE;
+		map_intersect.y = collision->point.y / TILE_SIZE - 0.1f;
+		if (map->map[map_intersect.y][map_intersect.x] == '1')
+		{
+			collision->hit = true;
+			break ;
+		}
+		collision->point.x -= x_step;
+		collision->point.y -= y_step;
+	}
+}
 
-// static void	cast_ray_down(t_ray *ray, t_player *player, t_map *map, 
-// 			mlx_image_t *minimap)
-// {
-// 	const float closest_y = player->y - ((int)player->y % TILE_SIZE);
-// 	const float delta_y = TILE_SIZE - (player->y - closest_y);
-// 	float		x_step;
+static t_ray_collision	get_ray_collision_down(t_ray *ray, t_map *map)
+{
+	const float 	closest_y = floor_multiple(ray->position.y, TILE_SIZE);
+	const float 	delta_y = ray->position.y - closest_y;
+	float			atan;
+	t_ray_collision	collision;
 
-// 	(void)ray;
-// 	(void)map;
-// 	(void)minimap;
-// 	(void)x_step;
-// 	// printf("closest_y down: %f delta_y: %f\n", closest_y, delta_y);
-// 	ray->position.x = player->x;
-// 	ray->position.y = player->y;
-// 	ray->direction = ray->position;
-// 	x_step = -1 / tan(player->dir_angle);
-// 	ray->direction.x -= (x_step * delta_y);
-// 	ray->direction.y += delta_y;
-// 	printf("x_step down: %f\n", x_step);
-// 	// draw_line(ray->position.x, ray->position.y, ray->direction.x, ray->direction.y, minimap, get_rgba(0x87ceeb, 255));
-// 	get_ray_hit_down(ray, map, TILE_SIZE, x_step * TILE_SIZE);
-// 	draw_line(ray->position.x, ray->position.y, ray->direction.x, ray->direction.y, 
-// 	minimap, get_rgba(0x87ceeb, 255));
-// }
+	collision.point = ray->position;
+	collision.point.y = closest_y;
+	atan = -1 / tan(ray->angle);
+	collision.point.x = (delta_y * atan) + ray->position.x;
+	loop_collision_down(&collision, map, TILE_SIZE, (atan * -TILE_SIZE));
+	return (collision);
+}
 
-// void	cast_ray_horizontal(t_ray *ray, t_player *player, t_map *map, 
-// 		mlx_image_t *minimap)
-// {
-// 	if (player->dir_angle > M_PI)
-// 	{
-// 		cast_ray_down(ray, player, map, minimap);
-// 	}
-// 	if (player->dir_angle < M_PI)
-// 	{
-// 		cast_ray_up(ray, player, map, minimap);
-// 	}
-// }
+t_ray_collision	get_ray_collision_horizontal(t_ray *ray, t_map *map, mlx_image_t *minimap)
+{
+	t_ray_collision	collision;
+
+	(void)minimap;
+	if (ray->angle > M_PI)
+	{
+		collision = get_ray_collision_down(ray, map);
+	}
+	if (ray->angle < M_PI)
+	{
+		collision = get_ray_collision_up(ray, map);
+	}
+	ray->direction = collision.point;
+	set_ray_distance(ray, &collision);
+	return (collision);
+}

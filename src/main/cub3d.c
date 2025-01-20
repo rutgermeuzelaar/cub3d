@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/15 20:25:05 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/19 00:07:17 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,21 +55,30 @@ void	mlx_esc(mlx_key_data_t keydata, void *param)
 	}
 }
 
+float	inverse_angle_y(float angle)
+{
+	const float	half = M_PI * 2;
+
+	return ((angle - half) * -1);
+}
+
 // Only for debugging, remove in final project.
 void	draw_info(t_game *game)
 {
-	char		player[100];
+	char		player[1000];
 	mlx_image_t	*old_img;
 
 	sprintf(player, \
 	"PLAYER XY: %f / %f\n \
-	ANGLE: %f\n" \
-	"DIRECTION XY: %f / %f\n", \
+	ANGLE (Y INVERSE): %f\n" \
+	"DIRECTION XY: %f / %f\n \
+	FPS: %d\n", \
 	game->player.x, \
 	game->player.y, \
-	game->player.dir_angle, \
-	game->player.dir.x, \
-	game->player.dir.y);
+	inverse_angle_y(game->player.dir_angle), \
+	game->player.dir_x, \
+	game->player.dir_y,
+	(int)(1 / game->mlx->delta_time));
 	old_img = game->debug;
 	game->debug = mlx_put_string(game->mlx, player, 16, 16);
 	mlx_delete_image(game->mlx, old_img);
@@ -87,7 +96,7 @@ void	draw_routine(void *param)
 	game->minimap->width * game->minimap->height * BPP);
 	draw_minimap(&game->map, game->minimap);
 	draw_player(&game->player, game->minimap);
-	// cast_ray(&game->player.ray, &game->player, &game->map, game->minimap);
+	cast_ray_all(game->player.rays, &game->player, &game->map, game->minimap);
 }
 
 int	main(int argc, char **argv)

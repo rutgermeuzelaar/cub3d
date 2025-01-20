@@ -6,10 +6,11 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 22:10:23 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/15 18:48:10 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/17 14:44:09 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <assert.h>
 #include "MLX42/MLX42.h"
 #include "shapes.h"
 
@@ -19,7 +20,8 @@ void	draw_line(t_vector2dint point_1, t_vector2dint point_2, \
 {
 	int	delta_x;
 	int	delta_y;
-	
+
+	assert(point_1.x >= 0 && point_1.y >= 0 && point_2.x >= 0 && point_2.y >= 0);
 	delta_x = point_2.x - point_1.x;
 	delta_y = point_2.y - point_1.y;
 	if (delta_x < 0)
