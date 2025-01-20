@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 14:29:58 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/16 16:27:16 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:49:55 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,30 @@ int	loop_prefixes(char **prefixes, char *str, int *index)
 	return (-1);
 }
 
+// int	check_color_formatting(char *str, int i)
+// {
+// 	int	i2;
+
+// 	i2 = i;
+// 	if (ft_strncmp(str + i2, "F", 1) == 0 || ft_strncmp(str + i2, "C", 1) == 0)
+// 		i2 += 1;
+// 	else
+// 		return (1);
+// 	while (str[i2] && str[i2] == ' ')
+// 		i2++;
+// 	while (str[i2] && ft_isspace(str[i2]))
+// 	{
+// 		if (!ft_isdigit(str[i2]) && str[i2] != ',')
+// 			return (-1);
+// 		i2++;
+// 	}
+// 	return (0);
+// }
+
 int	check_for_input(char **prefixes, char *str, int *i)
 {
-	printf("check for input\n");
+	// if (check_color_formatting(str, *i) < 0)
+	// 	return (1);
 	while (str[*i] != '\0' && str[*i] != '\n')
 	{
 		if (str[*i] == '\f' || str[*i] == '\r'
