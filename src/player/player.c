@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/20 18:25:20 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 19:37:31 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 bool	init_player(t_player *const player, float spawn_x, float spawn_y)
 {
-	player->ray_count = 5;
+	player->ray_count = 300;
 	player->rays = ft_calloc(player->ray_count, sizeof(t_ray));
 	if (!player->rays)
 	{

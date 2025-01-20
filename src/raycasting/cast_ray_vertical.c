@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 22:55:55 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 16:16:56 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 20:00:35 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static t_ray_collision	get_ray_collision_right(t_ray *ray, t_map *map)
 	float			y_step;
 	t_ray_collision	collision;
 
+	collision.cardinal = EAST;
 	collision.point = ray->position;
 	y_step = -1 * tan(ray->angle);
 	collision.point.x += delta_x;
@@ -45,6 +46,7 @@ static t_ray_collision	get_ray_collision_left(t_ray *ray, t_map *map)
 	float			y_step;
 	t_ray_collision	collision;
 
+	collision.cardinal = WEST;
 	collision.point = ray->position;
 	y_step = -1 * tan(ray->angle);
 	collision.point.x -= delta_x;

@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/19 15:16:12 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 15:17:33 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 20:00:08 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ typedef struct s_ray
 
 typedef struct s_ray_collision
 {
-	bool		hit;
-	t_vector2d	point;
-	float		distance;
+	bool					hit;
+	t_vector2d				point;
+	t_cardinal_direction	cardinal;
+	float					distance;
 }	t_ray_collision;
 #endif

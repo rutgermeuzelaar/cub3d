@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 13:21:49 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 15:53:41 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 20:09:12 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ t_ray_collision	get_ray_collision_horizontal(t_ray *ray, t_map *map);
 t_ray_collision	get_ray_collision_vertical(t_ray *ray, t_map *map);
 float	cast_ray(t_ray *ray, t_player *player, t_map *map, \
 		mlx_image_t *minimap);
-void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, mlx_image_t *minimap);
+void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, \
+		mlx_image_t *minimap, mlx_image_t *screen);
 void	progress_collision(t_ray_collision *collision, t_map *map, \
 		t_cardinal_direction cardinal, t_vector2d step);
 #endif

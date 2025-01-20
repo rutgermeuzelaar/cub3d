@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/19 14:44:04 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 19:19:10 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,19 +85,28 @@ void	draw_info(t_game *game)
 	mlx_delete_image(game->mlx, old_img);
 }
 
+static void draw_background(mlx_image_t *screen, t_color floor, t_color ceiling)
+{
+	const int 	half_window_height = WINDOW_HEIGHT / 2;
+
+	draw_rectangle(screen, \
+	(t_rectangle){0, 0, WINDOW_WIDTH, half_window_height}, ceiling.rgba);
+	draw_rectangle(screen, \
+	(t_rectangle){0, half_window_height, WINDOW_WIDTH, half_window_height}, floor.rgba);
+}
+
 void	draw_routine(void *param)
 {
 	t_game	*game;
 
 	game = (t_game *)param;
 	draw_info(game);
-	draw_rectangle(game->screen, \
-	(t_rectangle){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, get_rgba(0x008080, 235));
+	draw_background(game->screen, game->floor, game->ceiling);
 	ft_memset(game->minimap->pixels, 255, 
 	game->minimap->width * game->minimap->height * BPP);
 	draw_minimap(&game->map, game->minimap);
 	draw_player(&game->player, game->minimap);
-	cast_ray_all(game->player.rays, &game->player, &game->map, game->minimap);
+	cast_ray_all(game->player.rays, &game->player, &game->map, game->minimap, game->screen);
 }
 
 int	main(int argc, char **argv)
@@ -118,7 +127,7 @@ int	main(int argc, char **argv)
 	draw_rectangle(game.screen, \
 	(t_rectangle){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, get_rgba(0x008080, 235));
 	mlx_image_to_window(game.mlx, game.screen, 0, 0);
-	mlx_image_to_window(game.mlx, game.minimap, 100, 300);
+	mlx_image_to_window(game.mlx, game.minimap, 900, WINDOW_HEIGHT / 8);
 	mlx_loop_hook(game.mlx, move_player, &game);
 	mlx_loop_hook(game.mlx, draw_routine, &game);
 	mlx_key_hook(game.mlx, mlx_esc, game.mlx);
