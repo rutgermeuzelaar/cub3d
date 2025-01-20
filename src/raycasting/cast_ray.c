@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 15:57:57 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 18:32:13 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ float	cast_ray(t_ray *ray, t_player *player, t_map *map, mlx_image_t *minimap)
 {
 	t_ray_collision	collision;
 
-	ray->position.x = player->x;
-	ray->position.y = player->y;
+	ray->position.x = player->x * TILE_SIZE;
+	ray->position.y = player->y * TILE_SIZE;
 	collision = get_ray_collision(ray, map);
 	ray->direction = collision.point;
 	draw_line((t_vector2dint){ray->position.x, ray->position.y}, 
