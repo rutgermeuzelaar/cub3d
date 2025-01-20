@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 15:17:16 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 15:21:32 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include "map.h"
 # include "raycasting_structs.h"
 # ifndef MOVE_STEPS
-#  define MOVE_STEPS 400
+#  define MOVE_STEPS 6.0f
 # endif
 # ifndef ROTATION_SPEED
 #  define ROTATION_SPEED 0.1f
 # endif
 # ifndef DIRECTION_LINE_LENGTH
-#  define DIRECTION_LINE_LENGTH 5
+#  define DIRECTION_LINE_LENGTH 1
 # endif
 
 typedef struct s_player
@@ -34,8 +34,8 @@ typedef struct s_player
 	t_color			ray_color;
 	float			x;
 	float			y;
-	int				width;
-	int				height;
+	float			width;
+	float			height;
 	float			dir_x;
 	float			dir_y;
 	float			dir_angle;

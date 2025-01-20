@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 15:06:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 14:44:22 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 15:23:47 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,44 +18,6 @@
 #include "cub3d.h"
 #include "raycasting.h"
 
-typedef void (*move_func)(float *point, double delta_time, uint32_t limit);
-
-static void	move_up(float *y, double delta_time, uint32_t min)
-{
-	*y -= MOVE_STEPS * delta_time;
-	if (*y <= min)
-	{
-		*y = min;
-	}
-}
-
-static void move_down(float *y, double delta_time, uint32_t max)
-{
-	*y += MOVE_STEPS * delta_time;
-	if (*y >= max)
-	{
-		*y = max;
-	}
-}
-
-static void move_left(float *x, double delta_time, uint32_t min)
-{
-	*x -= MOVE_STEPS * delta_time;
-	if (*x <= min)
-	{
-		*x = min;
-	}
-}
-
-static void move_right(float *x, double delta_time, uint32_t max)
-{
-	*x += MOVE_STEPS * delta_time;
-	if (*x >= max)
-	{
-		*x = max;
-	}
-}
-
 void	move_angle_right(t_player *player)
 {
 	player->dir_angle += ROTATION_SPEED;
@@ -63,8 +25,8 @@ void	move_angle_right(t_player *player)
 	{
 		player->dir_angle -= 2 * M_PI;
 	}
-	player->dir_x = cos(player->dir_angle) * DIRECTION_LINE_LENGTH;
-	player->dir_y = sin(player->dir_angle) * DIRECTION_LINE_LENGTH;
+	player->dir_x = cos(player->dir_angle);
+	player->dir_y = sin(player->dir_angle);
 }
 
 void	move_angle_left(t_player *player)
@@ -74,49 +36,53 @@ void	move_angle_left(t_player *player)
 	{
 		player->dir_angle += 2 * M_PI;
 	}
-	player->dir_x = cos(player->dir_angle) * DIRECTION_LINE_LENGTH;
-	player->dir_y = sin(player->dir_angle) * DIRECTION_LINE_LENGTH;
+	player->dir_x = cos(player->dir_angle);
+	player->dir_y = sin(player->dir_angle);
 }
 
-void	move_player_up(t_player *player, t_map *map, float delta_time)
+void	normalize_vector(float *x, float *y)
 {
-	const float	new_y = player->y - (MOVE_STEPS * delta_time);
+	const float magnitude = sqrt(pow(*y, 2) + pow(*x, 2));
+	const float	old_x = *x;
+	const float old_y = *y;
 
-	if (is_colliding((t_vector2d){player->x, new_y}, map))
+	*x *= (*x / magnitude);
+	*y *= (*y / magnitude);
+	if (old_x < 0)
 	{
-		return ;
+		*x *= -1;
 	}
-	player->y = new_y;
+	if (old_y < 0)
+	{
+		*y *= -1;
+	}
+	return ;
 }
 
 void	move_player(void *param)
 {
 	t_game	*game;
+	float	x_change;
+	float	y_change;
 
 	game = (t_game *)param;
-	const uint32_t	x_left_offset = game->player.width / 2;
-	const uint32_t	x_right_offset = game->minimap->width - \
-					(game->player.width / 2);
-	const uint32_t	y_up_offset = game->player.height / 2;
-	const uint32_t	y_down_offset = game->minimap->height - \
-					(game->player.height / 2);
-	
+	x_change = 0;
+	y_change = 0;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
-		// move_player_up(&game->player, &game->map, game->mlx->delta_time);
-		move_up(&game->player.y, game->mlx->delta_time, y_up_offset);
+		y_change += -MOVE_STEPS;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 	{
-		move_down(&game->player.y, game->mlx->delta_time, y_down_offset);
+		y_change += MOVE_STEPS;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 	{
-		move_left(&game->player.x, game->mlx->delta_time, x_left_offset);
+		x_change += -MOVE_STEPS;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 	{
-		move_right(&game->player.x, game->mlx->delta_time, x_right_offset);
+		x_change += MOVE_STEPS;
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	{
@@ -128,4 +94,10 @@ void	move_player(void *param)
 		move_angle_right(&game->player);
 		set_ray_angles(game->player.rays, &game->player);
 	}
+	if (x_change != 0 && y_change != 0)
+	{
+		normalize_vector(&x_change, &y_change);
+	}
+	game->player.x += x_change * game->mlx->delta_time;
+	game->player.y += y_change * game->mlx->delta_time;
 }
