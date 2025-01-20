@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/20 20:09:39 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/20 20:37:52 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_ray_collision	get_ray_collision(t_ray *ray, t_map *map)
 	return (collision_horizontal);
 }
 
-float	cast_ray(t_ray *ray, t_player *player, t_map *map, mlx_image_t *minimap)
+t_ray_collision	cast_ray(t_ray *ray, t_player *player, t_map *map, mlx_image_t *minimap)
 {
 	t_ray_collision	collision;
 
@@ -59,7 +59,7 @@ float	cast_ray(t_ray *ray, t_player *player, t_map *map, mlx_image_t *minimap)
 	draw_line((t_vector2dint){ray->position.x, ray->position.y}, 
 	(t_vector2dint){ray->direction.x, ray->direction.y}, 
 	minimap, player->ray_color.rgba);
-	return (collision.distance);
+	return (collision);
 }
 
 static float fix_fisheye(float player_angle, float ray_angle, float distance)
@@ -78,39 +78,51 @@ static float fix_fisheye(float player_angle, float ray_angle, float distance)
 	return (cos(angle_delta) * distance);
 }
 
-static void	draw_ray_stripe(t_player *player, t_ray *ray, mlx_image_t *image, float distance, \
-			int ray_total, int ray_index, t_map *map)
+static void	draw_ray_stripe(t_player *player, t_ray *ray, mlx_image_t *image, \
+			t_ray_collision collision, int ray_index)
 {
-	const float ray_thickness = WINDOW_WIDTH / ray_total;
-	// const float base_height = WINDOW_HEIGHT / 2;
+	const float ray_thickness = WINDOW_WIDTH / player->ray_count;
 	t_rectangle	stripe;
+	float		distance;
 
-	(void)ray;
-	printf("distance: %f\n", distance);
-	(void)map;
-	distance = fix_fisheye(player->dir_angle, ray->angle, distance);
+	distance = fix_fisheye(player->dir_angle, ray->angle, collision.distance);
 	stripe.height = (WINDOW_HEIGHT * TILE_SIZE) / distance;
 	if (stripe.height > WINDOW_HEIGHT)
 	{
 		stripe.height = WINDOW_HEIGHT;
 	}
 	stripe.width = ray_thickness;
-	stripe.x = ray_thickness * ray_index;
+	stripe.x = ray_thickness * ray_index + 40;
+	printf("ray intel: %f total: %f\n", ray_thickness, ray_thickness * player->ray_count);
 	stripe.y = (WINDOW_HEIGHT / 2) - stripe.height / 2;
-	draw_rectangle(image, stripe, RED);
+	printf("CARDINAL: %d\n", collision.cardinal);
+	printf("stripe.x: %f\n", stripe.x);
+	if (collision.cardinal == NORTH || collision.cardinal == SOUTH)
+	{
+		t_color cheese;
+
+		cheese.rgba = RED;
+		cheese.bytes.red -= 75;
+		draw_rectangle(image, stripe, cheese.rgba);
+	}
+	else
+	{
+		draw_rectangle(image, stripe, RED);
+	}
 }
 
 void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, \
 		mlx_image_t *minimap, mlx_image_t *screen)
 {
-	int		i;
-	float	distance;
+	int				i;
+	t_ray_collision	collision;
+
 	i = 0;
 	while (i < player->ray_count)
 	{
 		printf("rays[i] angle: %f\n", rays[i].angle);
-		distance = cast_ray(&rays[i], player, map, minimap);
-		draw_ray_stripe(player, &rays[i], screen, distance, player->ray_count, i, map);
+		collision = cast_ray(&rays[i], player, map, minimap);
+		draw_ray_stripe(player, &rays[i], screen, collision, i);
 		i++;
 	}
 }
