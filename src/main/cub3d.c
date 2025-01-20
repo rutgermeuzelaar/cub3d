@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/19 00:07:17 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:13:18 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/20 14:56:02 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	main(int argc, char **argv)
 {
 	t_game	game;
 
-	if (argc != 2 || argv[1] == NULL)
+	if (argc != 2 || argv[1] == NULL || check_os_compatibility() == 1)
 		return (ERROR);
 	if (parsing(&game, argv[1]) != SUCCESS)
 	{

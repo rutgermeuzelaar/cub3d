@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:41:32 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/16 15:36:49 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:20:24 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int		arrlen(char **arr);
 char	*check_folder(char *a, char *b);
 char	*file_check(char *file, char *format);
 char	**ft_arrndup(char **arr, size_t size);
+int		check_os_compatibility(void);
+int		check_color_formatting(char *str, int *i);
 
 
 

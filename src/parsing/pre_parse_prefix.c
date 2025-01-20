@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 14:29:58 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/20 12:49:55 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:22:03 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	loop_prefixes(char **prefixes, char *str, int *index)
 	{
 		if (ft_strncmp(prefixes[i], str, ft_strlen(prefixes[i])) == 0)
 		{
-			if (index != NULL)
+			if (index != NULL && ft_strlen(prefixes[i]) == 2)
 				(*index) += ft_strlen(prefixes[i]);
 			return (i);
 		}
@@ -79,30 +79,8 @@ int	loop_prefixes(char **prefixes, char *str, int *index)
 	return (-1);
 }
 
-// int	check_color_formatting(char *str, int i)
-// {
-// 	int	i2;
-
-// 	i2 = i;
-// 	if (ft_strncmp(str + i2, "F", 1) == 0 || ft_strncmp(str + i2, "C", 1) == 0)
-// 		i2 += 1;
-// 	else
-// 		return (1);
-// 	while (str[i2] && str[i2] == ' ')
-// 		i2++;
-// 	while (str[i2] && ft_isspace(str[i2]))
-// 	{
-// 		if (!ft_isdigit(str[i2]) && str[i2] != ',')
-// 			return (-1);
-// 		i2++;
-// 	}
-// 	return (0);
-// }
-
 int	check_for_input(char **prefixes, char *str, int *i)
 {
-	// if (check_color_formatting(str, *i) < 0)
-	// 	return (1);
 	while (str[*i] != '\0' && str[*i] != '\n')
 	{
 		if (str[*i] == '\f' || str[*i] == '\r'
@@ -113,10 +91,8 @@ int	check_for_input(char **prefixes, char *str, int *i)
 			(*i) += skip_whitespaces(str + *i);
 			return (printf("end of filepath\n"), 0);
 		}
-		printf("%c", str[*i]);
 		(*i)++;
 	}
-	printf("\n");
 	if (str[*i] && str[*i] == '\n' && str[*i + 1] && !ft_isspace(str[*i + 1])
 		&& loop_prefixes(prefixes, str + *i + 1, NULL) < 0)
 		return (printf("died at after newline == prefix or space\n"), 1);
@@ -131,6 +107,8 @@ int	one_of_each(int *arr, char **prefix_arr, char *str, int *i)
 	if (*arr == 1)
 		return (printf("already encountered prefix\n"), 1);
 	*arr = 1;
+	if (check_color_formatting(str, i) < 0)
+		return (printf("color checking error\n"), 1);
 	while (str[*i] && str[*i] == ' ')
 		(*i)++;
 	if (str[*i] == '\f' || str[*i] == '\n'
@@ -139,7 +117,6 @@ int	one_of_each(int *arr, char **prefix_arr, char *str, int *i)
 	ret = check_for_input(prefix_arr, str, i);
 	if (ret != 0)
 		return (printf("prototype function input found wrongdoing\n"), 1);
-	printf("sucessfully checked line\n");
 	return (0);
 }
 
@@ -157,7 +134,6 @@ int	find_all_prefix(char *str, int *i)
 	if (!prefixes)
 		return (free(track), -1);
 	*i += skip_whitespaces(str);
-	printf("i before loop = %d\n", *i);
 	while (str[*i])
 	{
 		ret = loop_prefixes(prefixes, str + *i, i);
@@ -169,6 +145,3 @@ int	find_all_prefix(char *str, int *i)
 	}
 	return (printf("didnt find every prefix && reached end of str\n"), 1);
 }
-
-// some problems with looping / indexing
-// not sure how to fix this yet....
