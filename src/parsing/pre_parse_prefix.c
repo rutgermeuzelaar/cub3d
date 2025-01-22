@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 14:29:58 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/20 17:22:03 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/22 15:57:11 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,40 +25,6 @@ int	all_prefixes_found(int *arr)
 		i++;
 	}
 	return (0);
-}
-
-char	**assign_prefixes(void)
-{
-	char	**ret;
-
-	ret = (char **)ft_calloc(6, sizeof(char *));
-	if (!ret)
-		return (NULL);
-	ret[0] = "NO";
-	ret[1] = "SO";
-	ret[2] = "WE";
-	ret[3] = "EA";
-	ret[4] = "F";
-	ret[5] = "C";
-	ret[6] = NULL;
-	return (ret);
-}
-
-int	*assign_intarr(void)
-{
-	int	*ret;
-	int	i;
-
-	i = 0;
-	ret = (int *)ft_calloc(6, sizeof(int));
-	if (!ret)
-		return (NULL);
-	while (ret[i] && i < 6)
-	{
-		ret[i] = 0;
-		i++;
-	}
-	return (ret);
 }
 
 int	loop_prefixes(char **prefixes, char *str, int *index)

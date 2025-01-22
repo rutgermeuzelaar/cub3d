@@ -6,25 +6,12 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/16 13:22:32 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:51:53 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "utilities.h"
-
-int	check_map_format(char *str)
-{
-	int	i;
-
-	i = 0;
-	printf("remainder\n\n%s\n", str);
-	while (str[i])
-	{
-		i++;
-	}
-	return (0);
-}
 
 int	pre_parsing(char *str)
 {
