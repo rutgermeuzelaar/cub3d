@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:41:32 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/22 13:55:56 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:04:44 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ char	**ft_arrndup(char **arr, size_t size);
 int		check_os_compatibility(void);
 int		check_color_formatting(char *str, int *i);
 int		check_map_format(char *str);
-
+int		*assign_intarr(void);
+char	**assign_prefixes(void);
+int		check_double_newline(char *str);
+int		check_surrounding(char **map, int y, int x);
 
 
 #endif

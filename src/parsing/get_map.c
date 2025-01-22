@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   get_map.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/14 13:28:51 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/16 17:14:53 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   get_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/14 13:28:51 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/22 16:31:25 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ int	map_dimensions(t_game *game)
 		}
 		i++;
 	}
-	printf("player position =\nx = %d\ny = %d\n", ppos[1], ppos[0]);
-	printf("width = %zu\nheight = %d\n", maxlen, i);
 	game->map.height = i;
 	game->map.width = maxlen;
 	game->map.player_y = ppos[0];

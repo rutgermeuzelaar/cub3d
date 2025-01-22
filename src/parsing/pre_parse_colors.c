@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:18:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/20 17:26:48 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:00:22 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	loop_color_format(char *str, int i)
 			return (printf("2 commas in a row\n"), 1);
 	}
 	if (comma != 2 || num != 3)
-		return (printf("wrong amount of nums = %d /commas = %d\n", num, comma), 1);
+		return (printf("incorrect nums = %d /commas = %d\n", num, comma), 1);
 	return (0);
 }
 

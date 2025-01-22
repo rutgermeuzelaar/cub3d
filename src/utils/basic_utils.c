@@ -6,11 +6,12 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:46:56 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/16 15:36:11 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:35:12 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "utilities.h"
+#include "libft.h"
 
 char	*ft_strjoin2(char *s1, char const *s2)
 {
