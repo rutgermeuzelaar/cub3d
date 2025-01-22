@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pre_parse_map.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 13:51:11 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 16:31:11 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   pre_parse_map.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/22 13:51:11 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/22 22:10:38 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	pre_parse_map(char *map)
 	int	i;
 
 	i = 0;
+	(void)i;
 	if (check_double_newline(map) != SUCCESS)
 		return (printf("found double newline in map\n"), ERROR);
 	if (check_unwanted_chars(map) != SUCCESS)
