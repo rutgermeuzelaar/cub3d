@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:45:51 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/20 20:38:54 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/21 17:30:46 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,31 +109,6 @@ void	set_ray_angles(t_ray *rays, t_player *player)
 	}
 }
 
-static void	set_intersection_cardinal(t_ray_collision *collision, \
-			t_vector2dint *map_intersection, t_cardinal_direction cardinal)
-{
-	if (cardinal == NORTH)
-	{
-		map_intersection->x = collision->point.x / TILE_SIZE;
-		map_intersection->y = collision->point.y / TILE_SIZE + ROUNDING_ERROR;
-	}
-	else if (cardinal == EAST)
-	{
-		map_intersection->x = collision->point.x / TILE_SIZE + ROUNDING_ERROR;
-		map_intersection->y = collision->point.y / TILE_SIZE;
-	}
-	else if (cardinal == SOUTH)
-	{
-		map_intersection->x = collision->point.x / TILE_SIZE;
-		map_intersection->y = collision->point.y / TILE_SIZE - ROUNDING_ERROR;
-	}
-	else if (cardinal == WEST)
-	{
-		map_intersection->x = collision->point.x / TILE_SIZE - ROUNDING_ERROR;
-		map_intersection->y = collision->point.y / TILE_SIZE;
-	}	
-}
-
 void	progress_collision(t_ray_collision *collision, t_map *map, \
 		t_cardinal_direction cardinal, t_vector2d step)
 {
@@ -141,9 +116,11 @@ void	progress_collision(t_ray_collision *collision, t_map *map, \
 	const uint32_t	width = map->width * TILE_SIZE;
 	t_vector2dint	map_intersect;
 
+	(void)cardinal;
 	while (!point_out_of_bounds(&collision->point, height, width))
 	{
-		set_intersection_cardinal(collision, &map_intersect, cardinal);
+		map_intersect.x = collision->point.x / TILE_SIZE;
+		map_intersect.y = collision->point.y / TILE_SIZE;
 		if (map->map[map_intersect.y][map_intersect.x] == '1')
 		{
 			break ;

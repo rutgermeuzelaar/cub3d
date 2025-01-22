@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/20 20:43:11 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/22 20:54:54 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,28 @@ void	draw_routine(void *param)
 	cast_ray_all(game->player.rays, &game->player, &game->map, game->minimap, game->screen);
 }
 
+void	angle_test(void)
+{
+	const float	angles[4] = {
+		M_PI / 3,
+		(2 * M_PI) / 3,
+		(4 * M_PI) / 3,
+		(5 * M_PI) / 3
+	};
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		get_delta_distance(angles[i]);
+		i++;
+	}
+}
 int	main(int argc, char **argv)
 {
 	t_game	game;
 
+	(void)game;
 	if (argc != 2 || argv[1] == NULL || check_os_compatibility() == 1)
 		return (ERROR);
 	if (parsing(&game, argv[1]) != SUCCESS)
@@ -124,7 +142,8 @@ int	main(int argc, char **argv)
 	{
 		return (EXIT_FAILURE);
 	}
-	draw_rectangle(game.screen, \
+	// angle_test();
+	draw_rectangle(game.screen, 
 	(t_rectangle){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, get_rgba(0x008080, 235));
 	mlx_image_to_window(game.mlx, game.screen, 0, 0);
 	mlx_image_to_window(game.mlx, game.minimap, 900, WINDOW_HEIGHT / 8);

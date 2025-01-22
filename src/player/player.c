@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/20 20:24:07 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/21 22:00:03 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 bool	init_player(t_player *const player, float spawn_x, float spawn_y)
 {
-	player->ray_count = 240;
+	player->ray_count = 1;
 	player->rays = ft_calloc(player->ray_count, sizeof(t_ray));
 	if (!player->rays)
 	{
@@ -47,8 +47,8 @@ void	draw_player(const t_player *const player, mlx_image_t *minimap)
 	t_vector2dint	direction;
 	t_rectangle		player_icon;
 
-	direction.x = (player->x + (player->dir_x * 0.5)) * TILE_SIZE;
-	direction.y = (player->y + (player->dir_y * 0.5)) * TILE_SIZE;
+	direction.x = (player->x + (player->dir_x)) * TILE_SIZE;
+	direction.y = (player->y + (player->dir_y)) * TILE_SIZE;
 	player_icon.x = (player->x - player->width / 2) * TILE_SIZE;
 	player_icon.y = (player->y - player->height / 2) * TILE_SIZE;
 	player_icon.height = player->height * TILE_SIZE;

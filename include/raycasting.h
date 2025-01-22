@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 13:21:49 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/20 20:13:39 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/21 21:22:45 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,6 @@ void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, \
 		mlx_image_t *minimap, mlx_image_t *screen);
 void	progress_collision(t_ray_collision *collision, t_map *map, \
 		t_cardinal_direction cardinal, t_vector2d step);
+t_vector2d	get_delta_distance(float angle);
+t_ray_collision	castv2_beast(t_ray *ray, t_map *map);
 #endif
