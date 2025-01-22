@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   rgba_parsing.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/13 15:18:12 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/19 14:57:21 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   rgba_parsing.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 15:18:12 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/22 12:52:12 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	*rgb_to_int(char *rgb)
 	char	**arr;
 	int		i;
 
-	i = skip_whitespaces(rgb + 1);
+	i = skip_whitespaces(rgb);
 	arr = ft_split(rgb + i, ',');
 	if (!arr || arrlen(arr) != 3)
 		return (NULL);
@@ -41,9 +41,8 @@ int	get_rgb_value(char *rgb, t_color *game)
 	int		*ret;
 	t_color	color;
 
-	i = (skip_whitespaces(rgb + 1) + 1);
-	printf("rgb = %s\n", rgb + i);
-	ret = rgb_to_int(rgb);
+	i = skip_whitespaces(rgb);
+	ret = rgb_to_int(rgb + i);
 	if (!ret)
 		return (SYS_ERROR);
 	color.bytes.alpha = 255;

@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/20 17:20:20 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/22 13:52:23 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,6 @@
 # include <string.h>
 # include <sys/wait.h>
 # include <unistd.h>
-
-typedef enum e_mini_error
-{
-	SYS_ERROR = -1,
-	SUCCESS = 0,
-	ERROR = 1,
-}	t_mini_error;
 
 typedef struct		s_game
 {
