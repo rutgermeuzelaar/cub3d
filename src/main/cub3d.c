@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/22 20:54:54 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:13:18 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/23 14:58:48 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,6 @@
 #include "shapes.h"
 #include "player.h"
 #include "raycasting.h"
-
-// int	main(int argc, char **argv)
-// {
-// 	t_game	*game_struct;
-
-// 	if (argc != 2 && argv[1] == NULL)
-// 		return (ERROR);
-// 	game_struct = ft_calloc(2, sizeof(t_game));
-// 	if (!game_struct)
-// 		return (ERROR);
-// 	if (check_file(argv[1], game_struct) == SUCCESS)
-// 	{
-// 		print_arr(game_struct->map);
-// 		return (SUCCESS);
-// 	}
-// 	return (ERROR);
-// }
 
 void	mlx_stop_loop(void *param)
 {
@@ -134,9 +117,7 @@ int	main(int argc, char **argv)
 	if (argc != 2 || argv[1] == NULL || check_os_compatibility() == 1)
 		return (ERROR);
 	if (parsing(&game, argv[1]) != SUCCESS)
-	{
 		return (ERROR);
-	}
 	printf("finished parsing\n");
 	if (!init_game(&game))
 	{
@@ -152,5 +133,6 @@ int	main(int argc, char **argv)
 	mlx_key_hook(game.mlx, mlx_esc, game.mlx);
 	mlx_close_hook(game.mlx, mlx_stop_loop, NULL);
 	mlx_loop(game.mlx);
+	free_function(&game);
 	return (EXIT_SUCCESS);
 }

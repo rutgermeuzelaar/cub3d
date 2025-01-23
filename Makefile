@@ -25,7 +25,7 @@ MAIN_SRCDIR := src
 MAIN_OBJDIR := build
 SRCDIR := $(addprefix $(MAIN_SRCDIR)/, $(MODULES))
 OBJDIR := $(addprefix $(MAIN_OBJDIR)/, $(MODULES))
-SRC_MAIN := $(addprefix main/, cub3d.c init.c)
+SRC_MAIN := $(addprefix main/, cub3d.c init.c struct_free.c)
 SRC_PARSING := $(addprefix parsing/, get_next_line.c parsing.c \
 find_file_contents.c rgba_parsing.c find_textures.c get_map.c )
 SRC_PRE_PARSING := $(addprefix pre_parsing/,  pre_parse_prefix.c \
@@ -37,8 +37,10 @@ draw_line_utilities.c)
 SRC_PLAYER := $(addprefix player/, movement.c player.c collision_detection.c)
 SRC_RAYCASTING := $(addprefix raycasting/, cast_ray_horizontal.c cast_ray.c \
 cast_utilities.c cast_ray_vertical.c castv2.c)
+SRC_TEXTURES := $(addprefix textures/, render_texture.c)
 SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) $(SRC_PRE_PARSING) \
-$(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES) $(SRC_PLAYER) $(SRC_RAYCASTING))
+$(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES) $(SRC_PLAYER) \
+$(SRC_TEXTURES) $(SRC_RAYCASTING))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))
 
 .PHONY: all clean flcean re

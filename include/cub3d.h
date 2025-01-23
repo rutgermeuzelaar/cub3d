@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 13:52:23 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:46:11 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ int		find_fd(char *str, char *folder, char *format);
 int		map_dimensions(t_game *game);
 int		get_map(t_game *game);
 int		find_all_prefix(char *str, int *i);
+void	free_function(t_game *game);
+int		texture_loading_main(t_ray_collision *collision);
 
 //textures applying
 
