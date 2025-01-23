@@ -17,7 +17,7 @@ VALGRIND_FLAGS := --suppressions=MLX42.supp --track-fds=yes \
 --leak-check=full --show-leak-kinds=all --track-origins=yes
 GLFW_NAME := $(shell if [ ! -f /usr/local/lib/libglfw3.a ]; then echo "glfw"; \
 else echo "glfw3"; fi)
-CFLAGS = -Wall -Wextra -Werror -g $(HEADERS) #-fsanitize=address -v
+CFLAGS = -Wall -Wextra -Werror -g -O3 $(HEADERS) #-fsanitize=address -v
 LFLAGS := -ldl -l$(GLFW_NAME) -pthread -lm
 
 MODULES := main parsing utils minimap shapes player raycasting
@@ -27,8 +27,9 @@ SRCDIR := $(addprefix $(MAIN_SRCDIR)/, $(MODULES))
 OBJDIR := $(addprefix $(MAIN_OBJDIR)/, $(MODULES))
 SRC_MAIN := $(addprefix main/, cub3d.c init.c)
 SRC_PARSING := $(addprefix parsing/, get_next_line.c parsing.c \
-find_file_contents.c rgba_parsing.c find_textures.c get_map.c pre_parse_prefix.c \
-pre_parse_colors.c pre_parse_map.c pre_parse_utils.c )
+find_file_contents.c rgba_parsing.c find_textures.c get_map.c )
+SRC_PRE_PARSING := $(addprefix pre_parsing/,  pre_parse_prefix.c \
+pre_parse_colors.c pre_parse_map.c pre_parse_utils.c)
 SRC_UTILS := $(addprefix utils/, basic_utils.c basic_utils2.c)
 SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
 SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c draw_circle.c \
@@ -36,7 +37,7 @@ draw_line_utilities.c)
 SRC_PLAYER := $(addprefix player/, movement.c player.c collision_detection.c)
 SRC_RAYCASTING := $(addprefix raycasting/, cast_ray_horizontal.c cast_ray.c \
 cast_utilities.c cast_ray_vertical.c castv2.c)
-SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) \
+SRC := $(addprefix $(MAIN_SRCDIR)/, $(SRC_MAIN) $(SRC_PARSING) $(SRC_PRE_PARSING) \
 $(SRC_UTILS) $(SRC_MINIMAP) $(SRC_SHAPES) $(SRC_PLAYER) $(SRC_RAYCASTING))
 OBJ := $(patsubst $(MAIN_SRCDIR)/%.c,$(MAIN_OBJDIR)/%.o, $(SRC))
 
