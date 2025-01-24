@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 17:13:18 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/23 14:58:48 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/24 13:25:39 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ void	draw_info(t_game *game)
 
 	sprintf(player, \
 	"PLAYER XY: %f / %f\n \
-	ANGLE (Y INVERSE): %f\n" \
+	ANGLE: %f\n" \
 	"DIRECTION XY: %f / %f\n \
 	FPS: %d\n", \
 	game->player.x, \
 	game->player.y, \
-	inverse_angle_y(game->player.dir_angle), \
+	game->player.dir_angle, \
 	game->player.dir_x, \
 	game->player.dir_y,
 	(int)(1 / game->mlx->delta_time));
