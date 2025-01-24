@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   find_file_contents.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/16 13:42:47 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   find_file_contents.c                               :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 16:00:38 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/24 12:16:50 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	find_fd(char *str, char *folder, char *format)
 	folder = check_folder(folder, str);
 	if (!str)
 		return (SYS_ERROR);
-	printf("arg found = %s\n", folder);
+	// printf("arg found = %s\n", folder);
 	folder = file_check(folder, format);
 	fd = open(folder, O_RDONLY);
 	if (fd < 0)
