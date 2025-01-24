@@ -20,7 +20,8 @@ else echo "glfw3"; fi)
 CFLAGS = -Wall -Wextra -Werror -g -O3 $(HEADERS) #-fsanitize=address -v
 LFLAGS := -ldl -l$(GLFW_NAME) -pthread -lm
 
-MODULES := main parsing utils minimap shapes player raycasting
+MODULES := main parsing utils minimap shapes player raycasting pre_parsing \
+textures
 MAIN_SRCDIR := src
 MAIN_OBJDIR := build
 SRCDIR := $(addprefix $(MAIN_SRCDIR)/, $(MODULES))
