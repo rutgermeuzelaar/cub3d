@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/24 19:32:56 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/25 19:05:15 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,10 @@ void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, \
 		// collision = cast_ray(&rays[i], player, map, minimap);
 		rays[i].position.x = player->x;
 		rays[i].position.y = player->y;
-		rays[i].angle = player->dir_angle;
+		// rays[i].angle = player->dir_angle;
 		collision = castv2_beast(&rays[i], map, minimap);
 		// printf("collision")
-		// draw_ray_stripe(player, &rays[i], screen, collision, i);
+		draw_ray_stripe(player, &rays[i], screen, collision, i);
 		i++;
 	}
 }
