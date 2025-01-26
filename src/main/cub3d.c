@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/26 18:39:10 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/26 21:13:07 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,30 @@ static void draw_background(mlx_image_t *screen, t_color floor, t_color ceiling)
 	(t_rectangle){0, half_window_height, WINDOW_WIDTH, half_window_height}, floor.rgba);
 }
 
+void	draw_movement_cross(float angle, t_vector2d position, \
+		mlx_image_t *minimap)
+{
+	const float quarter = RADIAN * 45;
+	const float	radius = 0.4;
+	t_vector2d	circle_point_1;
+	t_vector2d	circle_point_2;
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		circle_point_1 = position;
+		circle_point_2 = position;
+		circle_point_1.x += cos(angle + quarter * (i + 1)) * radius;
+		circle_point_1.y += sin(angle + quarter * (i + 1)) * radius;
+		circle_point_2.x += position.x - circle_point_1.x;
+		circle_point_2.y += position.y - circle_point_1.y;
+		draw_line((t_vector2dint){circle_point_1.x * TILE_SIZE, circle_point_1.y * TILE_SIZE}, \
+		(t_vector2dint){circle_point_2.x * TILE_SIZE, circle_point_2.y *TILE_SIZE},minimap, RED);
+		i++;
+	}
+}
+
 void	draw_routine(void *param)
 {
 	t_game	*game;
@@ -88,7 +112,10 @@ void	draw_routine(void *param)
 	ft_memset(game->minimap->pixels, 255, 
 	game->minimap->width * game->minimap->height * BPP);
 	draw_minimap(&game->map, game->minimap);
+
 	draw_player(&game->player, game->minimap);
+
+	draw_movement_cross(game->player.dir_angle, (t_vector2d){game->player.x, game->player.y}, game->minimap);
 	cast_ray_all(game->player.rays, &game->player, &game->map, game->minimap, game->screen);
 }
 

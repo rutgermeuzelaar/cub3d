@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 17:41:21 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/26 18:01:12 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/26 21:17:47 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ t_ray_collision	castv2_beast(t_ray *ray, t_map *map, mlx_image_t *minimap)
 	t_ray_collision		collision;
 	bool				hit;
 
-	printf("angle: %f\n", ray->angle);
 	steps_taken.x = 0;
 	steps_taken.y = 0;
 	hit = false;
@@ -138,7 +137,6 @@ t_ray_collision	castv2_beast(t_ray *ray, t_map *map, mlx_image_t *minimap)
 				y_last = true;
 			}
 			set_cardinal_direction(prev_map, map_intersect, &collision);
-			printf("mapint x: %d y: %d\n", map_intersect.x, map_intersect.y);
 			draw_rectangle(minimap, (t_rectangle){map_intersect.x * TILE_SIZE, \
 			map_intersect.y * TILE_SIZE, TILE_SIZE, TILE_SIZE}, YELLOW);
 		}
