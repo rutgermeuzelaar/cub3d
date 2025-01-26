@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/25 19:05:15 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/26 16:05:34 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,53 +21,6 @@
 #include "minimap.h"
 #include "raycasting.h"
 #include "cub3d.h"
-
-t_ray_collision	get_ray_collision(t_ray *ray, t_map *map, mlx_image_t *minimap)
-{
-	t_ray_collision	collision_horizontal;
-	t_ray_collision	collision_vertical;
-
-	if (ray->angle <= FLT_EPSILON || almost_equal(ray->angle, M_PI))
-	{
-		return ((t_ray_collision){false, ray->position, 0, 0});
-	}
-	if (!almost_equal(ray->angle, M_PI) && \
-	!(ray->angle <= FLT_EPSILON) && !almost_equal(ray->angle, M_PI * 2))
-	{
-		collision_horizontal = get_ray_collision_horizontal(ray, map);
-	}
-	if (!(almost_equal(ray->angle, (M_PI / 2)) || 
-	almost_equal(ray->angle, (3 * M_PI) / 2)))
-	{
-		collision_vertical = get_ray_collision_vertical(ray, map);
-	}
-	(void)minimap;
-	// draw_line((t_vector2dint){ray->position.x, ray->position.y}, 
-	// (t_vector2dint){collision_horizontal.point.x, collision_horizontal.point.y}, minimap, PINK);
-	// draw_line((t_vector2dint){ray->position.x, ray->position.y}, 
-	// (t_vector2dint){collision_vertical.point.x, collision_vertical.point.y}, minimap, RED);
-
-	printf("HOR DIST: %f VERT DIST: %f\n", collision_horizontal.distance, collision_vertical.distance);
-	if (collision_horizontal.distance > collision_vertical.distance)
-	{
-		return (collision_vertical);
-	}
-	return (collision_horizontal);
-}
-
-t_ray_collision	cast_ray(t_ray *ray, t_player *player, t_map *map, mlx_image_t *minimap)
-{
-	t_ray_collision	collision;
-
-	ray->position.x = player->x * TILE_SIZE;
-	ray->position.y = player->y * TILE_SIZE;
-	collision = get_ray_collision(ray, map, minimap);
-	ray->direction = collision.point;
-	draw_line((t_vector2dint){ray->position.x, ray->position.y}, 
-	(t_vector2dint){ray->direction.x, ray->direction.y}, 
-	minimap, player->ray_color.rgba);
-	return (collision);
-}
 
 static float fix_fisheye(float player_angle, float ray_angle, float distance)
 {
@@ -88,7 +41,7 @@ static float fix_fisheye(float player_angle, float ray_angle, float distance)
 void	draw_ray_stripe(t_player *player, t_ray *ray, mlx_image_t *image, 
 			t_ray_collision collision, int ray_index)
 {
-	const float ray_thickness = WINDOW_WIDTH / player->ray_count;
+	const float ray_thickness = round(WINDOW_WIDTH / player->ray_count);
 	t_rectangle	stripe;
 	float		distance;
 
@@ -99,11 +52,9 @@ void	draw_ray_stripe(t_player *player, t_ray *ray, mlx_image_t *image,
 		stripe.height = WINDOW_HEIGHT;
 	}
 	stripe.width = ray_thickness;
-	stripe.x = ray_thickness * ray_index + 40;
-	printf("ray intel: %f total: %f\n", ray_thickness, ray_thickness * player->ray_count);
+	stripe.x = ray_thickness * ray_index;
 	stripe.y = (WINDOW_HEIGHT / 2) - stripe.height / 2;
-	printf("CARDINAL: %d\n", collision.cardinal);
-	printf("stripe.x: %f\n", stripe.x);
+	// printf("STRIPE: x: %f y: %f width: %d height: %d\n",stripe.x, stripe.y, stripe.width, stripe.height);
 	if (collision.cardinal == NORTH || collision.cardinal == SOUTH)
 	{
 		t_color cheese;
@@ -127,8 +78,8 @@ void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, \
 	(void)screen;
 	(void)collision;
 	(void)minimap;
-	i = 0;
-	while (i < player->ray_count)
+	i = player->ray_count - 1;
+	while (i >= 0)
 	{
 		// printf("rays[i] angle: %f\n", rays[i].angle);
 		// collision = cast_ray(&rays[i], player, map, minimap);
@@ -136,8 +87,9 @@ void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, \
 		rays[i].position.y = player->y;
 		// rays[i].angle = player->dir_angle;
 		collision = castv2_beast(&rays[i], map, minimap);
+		// printf("i: %d dist: %f\n", i, collision.distance);
 		// printf("collision")
 		draw_ray_stripe(player, &rays[i], screen, collision, i);
-		i++;
+		i--;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/24 13:25:39 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/26 16:19:23 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,23 +92,6 @@ void	draw_routine(void *param)
 	cast_ray_all(game->player.rays, &game->player, &game->map, game->minimap, game->screen);
 }
 
-void	angle_test(void)
-{
-	const float	angles[4] = {
-		M_PI / 3,
-		(2 * M_PI) / 3,
-		(4 * M_PI) / 3,
-		(5 * M_PI) / 3
-	};
-	int	i;
-
-	i = 0;
-	while (i < 4)
-	{
-		get_delta_distance(angles[i]);
-		i++;
-	}
-}
 int	main(int argc, char **argv)
 {
 	t_game	game;

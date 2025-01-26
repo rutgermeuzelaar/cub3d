@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/20 15:21:32 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/26 15:52:39 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,6 @@ bool	is_colliding(t_vector2d point, t_map *map);
 bool	init_player(t_player *const player, float spawn_x, float spawn_y);
 void	move_player(void *param);
 void	draw_player(const t_player *const player, mlx_image_t *minimap);
+bool	collide_circle(t_vector2d position, t_map *map, const float radius, \
+		mlx_image_t *minimap);
 #endif
