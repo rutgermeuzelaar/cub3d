@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/26 16:05:34 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/26 18:48:46 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	draw_ray_stripe(t_player *player, t_ray *ray, mlx_image_t *image,
 		stripe.height = WINDOW_HEIGHT;
 	}
 	stripe.width = ray_thickness;
-	stripe.x = ray_thickness * ray_index;
+	stripe.x = ray_thickness * (player->ray_count - ray_index - 1);
 	stripe.y = (WINDOW_HEIGHT / 2) - stripe.height / 2;
 	// printf("STRIPE: x: %f y: %f width: %d height: %d\n",stripe.x, stripe.y, stripe.width, stripe.height);
 	if (collision.cardinal == NORTH || collision.cardinal == SOUTH)
@@ -78,10 +78,10 @@ void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, \
 	(void)screen;
 	(void)collision;
 	(void)minimap;
-	i = player->ray_count - 1;
-	while (i >= 0)
+	(void)map;
+	i = 0;
+	while (i < player->ray_count)
 	{
-		// printf("rays[i] angle: %f\n", rays[i].angle);
 		// collision = cast_ray(&rays[i], player, map, minimap);
 		rays[i].position.x = player->x;
 		rays[i].position.y = player->y;
@@ -90,6 +90,6 @@ void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, \
 		// printf("i: %d dist: %f\n", i, collision.distance);
 		// printf("collision")
 		draw_ray_stripe(player, &rays[i], screen, collision, i);
-		i--;
+		i++;
 	}
 }

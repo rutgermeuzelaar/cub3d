@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:45:51 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/21 17:30:46 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/26 18:02:29 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void	set_ray_angles(t_ray *rays, t_player *player)
 		{
 			rays[i].angle -= (M_PI * 2);
 		}
+		printf("ANGLE: %f\n", rays[i].angle);
 		i++;
 	}
 }
