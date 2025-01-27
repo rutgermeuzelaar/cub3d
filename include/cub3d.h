@@ -57,17 +57,18 @@ bool	init_game(t_game *const game);
 // int		main(int argc, char **argv);
 
 //parsing
-char	*get_next_line(int fd);
-int		fc_parsing(t_game *game);
-int		parsing(t_game *game, char *arg);
-int		texture_parsing(t_game *game);
-int		get_file_contents(t_game *game_s, char *str);
-int		find_fd(char *str, char *folder, char *format);
-int		map_dimensions(t_game *game);
-int		get_map(t_game *game);
-int		find_all_prefix(char *str, int *i);
-void	free_function(t_game *game);
-int		texture_loading_main(t_ray_collision *collision);
+char			*get_next_line(int fd);
+int				fc_parsing(t_game *game);
+int				parsing(t_game *game, char *arg);
+int				texture_parsing(t_game *game);
+int				get_file_contents(t_game *game_s, char *str);
+int				find_fd(char *str, char *folder, char *format);
+int				map_dimensions(t_game *game);
+int				get_map(t_game *game);
+int				find_all_prefix(char *str, int *i);
+void			free_function(t_game *game);
+int				texture_loading_main(t_ray_collision *collision);
+mlx_texture_t	*error_texture(void);
 
 //textures applying
 

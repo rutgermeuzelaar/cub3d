@@ -88,14 +88,19 @@ int	get_file_contents(t_game *game_s, char *str)
 {
 	char	**map;
 	char	*str_config;
+	char	*str_config_lf;
 
 	str_config = find_contents(str);
 	if (!str_config)
 		return (ERROR);
-	map = ft_split(str_config, '\n');
+	str_config_lf = change_CRLF_to_LF(str_config);
+	if (!str_config)
+		return (free(str_config), SYS_ERROR);
+	free(str_config);
+	map = ft_split(str_config_lf, '\n');
 	if (!map)
-		return (SYS_ERROR);
-	game_s->file_content = str_config;
+		return (free(str_config_lf), SYS_ERROR);
+	game_s->file_content = str_config_lf;
 	game_s->map.map = map;
 	return (SUCCESS);
 }

@@ -41,6 +41,7 @@ int		*assign_intarr(void);
 char	**assign_prefixes(void);
 int		check_double_newline(char *str);
 int		check_surrounding(char **map, int y, int x);
+char	*change_CRLF_to_LF(char *str);
 
 
 #endif

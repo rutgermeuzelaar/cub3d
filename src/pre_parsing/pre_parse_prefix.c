@@ -51,7 +51,7 @@ int	check_for_input(char **prefixes, char *str, int *i)
 	{
 		if (str[*i] == '\f' || str[*i] == '\r'
 			|| str[*i] == '\t' || str[*i] == '\v')
-			return (1);
+			return (printf("found invalid whitespaces (could be windows file format issue)\n"), 1);
 		else if (str[*i] == ' ')
 		{
 			(*i) += skip_whitespaces(str + *i);
@@ -82,7 +82,7 @@ int	one_of_each(int *arr, char **prefix_arr, char *str, int *i)
 		return (printf("invalid whitespace found or no texture\n"), 1);
 	ret = check_for_input(prefix_arr, str, i);
 	if (ret != 0)
-		return (printf("prototype function input found wrongdoing\n"), 1);
+		return (printf("prototype function input found wrongdoing %d\n\n'%s'\n", ret, str + *i), 1);
 	return (0);
 }
 
