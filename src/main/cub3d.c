@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/26 21:13:07 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/27 21:18:36 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,24 @@ void	draw_movement_cross(float angle, t_vector2d position, \
 	}
 }
 
+void	frick(mlx_image_t *source, mlx_image_t *dest)
+{
+	// const int	surface = image->width * image->height;
+	int			i;
+	t_color		color;
+
+	i = 0;
+	while (i < (TILE_SIZE * 4 * 60))
+	{
+		color.bytes.red = source->pixels[i];
+		color.bytes.green = source->pixels[i + 1];
+		color.bytes.blue = source->pixels[i + 2];
+		color.bytes.alpha = source->pixels[i + 3];
+		mlx_put_pixel(dest, 50 + i / 4, 50, color.rgba);
+		i += 4;
+	}
+}
+
 void	draw_routine(void *param)
 {
 	t_game	*game;
@@ -111,12 +129,13 @@ void	draw_routine(void *param)
 	draw_background(game->screen, game->floor, game->ceiling);
 	ft_memset(game->minimap->pixels, 255, 
 	game->minimap->width * game->minimap->height * BPP);
-	draw_minimap(&game->map, game->minimap);
+	draw_minimap(&game->map, game->minimap, game->screen);
 
 	draw_player(&game->player, game->minimap);
-
+	// draw_slice(game->screen, game->minimap, (t_rectangle){500, 50, TILE_SIZE * 6, TILE_SIZE * 6}, (t_rectangle){0, 0, TILE_SIZE * 6, TILE_SIZE * 6});
 	draw_movement_cross(game->player.dir_angle, (t_vector2d){game->player.x, game->player.y}, game->minimap);
 	cast_ray_all(game->player.rays, &game->player, &game->map, game->minimap, game->screen);
+	draw_partial_minimap(game->minimap, game->screen, (t_vector2d){game->player.x, game->player.y}, &game->map);
 }
 
 int	main(int argc, char **argv)
@@ -137,7 +156,7 @@ int	main(int argc, char **argv)
 	draw_rectangle(game.screen, 
 	(t_rectangle){0, 0, WINDOW_WIDTH, WINDOW_HEIGHT}, get_rgba(0x008080, 235));
 	mlx_image_to_window(game.mlx, game.screen, 0, 0);
-	mlx_image_to_window(game.mlx, game.minimap, 900, WINDOW_HEIGHT / 8);
+	// mlx_image_to_window(game.mlx, game.minimap, 900, WINDOW_HEIGHT / 8);
 	mlx_loop_hook(game.mlx, move_player, &game);
 	mlx_loop_hook(game.mlx, draw_routine, &game);
 	mlx_key_hook(game.mlx, mlx_esc, game.mlx);

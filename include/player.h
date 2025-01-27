@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/26 15:52:39 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/27 21:19:52 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 # include "map.h"
 # include "raycasting_structs.h"
 # ifndef MOVE_STEPS
-#  define MOVE_STEPS 6.0f
+#  define MOVE_STEPS 3.0f
 # endif
 # ifndef ROTATION_SPEED
-#  define ROTATION_SPEED 0.1f
+#  define ROTATION_SPEED 0.03f
 # endif
 # ifndef DIRECTION_LINE_LENGTH
 #  define DIRECTION_LINE_LENGTH 1
