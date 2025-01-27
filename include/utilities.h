@@ -6,14 +6,25 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:41:32 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/22 16:04:44 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:53:21 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILITIES_H
 # define UTILITIES_H
 
-#include <unistd.h>
+# if defined(_WIN32)
+#  define OS_NAME "windows"
+#  define OS_COMPATIBLE 1
+# elif defined(__linux__)
+#  define OS_NAME "linux"
+#  define OS_COMPATIBLE 1
+# else
+#  define OS_NAME "unknown"
+#  define OS_COMPATIBLE 0
+# endif
+
+# include <unistd.h>
 
 typedef enum e_mini_error
 {
@@ -21,7 +32,6 @@ typedef enum e_mini_error
 	SUCCESS = 0,
 	ERROR = 1,
 }	t_mini_error;
-
 
 void	free_pointer_array(void **array, const int size);
 int		arr_free(void **arr);
@@ -41,6 +51,6 @@ int		*assign_intarr(void);
 char	**assign_prefixes(void);
 int		check_double_newline(char *str);
 int		check_surrounding(char **map, int y, int x);
-
+char	*change_crlf_to_lf(char *str);
 
 #endif

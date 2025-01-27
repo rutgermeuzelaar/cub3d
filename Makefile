@@ -30,7 +30,7 @@ SRC_MAIN := $(addprefix main/, cub3d.c init.c struct_free.c)
 SRC_PARSING := $(addprefix parsing/, get_next_line.c parsing.c \
 find_file_contents.c rgba_parsing.c find_textures.c get_map.c )
 SRC_PRE_PARSING := $(addprefix pre_parsing/,  pre_parse_prefix.c \
-pre_parse_colors.c pre_parse_map.c pre_parse_utils.c)
+pre_parse_colors.c pre_parse_map.c pre_parse_utils.c pre_parse_crlf.c)
 SRC_UTILS := $(addprefix utils/, basic_utils.c basic_utils2.c)
 SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
 SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c draw_circle.c \

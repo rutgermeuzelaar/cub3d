@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   init.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/20 18:25:49 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/01 01:16:22 by rmeuzela          #+#    #+#             */
+/*   Updated: 2025/01/27 13:56:38 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,20 @@ bool	init_mlx_objects(t_game *const game)
 	game->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3D", false);
 	if (!game->mlx)
 	{
-		return false;
+		return (false);
 	}
 	game->minimap = mlx_new_image(game->mlx, game->map.width * TILE_SIZE, \
 	game->map.height * TILE_SIZE);
 	if (!game->minimap)
 	{
 		mlx_terminate(game->mlx);
-		return false;
+		return (false);
 	}
 	game->screen = mlx_new_image(game->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!game->screen)
 	{
 		mlx_terminate(game->mlx);
-		return false;
+		return (false);
 	}
 	game->debug = NULL;
 	return (printf("finished mlx objects correctly\n"), true);

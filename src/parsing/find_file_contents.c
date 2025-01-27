@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   find_file_contents.c                               :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 16:00:38 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/24 12:16:50 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   find_file_contents.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
+/*   Updated: 2025/01/27 13:43:31 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	find_fd(char *str, char *folder, char *format)
 	folder = check_folder(folder, str);
 	if (!str)
 		return (SYS_ERROR);
-	// printf("arg found = %s\n", folder);
 	folder = file_check(folder, format);
 	fd = open(folder, O_RDONLY);
 	if (fd < 0)
@@ -88,14 +87,19 @@ int	get_file_contents(t_game *game_s, char *str)
 {
 	char	**map;
 	char	*str_config;
+	char	*str_config_lf;
 
 	str_config = find_contents(str);
 	if (!str_config)
 		return (ERROR);
-	map = ft_split(str_config, '\n');
+	str_config_lf = change_crlf_to_lf(str_config);
+	if (!str_config)
+		return (free(str_config), SYS_ERROR);
+	free(str_config);
+	map = ft_split(str_config_lf, '\n');
 	if (!map)
-		return (SYS_ERROR);
-	game_s->file_content = str_config;
+		return (free(str_config_lf), SYS_ERROR);
+	game_s->file_content = str_config_lf;
 	game_s->map.map = map;
 	return (SUCCESS);
 }

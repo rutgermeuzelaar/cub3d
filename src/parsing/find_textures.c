@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 16:34:22 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:31:20 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@ int	found_texture_prefix(char *str)
 	return (0);
 }
 
+mlx_texture_t	*error_texture(void)
+{
+	mlx_texture_t	*ret;
+
+	ret = mlx_load_png("textures/gmod.png");
+	if (!ret)
+		return (NULL);
+	return (ret);
+}
+
 int	assign_texture(mlx_texture_t *texture, char *str)
 {
 	int		i;
@@ -43,9 +53,16 @@ int	assign_texture(mlx_texture_t *texture, char *str)
 		size++;
 	size -= i;
 	texture_path = ft_substr(str, i, size);
+	if (!texture_path)
+		return (printf("sys error\n"), SYS_ERROR);
 	texture = mlx_load_png(texture_path);
 	if (!texture)
-		return (printf("Error Texture\n"), free(texture_path), 1);
+	{
+		printf("making error texture\n");
+		texture = error_texture();
+		if (!texture)
+			return (printf("Error Textures\n"), free(texture_path), SYS_ERROR);
+	}
 	return (free(texture_path), SUCCESS);
 }
 
@@ -62,17 +79,13 @@ int	texture_parsing(t_game *game)
 	i = 0;
 	i2 = 0;
 	file = game->map.map;
-	while (file[i])
+	while (file[i] && i2 < 6)
 	{
 		j = skip_whitespaces(file[i]);
-		if (file[i][j] && found_texture_prefix(file[i] + j) && game->textures[i2])
+		if (file[i][j] && found_texture_prefix(file[i] + j))
 		{
 			if (assign_texture(game->textures[i2], file[i] + j) != SUCCESS)
-			{
-				game->textures[i2] = mlx_load_png("textures/gmod.png");
-				if (!game->textures[i2]->pixels)
-					return (arr_free((void **)game->textures), ERROR);
-			}
+				return (arr_free((void **)game->textures), ERROR);
 			i2++;
 		}
 		i++;
