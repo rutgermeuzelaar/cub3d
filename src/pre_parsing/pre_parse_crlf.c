@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_parse_crlf.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 00:17:29 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/27 00:40:00 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:32:08 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	lf_file_len(char *str)
 	return (len);
 }
 
-char	*change_CRLF_to_LF(char *str)
+char	*change_crlf_to_lf(char *str)
 {
 	char	*ret;
 	int		i;

@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 16:34:22 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:31:20 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int	found_texture_prefix(char *str)
 	return (0);
 }
 
-mlx_texture_t *error_texture(void)
+mlx_texture_t	*error_texture(void)
 {
-	mlx_texture_t *ret;
+	mlx_texture_t	*ret;
 
 	ret = mlx_load_png("textures/gmod.png");
 	if (!ret)
@@ -61,7 +61,7 @@ int	assign_texture(mlx_texture_t *texture, char *str)
 		printf("making error texture\n");
 		texture = error_texture();
 		if (!texture)
-			return (printf("Mayor Allocation Errror in textures\n"), free(texture_path), SYS_ERROR);
+			return (printf("Error Textures\n"), free(texture_path), SYS_ERROR);
 	}
 	return (free(texture_path), SUCCESS);
 }

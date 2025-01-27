@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 14:29:58 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 15:57:11 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:33:16 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	check_for_input(char **prefixes, char *str, int *i)
 	{
 		if (str[*i] == '\f' || str[*i] == '\r'
 			|| str[*i] == '\t' || str[*i] == '\v')
-			return (printf("found invalid whitespaces (could be windows file format issue)\n"), 1);
+			return (printf("found invalid whitespaces\n"), 1);
 		else if (str[*i] == ' ')
 		{
 			(*i) += skip_whitespaces(str + *i);
@@ -82,7 +82,7 @@ int	one_of_each(int *arr, char **prefix_arr, char *str, int *i)
 		return (printf("invalid whitespace found or no texture\n"), 1);
 	ret = check_for_input(prefix_arr, str, i);
 	if (ret != 0)
-		return (printf("prototype function input found wrongdoing %d\n\n'%s'\n", ret, str + *i), 1);
+		return (printf("prototype function input found wrong doing\n"), 1);
 	return (0);
 }
 

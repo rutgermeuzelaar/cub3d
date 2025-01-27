@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:42:11 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/20 14:55:21 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/01/27 13:42:05 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_pointer_array(void **array, const int size)
 
 int	get_rgba(int color_hex, int alpha)
 {
-	return (color_hex << 8 | alpha);	
+	return (color_hex << 8 | alpha);
 }
 
 int	arrlen(char **arr)
@@ -49,7 +49,7 @@ int	arrlen(char **arr)
 char	**ft_arrndup(char **arr, size_t size)
 {
 	char	**ret;
-	size_t		i;
+	size_t	i;
 
 	i = 0;
 	ret = (char **)ft_calloc((size + 1), sizeof(char *));
@@ -68,12 +68,12 @@ char	**ft_arrndup(char **arr, size_t size)
 
 int	check_os_compatibility(void)
 {
-	#ifdef _WIN32
-		printf("running on windows\n");
-	#elif __linux__
-		printf("running on linux\n");
-	#else
-		return (printf("Unknown OS, exiting program...\n"), 1);
-	#endif
+	if (OS_COMPATIBLE == 1)
+		printf("running on %s\n", OS_NAME);
+	else
+	{
+		printf("Unknown OS, stopping program\n");
+		return (1);
+	}
 	return (0);
 }
