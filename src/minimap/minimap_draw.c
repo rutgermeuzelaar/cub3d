@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:09:28 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/27 21:16:05 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/27 22:05:27 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ static uint32_t	copy_next_pixel(mlx_image_t *source, t_rectangle copy_slice, \
 void	draw_slice(mlx_image_t *dest, mlx_image_t *source, \
 		t_rectangle paste_slice, t_rectangle copy_slice)
 {
-	t_vector2dint	copy_point;
+	t_vector2dint	copy_point;	
 	t_vector2dint	paste_point;
 
 	copy_point.x = 0;
@@ -128,39 +128,75 @@ void	draw_slice(mlx_image_t *dest, mlx_image_t *source, \
 	}
 }
 
+static bool	inside_circle(t_vector2dint point, t_vector2dint circle_center, \
+			const float radius)
+{
+	return ((pow(point.x - circle_center.x, 2) + pow(point.y - circle_center.y, 2)) < pow(radius, 2));
+}
+
+void	draw_slice_circle(mlx_image_t *dest, mlx_image_t *source, \
+		t_rectangle paste_slice, t_rectangle copy_slice)
+{
+	const float		radius = TILE_OFFSET * TILE_SIZE;
+	t_vector2dint	copy_point;	
+	t_vector2dint	paste_point;
+	t_vector2dint	pixel;
+	uint32_t		color;
+
+	copy_point.x = 0;
+	copy_point.y = 0;
+	paste_point.y = 0; 
+	while (paste_point.y < (int32_t)paste_slice.height)
+	{
+		paste_point.x = 0;
+		while (paste_point.x < (int32_t)paste_slice.width)
+		{
+			color = copy_next_pixel(source, copy_slice, &copy_point);
+			pixel.x = paste_slice.x + paste_point.x;
+			pixel.y = paste_slice.y + paste_point.y;
+			if (inside_circle(pixel, (t_vector2dint){(paste_slice.x + radius), (paste_slice.y + radius)}, radius))
+			{
+				mlx_put_pixel(dest, pixel.x, pixel.y,color);
+			}
+			paste_point.x++;
+		}
+		paste_point.y++;
+	}
+}
+
+
 void	draw_partial_minimap(mlx_image_t *minimap, mlx_image_t *screen, \
 		t_vector2d position, t_map *map)
 {
-	const float	tile_offset = 3;
+	const float	minimap_size = TILE_OFFSET * 2;
 	t_rectangle	paste_slice;
 	t_rectangle	copy_slice;
 
-	copy_slice.height = TILE_SIZE * tile_offset * 2;
-	copy_slice.width = TILE_SIZE * tile_offset * 2;
-	copy_slice.x = (position.x - tile_offset) * TILE_SIZE;
-	copy_slice.y = (position.y - tile_offset) * TILE_SIZE;
+	copy_slice.height = TILE_SIZE * minimap_size;
+	copy_slice.width = TILE_SIZE * minimap_size;
+	copy_slice.x = (position.x - TILE_OFFSET) * TILE_SIZE;
+	copy_slice.y = (position.y - TILE_OFFSET) * TILE_SIZE;
 	paste_slice.height = copy_slice.height;
 	paste_slice.width = copy_slice.width;
 	paste_slice.x = 40;
 	paste_slice.y = 40;
-	printf("copy_slice x: %f y: %f\n", copy_slice.x, copy_slice.y);
-	printf("mini width: %d height: %d\n", minimap->width, minimap->height);
-	draw_rectangle(screen, paste_slice, LIME);
+	printf("DOG w: %d h: %d\n", paste_slice.width, paste_slice.width);
+	// draw_rectangle(screen, paste_slice, LIME);
 	if (copy_slice.x < 0)
 	{
 		copy_slice.x = 0;
 	}
-	if (copy_slice.x >= (map->width - tile_offset * 2) * TILE_SIZE)
+	if (copy_slice.x >= (map->width - minimap_size) * TILE_SIZE)
 	{
-		copy_slice.x = (map->width - tile_offset * 2) * TILE_SIZE;
+		copy_slice.x = (map->width - minimap_size) * TILE_SIZE;
 	}
 	if (copy_slice.y < 0)
 	{
 		copy_slice.y = 0;	
 	}
-	if (copy_slice.y >= (map->height - tile_offset * 2) * TILE_SIZE)
+	if (copy_slice.y >= (map->height - minimap_size) * TILE_SIZE)
 	{
-		copy_slice.y = (map->height - tile_offset * 2) * TILE_SIZE;
+		copy_slice.y = (map->height - minimap_size) * TILE_SIZE;
 	}
-	draw_slice(screen, minimap, paste_slice, copy_slice);
+	draw_slice_circle(screen, minimap, paste_slice, copy_slice);
 }
