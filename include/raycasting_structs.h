@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/19 15:16:12 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/26 20:15:51 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/30 13:47:30 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,18 @@ typedef struct s_ray_collision
 	t_cardinal_direction	cardinal;
 	float					distance;
 }	t_ray_collision;
+// Norm enjoyers
+
+typedef struct s_cast_xl
+{
+	float			tan_value;
+	t_vector2d		delta_distance;
+	t_vector2d		total_distance;
+	t_vector2dint	step;
+	t_vector2dint	map_intersect;
+	t_ray_collision	collision;
+	bool			hit;
+	bool			x_last;
+}	t_cast_xl;
+
 #endif

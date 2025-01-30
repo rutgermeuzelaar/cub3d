@@ -5,91 +5,79 @@
 /*                                                     +:+                    */
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/26 18:48:46 by rmeuzela      ########   odam.nl         */
+/*   Created: 2025/01/21 17:41:21 by rmeuzela      #+#    #+#                 */
+/*   Updated: 2025/01/30 14:28:01 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _XOPEN_SOURCE
+#define FLT_EPSILON 1.19209290e-7F
 #include <math.h>
-#include <stdio.h>
-#include <float.h>
-#include "MLX42/MLX42.h"
-#include "shapes.h"
-#include "player.h"
-#include "map.h"
-#include "minimap.h"
 #include "raycasting.h"
-#include "cub3d.h"
+#include "libft.h"
+#include "minimap.h"
 
-static float fix_fisheye(float player_angle, float ray_angle, float distance)
+static void	init_cast_vertical(t_ray *ray, t_cast_xl *cast_xl)
 {
-	float	angle_delta;
-	
-	angle_delta = player_angle - ray_angle;
-	if (angle_delta < 0)
+	if (ray->angle < M_PI)
 	{
-		angle_delta += 2 * M_PI;
-	}
-	if (angle_delta > (M_PI * 2))
-	{
-		angle_delta -= M_PI * 2;
-	}
-	return (cos(angle_delta) * distance);
-}
-
-void	draw_ray_stripe(t_player *player, t_ray *ray, mlx_image_t *image, 
-			t_ray_collision collision, int ray_index)
-{
-	const float ray_thickness = round(WINDOW_WIDTH / player->ray_count);
-	t_rectangle	stripe;
-	float		distance;
-
-	distance = fix_fisheye(player->dir_angle, ray->angle, collision.distance);
-	stripe.height = (WINDOW_HEIGHT * TILE_SIZE) / (distance * TILE_SIZE);
-	if (stripe.height > WINDOW_HEIGHT)
-	{
-		stripe.height = WINDOW_HEIGHT;
-	}
-	stripe.width = ray_thickness;
-	stripe.x = ray_thickness * (player->ray_count - ray_index - 1);
-	stripe.y = (WINDOW_HEIGHT / 2) - stripe.height / 2;
-	// printf("STRIPE: x: %f y: %f width: %d height: %d\n",stripe.x, stripe.y, stripe.width, stripe.height);
-	if (collision.cardinal == NORTH || collision.cardinal == SOUTH)
-	{
-		t_color cheese;
-
-		cheese.rgba = RED;
-		cheese.bytes.red -= 75;
-		draw_rectangle(image, stripe, cheese.rgba);
+		cast_xl->step.y = 1;
+		cast_xl->total_distance.y = (cast_xl->map_intersect.y + 1.0 - \
+		ray->position.y) * cast_xl->delta_distance.y;
 	}
 	else
 	{
-		draw_rectangle(image, stripe, RED);
+		cast_xl->step.y = -1;
+		cast_xl->total_distance.y = (ray->position.y - \
+		cast_xl->map_intersect.y) * cast_xl->delta_distance.y;
 	}
 }
 
-void	cast_ray_all(t_ray *rays, t_player *player, t_map *map, \
-		mlx_image_t *minimap, mlx_image_t *screen)
+static void	init_cast_horizontal(t_ray *ray, t_cast_xl *cast_xl)
 {
-	int				i;
-	t_ray_collision	collision;
-
-	(void)screen;
-	(void)collision;
-	(void)minimap;
-	(void)map;
-	i = 0;
-	while (i < player->ray_count)
+	if (ray->angle < M_PI_2 || ray->angle > ((3 * M_PI_2)))
 	{
-		// collision = cast_ray(&rays[i], player, map, minimap);
-		rays[i].position.x = player->x;
-		rays[i].position.y = player->y;
-		// rays[i].angle = player->dir_angle;
-		collision = castv2_beast(&rays[i], map, minimap);
-		// printf("i: %d dist: %f\n", i, collision.distance);
-		// printf("collision")
-		draw_ray_stripe(player, &rays[i], screen, collision, i);
-		i++;
+		cast_xl->step.x = 1;
+		cast_xl->total_distance.x = (cast_xl->map_intersect.x + 1.0 - \
+		ray->position.x) * \
+		cast_xl->delta_distance.x;
 	}
+	else
+	{
+		cast_xl->step.x = -1;
+		cast_xl->total_distance.x = (ray->position.x - \
+		cast_xl->map_intersect.x) * \
+		cast_xl->delta_distance.x;
+	}
+}
+
+static void	init_cast(t_ray *ray, t_cast_xl	*cast_xl)
+{
+	ft_memset(cast_xl, 0, sizeof(t_cast_xl));
+	cast_xl->tan_value = tan(ray->angle);
+	cast_xl->delta_distance = get_delta_distance(cast_xl->tan_value);
+	cast_xl->map_intersect.x = (int)ray->position.x;
+	cast_xl->map_intersect.y = (int)ray->position.y;
+	init_cast_horizontal(ray, cast_xl);
+	init_cast_vertical(ray, cast_xl);
+}
+
+t_ray_collision	cast_ray(t_ray *ray, t_map *map, mlx_image_t *minimap)
+{
+	t_cast_xl			cast_xl;
+	t_vector2dint		point_1;
+	t_vector2dint		point_2;
+
+	if (ray->angle <= FLT_EPSILON || almost_equal(ray->angle, M_PI))
+	{
+		return ((t_ray_collision){false, ray->position, 0, 0});
+	}
+	init_cast(ray, &cast_xl);
+	cast_ray_helper(&cast_xl, map, minimap, ray);
+	point_1.x = ray->position.x * TILE_SIZE;
+	point_1.y = ray->position.y * TILE_SIZE;
+	point_2.x = cast_xl.collision.point.x * TILE_SIZE;
+	point_2.y = cast_xl.collision.point.y * TILE_SIZE;
+	draw_line(point_1, point_2, minimap, GOLD);
+	return (cast_xl.collision);
 }

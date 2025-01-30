@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/27 21:18:36 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/30 14:44:23 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void	draw_routine(void *param)
 	draw_player(&game->player, game->minimap);
 	// draw_slice(game->screen, game->minimap, (t_rectangle){500, 50, TILE_SIZE * 6, TILE_SIZE * 6}, (t_rectangle){0, 0, TILE_SIZE * 6, TILE_SIZE * 6});
 	draw_movement_cross(game->player.dir_angle, (t_vector2d){game->player.x, game->player.y}, game->minimap);
-	cast_ray_all(game->player.rays, &game->player, &game->map, game->minimap, game->screen);
+	cast_ray_all(game);
 	draw_partial_minimap(game->minimap, game->screen, (t_vector2d){game->player.x, game->player.y}, &game->map);
 }
 
