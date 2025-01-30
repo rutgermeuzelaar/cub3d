@@ -73,7 +73,7 @@ $(MLX): $(MLX_LIB_PATH)/.git
 	$(MLX_LIB_PATH)/build -j4
 
 valgrind: $(NAME)
-	valgrind $(VALGRIND_FLAGS) ./$(NAME) maps/map.cub
+	valgrind $(VALGRIND_FLAGS) ./$(NAME) maps/valid/map.cub
 
 clean:
 	@echo "${RED}Cleaning ${NAME} object files...${NO_COLOUR}"
