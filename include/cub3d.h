@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/23 16:46:11 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/19 17:11:19 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/31 17:41:50 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef CUB3D_H
+#ifndef CUB3D_H
 # define CUB3D_H
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
 # endif
@@ -37,7 +36,7 @@
 # include <sys/wait.h>
 # include <unistd.h>
 
-typedef struct		s_game
+typedef struct s_game
 {
 	char			*file_content;
 	t_map			map;
@@ -50,11 +49,10 @@ typedef struct		s_game
 	mlx_image_t		*minimap;
 	mlx_image_t		*debug;
 	t_player		player;
-}					t_game;
+}	t_game;
 
-bool	init_game(t_game *const game);
-// main processing
-// int		main(int argc, char **argv);
+bool			init_game(t_game *const game, char *map_name);
+void			draw_routine(void *param);
 
 //parsing
 char			*get_next_line(int fd);
@@ -69,8 +67,4 @@ int				find_all_prefix(char *str, int *i);
 void			free_function(t_game *game);
 int				texture_loading_main(t_ray_collision *collision);
 mlx_texture_t	*error_texture(void);
-
-//textures applying
-
-//player movement
-# endif
+#endif
