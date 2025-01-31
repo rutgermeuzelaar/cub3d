@@ -35,7 +35,8 @@ SRC_UTILS := $(addprefix utils/, basic_utils.c basic_utils2.c)
 SRC_MINIMAP := $(addprefix minimap/, minimap_draw.c)
 SRC_SHAPES :=  $(addprefix shapes/, rectangle.c draw_line.c draw_circle.c \
 draw_line_utilities.c)
-SRC_PLAYER := $(addprefix player/, movement.c player.c collision_detection.c)
+SRC_PLAYER := $(addprefix player/, movement.c player.c collision_detection.c \
+move_angle.c)
 SRC_RAYCASTING := $(addprefix raycasting/, cast_ray_all.c cast_ray.c \
 cast_utilities.c cast_ray_helper.c)
 SRC_TEXTURES := $(addprefix textures/, render_texture.c)

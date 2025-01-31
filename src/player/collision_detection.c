@@ -6,42 +6,41 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 13:22:17 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/16 14:05:59 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 14:01:58 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
+#define _XOPEN_SOURCE
 #include <math.h>
+#include <stdbool.h>
 #include "player.h"
 #include "map.h"
 #include "shapes.h"
 #include "minimap.h"
+#include "raycasting.h"
 
-int		to_map_intersection(float screen_coordinate)
+bool	collide_circle(const t_vector2d position, t_map *map, \
+		const float radius)
 {
-	if (screen_coordinate < TILE_SIZE)
-	{
-		return (0);
-	}
-	return (round(screen_coordinate / TILE_SIZE));
-}
+	float			i;
+	t_vector2d		circle_point;
+	t_vector2dint	map_intersection;
 
-#include <stdio.h>
-bool	is_colliding(t_vector2d point, t_map *map)
-{
-	t_vector2dint	map_intersect;
-
-	map_intersect.x = to_map_intersection(point.x);
-	map_intersect.y = to_map_intersection(point.y);
-	printf("col x: %d col y: %d\n", map_intersect.x, map_intersect.y);	
-	if (map_intersect.x < 0 || map_intersect.x > (int)map->width - 1)
+	i = 0;
+	circle_point.x = 0;
+	circle_point.y = 0;
+	(void)map;
+	while (i < (M_PI * 2))
 	{
-		return (true);
+		circle_point.x = cos(i) * radius;
+		circle_point.y = sin(i) * radius;
+		map_intersection.x = (int)(position.x + circle_point.x);
+		map_intersection.y = (int)(position.y + circle_point.y);
+		if (map->map[map_intersection.y][map_intersection.x] == '1')
+		{
+			return (true);
+		}
+		i += RADIAN;
 	}
-	if (map_intersect.y < 0 || map_intersect.y > (int)map->height - 1)
-	{
-		return (true);
-	}
-	return (map->map[map_intersect.y][map_intersect.x] == '1');
+	return (false);
 }
- 

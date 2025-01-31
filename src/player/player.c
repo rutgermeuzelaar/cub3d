@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/26 14:46:59 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 14:19:04 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 #include "minimap.h"
 #include "raycasting.h"
 
-// ray_count WINDOW_WIDTH / ray_count needs to be a whole number. You get empty columns on the edges of the screen otherwise. 
+/**
+ * ray_count WINDOW_WIDTH / ray_count needs to be a even number. 
+ * You get empty columns on the edges of the screen otherwise. 
+ */
 bool	init_player(t_player *const player, float spawn_x, float spawn_y)
 {
-	player->ray_count = 256; // 256
+	player->ray_count = 256;
 	player->rays = ft_calloc(player->ray_count, sizeof(t_ray));
 	if (!player->rays)
 	{
@@ -40,7 +43,7 @@ bool	init_player(t_player *const player, float spawn_x, float spawn_y)
 	set_ray_angles(player->rays, player);
 	player->dir_x = cos(player->dir_angle);
 	player->dir_y = sin(player->dir_angle);
-	return (true);	
+	return (true);
 }
 
 void	draw_player(const t_player *const player, mlx_image_t *minimap)
