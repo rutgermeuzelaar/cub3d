@@ -1,18 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   basic_utils2.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 20:42:11 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/27 13:42:05 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   basic_utils2.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/01 20:42:11 by rmeuzela      #+#    #+#                 */
+/*   Updated: 2025/01/31 18:53:12 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <ctype.h>
 #include "libft.h"
 #include "utilities.h"
 

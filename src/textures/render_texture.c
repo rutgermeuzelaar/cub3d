@@ -1,15 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   render_texture.c                                   :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 15:15:36 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/23 16:42:39 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   render_texture.c                                   :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/23 15:15:36 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/31 18:58:18 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include "raycasting_structs.h"
+#include "shapes.h"
 #include "cub3d.h"
 #include "utilities.h"
 

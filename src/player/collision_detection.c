@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/16 13:22:17 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 14:01:58 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 18:57:17 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "player.h"
 #include "map.h"
 #include "shapes.h"
-#include "minimap.h"
 #include "raycasting.h"
 
 bool	collide_circle(const t_vector2d position, t_map *map, \

@@ -6,18 +6,18 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 15:06:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 14:17:12 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 18:56:29 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _XOPEN_SOURCE
-#include <stdio.h>
 #include <math.h>
+#include "player.h"
 #include "MLX42/MLX42.h"
 #include "shapes.h"
 #include "cub3d.h"
 #include "raycasting.h"
-#include "minimap.h"
+#include "raycasting_structs.h"
 
 t_vector2dint	set_direction_vector(mlx_t *mlx)
 {

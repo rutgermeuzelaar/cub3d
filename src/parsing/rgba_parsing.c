@@ -1,15 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   rgba_parsing.c                                     :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 15:18:12 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 16:13:10 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   rgba_parsing.c                                     :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/13 15:18:12 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/31 18:48:15 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdlib.h>
+#include "color.h"
+#include "map.h"
+#include "libft.h"
 #include "cub3d.h"
 #include "utilities.h"
 

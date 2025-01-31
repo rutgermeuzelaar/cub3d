@@ -6,16 +6,16 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/30 14:42:23 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 18:59:13 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _XOPEN_SOURCE
 #include <math.h>
-#include "MLX42/MLX42.h"
+#include "color.h"
+#include "raycasting_structs.h"
 #include "shapes.h"
 #include "player.h"
-#include "map.h"
 #include "minimap.h"
 #include "raycasting.h"
 #include "cub3d.h"

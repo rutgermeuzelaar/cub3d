@@ -6,17 +6,19 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:09:28 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/27 22:05:27 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 18:53:53 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <math.h>
+#include <stdbool.h>
+#include <stdint.h>
+#include <stdio.h>
 #include "MLX42/MLX42.h"
-#include "libft.h"
 #include "minimap.h"
 #include "map.h"
 #include "shapes.h"
 #include "color.h"
-#include <math.h>
 
 static void set_fill(char texture, t_vector2dint index2d, mlx_image_t *image)
 {

@@ -1,15 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   find_textures.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/27 13:31:20 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   find_textures.c                                    :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 15:59:46 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/31 18:49:29 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include "MLX42/MLX42.h"
+#include "map.h"
+#include "libft.h"
 #include "cub3d.h"
 #include "utilities.h"
 

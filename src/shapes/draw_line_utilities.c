@@ -6,10 +6,11 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/14 23:26:38 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/15 18:48:16 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 18:54:56 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdint.h>
 #include "MLX42/MLX42.h"
 #include "shapes.h"
 #include "libft.h"

@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:11:19 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 17:41:50 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 17:50:13 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,9 @@
 #  define WINDOW_HEIGHT 720
 # endif
 # include "MLX42/MLX42.h"
-# include "libft.h"
 # include "player.h"
 # include "map.h"
 # include "color.h"
-# include <ctype.h>
-# include <errno.h>
-# include <fcntl.h>
-# include <limits.h>
-# include <stdbool.h>
-# include <stdio.h>
-# include <string.h>
-# include <sys/wait.h>
-# include <unistd.h>
 
 typedef struct s_game
 {

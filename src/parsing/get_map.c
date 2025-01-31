@@ -1,15 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_map.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 13:28:51 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 16:31:25 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   get_map.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/14 13:28:51 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/31 18:49:54 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stddef.h>
+#include "map.h"
+#include "libft.h"
 #include "cub3d.h"
 #include "utilities.h"
 

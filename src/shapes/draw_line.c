@@ -6,11 +6,12 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 22:10:23 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/17 14:44:09 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 18:54:26 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <assert.h>
+#include <stdint.h>
 #include "MLX42/MLX42.h"
 #include "shapes.h"
 

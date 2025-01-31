@@ -6,14 +6,15 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 17:38:49 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 17:48:37 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include "raycasting.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include "MLX42/MLX42.h"
+#include "map.h"
 #include "cub3d.h"
-#include "libft.h"
 #include "minimap.h"
 #include "utilities.h"
 #include "player.h"

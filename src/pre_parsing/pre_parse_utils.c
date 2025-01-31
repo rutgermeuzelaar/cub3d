@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pre_parse_utils.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 15:56:44 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 16:29:55 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   pre_parse_utils.c                                  :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/22 15:56:44 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/31 18:51:42 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "utilities.h"
 #include "libft.h"
 

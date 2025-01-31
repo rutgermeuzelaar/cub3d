@@ -6,15 +6,18 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/30 14:04:09 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/30 14:21:16 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 19:01:45 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _XOPEN_SOURCE
-#include <math.h>
-#include <stdio.h>
+#include <stdbool.h>
+#include "MLX42/MLX42.h"
+#include "color.h"
+#include "map.h"
+#include "raycasting_structs.h"
+#include "shapes.h"
 #include "raycasting.h"
-#include "libft.h"
 #include "minimap.h"
 
 static void	set_cardinal_direction(t_vector2dint point_1, \

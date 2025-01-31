@@ -1,15 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pre_parse_colors.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/20 17:18:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 16:00:22 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   pre_parse_colors.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/20 17:18:14 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/31 18:51:11 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "utilities.h"
 #include "libft.h"
 

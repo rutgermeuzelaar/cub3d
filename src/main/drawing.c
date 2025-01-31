@@ -6,16 +6,18 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/31 17:30:19 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 17:40:10 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 17:51:27 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <math.h>
+#include "MLX42/MLX42.h"
+#include "color.h"
+#include "shapes.h"
 #include "raycasting.h"
 #include "cub3d.h"
 #include "libft.h"
 #include "minimap.h"
-#include "utilities.h"
 #include "player.h"
 
 static void	draw_background(mlx_image_t *screen, const t_color floor, \

@@ -6,21 +6,15 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 14:49:16 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 17:47:45 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define _XOPEN_SOURCE
-#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include "cub3d.h"
 #include "MLX42/MLX42.h"
-#include "map.h"
-#include "minimap.h"
-#include "libft.h"
-#include "shapes.h"
-#include "player.h"
-#include "raycasting.h"
+#include "utilities.h"
 
 int	main(int argc, char **argv)
 {

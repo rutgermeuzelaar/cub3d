@@ -1,17 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   find_file_contents.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/27 13:43:31 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   find_file_contents.c                               :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 16:00:38 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/01/31 18:47:31 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include "map.h"
 #include "cub3d.h"
 #include "utilities.h"
+#include "libft.h"
 
 char	*file_check(char *file, char *format)
 {

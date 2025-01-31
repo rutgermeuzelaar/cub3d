@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 14:19:04 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 18:57:09 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include "shapes.h"
 #include "libft.h"
 #include "player.h"
-#include "utilities.h"
-#include "map.h"
 #include "MLX42/MLX42.h"
 #include "minimap.h"
+#include "raycasting_structs.h"
 #include "raycasting.h"
+#include "color.h"
 
 /**
  * ray_count WINDOW_WIDTH / ray_count needs to be a even number. 

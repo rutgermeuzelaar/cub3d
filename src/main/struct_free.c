@@ -6,10 +6,15 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 13:13:05 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/30 14:50:02 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 17:50:54 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+#include <stdlib.h>
+#include "MLX42/MLX42.h"
+#include "map.h"
+#include "player.h"
 #include "cub3d.h"
 #include "utilities.h"
 

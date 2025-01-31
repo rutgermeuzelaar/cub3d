@@ -6,13 +6,19 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 17:41:21 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/30 14:28:01 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 19:00:17 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _XOPEN_SOURCE
 #define FLT_EPSILON 1.19209290e-7F
 #include <math.h>
+#include <stdbool.h>
+#include "MLX42/MLX42.h"
+#include "color.h"
+#include "map.h"
+#include "raycasting_structs.h"
+#include "shapes.h"
 #include "raycasting.h"
 #include "libft.h"
 #include "minimap.h"

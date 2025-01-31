@@ -6,10 +6,11 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/22 13:51:11 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/22 22:10:38 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 18:51:29 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "utilities.h"
 #include "libft.h"
 

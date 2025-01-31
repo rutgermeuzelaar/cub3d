@@ -6,18 +6,13 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/31 14:02:47 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 14:03:01 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 18:57:48 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _XOPEN_SOURCE
-#include <stdio.h>
 #include <math.h>
-#include "MLX42/MLX42.h"
-#include "shapes.h"
-#include "cub3d.h"
-#include "raycasting.h"
-#include "minimap.h"
+#include "player.h"
 
 void	move_angle_right(t_player *player)
 {
