@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/27 10:16:48 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/19 15:05:46 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 19:09:07 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <inttypes.h>
 # include "MLX42/MLX42.h"
 # ifndef BPP
-#  define BPP sizeof(int32_t)
+#  define BPP 4
 # endif
 
 typedef struct s_vector2d

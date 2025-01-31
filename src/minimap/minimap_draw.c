@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:09:28 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:53:53 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 19:51:42 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static void set_fill(char texture, t_vector2dint index2d, mlx_image_t *image)
 
 	if (texture == '1')
 	{
-		color = WALL_COLOR;
+		color = BLACK;
 	}
 	else
 	{
-		color = FLOOR_COLOR;
+		color = GRAY;
 	}
 	dimensions.height = TILE_SIZE;
 	dimensions.width = TILE_SIZE;
