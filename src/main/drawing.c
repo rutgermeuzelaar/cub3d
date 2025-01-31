@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/31 17:30:19 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 17:51:27 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 21:32:42 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,29 @@ static void	draw_movement_cross(const float angle, t_vector2d position, \
 	}
 }
 
+
+#include "textures.h"
+
+void	cheese(t_game *game)
+{
+	mlx_texture_t	*texture;
+	t_vector2dint	point;
+
+	point.y = 0;
+	texture = game->textures[0];
+	printf("PIETER: %p\n", texture);
+	while (point.y < (int)texture->height)
+	{
+		point.x = 0;
+		while (point.x < (int)texture->width)
+		{
+			mlx_put_pixel(game->screen, point.x, point.y, get_texel(texture, point.x, point.y).rgba);
+			point.x++;
+		}
+		point.y++;
+	}
+}
+
 void	draw_routine(void *param)
 {
 	t_game *const	game = (t_game *)param;
@@ -71,4 +94,5 @@ void	draw_routine(void *param)
 	cast_ray_all(game);
 	draw_partial_minimap(game->minimap, game->screen, (t_vector2d){\
 	game->player.x, game->player.y}, &game->map);
+	// cheese(game);
 }

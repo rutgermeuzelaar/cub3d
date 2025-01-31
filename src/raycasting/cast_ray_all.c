@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:59:13 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/01/31 22:33:05 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "minimap.h"
 #include "raycasting.h"
 #include "cub3d.h"
+#include "textures.h"
 
 static float	fix_fisheye(float player_angle, float ray_angle, float distance)
 {
@@ -58,6 +59,7 @@ void	draw_ray_stripe(t_game *game, t_ray *ray, t_ray_collision collision, \
 		color.rgba = RED;
 		color.bytes.red -= 75;
 		draw_rectangle(game->screen, stripe, color.rgba);
+		// draw_texture_stripe(game, stripe, collision);
 	}
 	else
 	{
