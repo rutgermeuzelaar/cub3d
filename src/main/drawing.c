@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/31 17:30:19 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 21:32:42 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/02 17:28:30 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,4 @@ void	draw_routine(void *param)
 	cast_ray_all(game);
 	draw_partial_minimap(game->minimap, game->screen, (t_vector2d){\
 	game->player.x, game->player.y}, &game->map);
-	// cheese(game);
 }

@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 22:33:05 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/02 17:27:16 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	draw_ray_stripe(t_game *game, t_ray *ray, t_ray_collision collision, \
 	if (stripe.height > WINDOW_HEIGHT)
 	{
 		stripe.height = WINDOW_HEIGHT;
+
 	}
 	stripe.width = ray_thickness;
 	stripe.x = ray_thickness * (game->player.ray_count - ray_index - 1);
@@ -58,8 +59,8 @@ void	draw_ray_stripe(t_game *game, t_ray *ray, t_ray_collision collision, \
 	{
 		color.rgba = RED;
 		color.bytes.red -= 75;
-		draw_rectangle(game->screen, stripe, color.rgba);
-		// draw_texture_stripe(game, stripe, collision);
+		// draw_rectangle(game->screen, stripe, color.rgba);
+		draw_textured_rectangle(game, stripe, collision);
 	}
 	else
 	{

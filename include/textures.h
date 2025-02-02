@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/31 21:19:23 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 21:58:23 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/02 17:23:58 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,8 @@ mlx_texture_t	*get_texture_cardinal(t_cardinal_direction cardinal, \
 				mlx_texture_t **textures);
 void			draw_texture_stripe(t_game *game, const t_rectangle stripe, \
 				const t_ray_collision collision);
+void	draw_texture_slice(mlx_image_t *image, mlx_texture_t *texture, 
+		const float x);
+void	draw_textured_rectangle(t_game *game, t_rectangle rectangle, \
+		t_ray_collision collision);
+
