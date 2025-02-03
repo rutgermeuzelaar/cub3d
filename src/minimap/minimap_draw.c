@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:09:28 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 19:51:42 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/03 18:32:35 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,6 @@ void	draw_partial_minimap(mlx_image_t *minimap, mlx_image_t *screen, \
 	paste_slice.width = copy_slice.width;
 	paste_slice.x = 40;
 	paste_slice.y = 40;
-	printf("DOG w: %d h: %d\n", paste_slice.width, paste_slice.width);
 	// draw_rectangle(screen, paste_slice, LIME);
 	if (copy_slice.x < 0)
 	{
