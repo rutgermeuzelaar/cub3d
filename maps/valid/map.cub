@@ -1,9 +1,9 @@
        hi
 
-NO textures/wolfenstein/greystone.png
-SO textures/wolfenstein/greystone.png
-WE textures/wolfenstein/greystone.png
-EA textures/wolfenstein/greystone.png
+NO textures/minecraft/creeper.png
+SO textures/minecraft/enderman.png
+WE textures/minecraft/skeleton.png
+EA textures/minecraft/zombie.png
 
 F 18,53,25
 
