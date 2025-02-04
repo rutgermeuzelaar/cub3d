@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/27 10:16:48 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 19:09:07 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/04 20:28:28 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,18 @@ typedef struct s_rectangle
 	uint32_t	width;
 	uint32_t	height;
 }	t_rectangle;
+
+typedef struct s_textured_rectangle
+{
+	float			x;
+	float			y;
+	uint32_t		width;
+	uint32_t		height;
+	float			scale_distance;
+	float			texture_x;
+	float			texture_y;
+	mlx_texture_t	*texture;
+}	t_textured_rectangle;
 
 void	draw_rectangle(mlx_image_t *image, t_rectangle rectangle, \
 		uint32_t color);

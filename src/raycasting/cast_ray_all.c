@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/03 16:29:23 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/04 20:28:07 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 #include "cub3d.h"
 #include "textures.h"
 
-static float	fix_fisheye(float player_angle, float ray_angle, float distance)
+static float	fix_fisheye(const float player_angle, const float ray_angle, \
+				const float distance)
 {
 	float	angle_delta;
 
@@ -36,29 +37,28 @@ static float	fix_fisheye(float player_angle, float ray_angle, float distance)
 	}
 	return (cos(angle_delta) * distance);
 }
-#include <stdio.h>
-void	draw_ray_stripe(t_game *game, t_ray *ray, t_ray_collision collision, \
-		int ray_index)
-{
-	const float	ray_thickness = round(WINDOW_WIDTH / game->player.ray_count);
-	const float	distance = fix_fisheye(game->player.dir_angle, ray->angle, \
-	collision.distance);
-	t_rectangle	stripe;
-	float		texture_y;
-	float		old_distance;
 
-	texture_y = 0;
+static void	draw_ray_stripe(t_game *game, t_ray *ray, \
+			t_ray_collision collision, const int ray_index)
+{
+	const float				ray_thickness = round(WINDOW_WIDTH / \
+							game->player.ray_count);
+	const float				distance = fix_fisheye(game->player.dir_angle, \
+							ray->angle, collision.distance);
+	t_textured_rectangle	stripe;
+
+	stripe.texture_y = 0;
 	stripe.height = (WINDOW_HEIGHT * TILE_SIZE) / (distance * TILE_SIZE);
-	old_distance = stripe.height;
+	stripe.scale_distance = stripe.height;
 	if (stripe.height > WINDOW_HEIGHT)
 	{
-		texture_y = (stripe.height - WINDOW_HEIGHT) / 2;
+		stripe.texture_y = (stripe.height - WINDOW_HEIGHT) / 2;
 		stripe.height = WINDOW_HEIGHT;
 	}
 	stripe.width = ray_thickness;
 	stripe.x = ray_thickness * (game->player.ray_count - ray_index - 1);
 	stripe.y = (WINDOW_HEIGHT / 2) - stripe.height / 2;
-	draw_textured_rectangle(game, stripe, collision, texture_y, old_distance);
+	draw_textured_rectangle(game, stripe, collision);
 }
 
 void	cast_ray_all(t_game *game)

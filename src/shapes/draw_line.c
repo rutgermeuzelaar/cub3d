@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 22:10:23 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:54:26 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/04 18:00:34 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	draw_line(t_vector2dint point_1, t_vector2dint point_2, \
 	int	delta_x;
 	int	delta_y;
 
-	assert(point_1.x >= 0 && point_1.y >= 0 && point_2.x >= 0 && point_2.y >= 0);
+	assert(point_1.x >= 0 && point_1.y >= 0 && \
+	point_2.x >= 0 && point_2.y >= 0);
 	delta_x = point_2.x - point_1.x;
 	delta_y = point_2.y - point_1.y;
 	if (delta_x < 0)

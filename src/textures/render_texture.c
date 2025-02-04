@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 15:15:36 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/03 16:33:41 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/04 20:20:46 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,9 @@
 #include "shapes.h"
 #include "cub3d.h"
 #include "utilities.h"
+#include "minimap.h"
 
-int	texture_loading_main(t_ray_collision *collision)
-{
-	t_ray_collision *ray_y;
-
-	ray_y = collision;
-	
-	printf("y = %f\n", ray_y->point.y);
-	return (SUCCESS);
-}
-
-t_color	get_texel(mlx_texture_t *texture, const int x, const int y)
+static t_color	get_texel(mlx_texture_t *texture, const int x, const int y)
 {
 	const uint32_t	texture_surface = texture->height * texture->width;
 	t_color			texel;
@@ -36,8 +27,7 @@ t_color	get_texel(mlx_texture_t *texture, const int x, const int y)
 
 	i = 0;
 	i = (y * texture->width + x) * BPP;
-	// printf("texel x: %d y: %d\n", x, y);
-	assert((int)i / 4 <= (int)texture_surface);
+	assert((int)i / BPP <= (int)texture_surface);
 	texel.bytes.red = texture->pixels[i];
 	texel.bytes.green = texture->pixels[i + 1];
 	texel.bytes.blue = texture->pixels[i + 2];
@@ -45,8 +35,8 @@ t_color	get_texel(mlx_texture_t *texture, const int x, const int y)
 	return (texel);
 }
 
-mlx_texture_t	*get_texture_cardinal(t_cardinal_direction cardinal, \
-				mlx_texture_t **textures)
+static mlx_texture_t	*get_texture_cardinal(t_cardinal_direction cardinal, \
+						mlx_texture_t **textures)
 {
 	if (cardinal == NORTH)
 	{
@@ -67,51 +57,49 @@ mlx_texture_t	*get_texture_cardinal(t_cardinal_direction cardinal, \
 	return (NULL);
 }
 
-void	draw_texture_slice(t_game *game, t_ray_collision collision, 
-		const float x, t_vector2dint image_point, const float distance, \
-		const float texture_y, const float old_distance)
+static void	draw_texture_slice(t_game *game, t_ray_collision collision, \
+			t_textured_rectangle rectangle)
 {
-	mlx_texture_t *const	texture = get_texture_cardinal(collision.cardinal, \
-							game->textures);
-	t_vector2d				texture_point;
 	t_color					texel;
-	float					pixel_size;
+	const float				pixel_size = rectangle.texture->height / \
+							rectangle.scale_distance;
 	int						i;
 
-	texture_point.x = x;
-	pixel_size = texture->height / old_distance;
-	texture_point.y = pixel_size * (texture_y);
+	rectangle.texture_y *= pixel_size;
 	assert(pixel_size > 0);
 	i = 0;
-	while (i < distance && (uint32_t)texture_point.y < texture->height)
+	while (i < (int32_t)rectangle.height && (uint32_t)rectangle.texture_y < \
+	rectangle.texture->height)
 	{
-		texel = get_texel(texture, texture_point.x, texture_point.y);
+		texel = get_texel(rectangle.texture, rectangle.texture_x, \
+		rectangle.texture_y);
 		if (collision.cardinal == EAST || collision.cardinal == WEST)
 		{
 			texel.bytes.red /= 2;
 			texel.bytes.green /= 2;
 			texel.bytes.blue /= 2;
 		}
-		mlx_put_pixel(game->screen, image_point.x, image_point.y + i, texel.rgba);
-		texture_point.y += pixel_size;
+		mlx_put_pixel(game->screen, rectangle.x, rectangle.y + i, texel.rgba);
+		rectangle.texture_y += pixel_size;
 		i++;
 	}
 }
 
-void	draw_textured_rectangle(t_game *game, t_rectangle rectangle, \
-		t_ray_collision collision, const float texture_y, const float old_distance)
+void	draw_textured_rectangle(t_game *game, t_textured_rectangle rectangle, \
+		t_ray_collision collision)
 {
 	double	temp;
-	int		texture_x;
 	int		i;
 
 	i = 0;
-	texture_x = modf(collision.point.x, &temp) * game->textures[0]->width;
+	rectangle.texture = get_texture_cardinal(collision.cardinal, \
+	game->textures);
+	rectangle.texture_x = modf(collision.point.x, &temp) * \
+	rectangle.texture->width;
 	while (i < (int)rectangle.width)
 	{
-		draw_texture_slice(game, collision, texture_x, \
-		(t_vector2dint){rectangle.x + i, rectangle.y}, rectangle.height, \
-		texture_y, old_distance);
+		draw_texture_slice(game, collision, rectangle);
+		rectangle.x += 1;
 		i++;
 	}
 }
