@@ -1,6 +1,6 @@
-SO textures/test/south.xpm
-WE textures/test/west.xpm
-EA textures/test/east.xpm
+SO textures/test/gmod.png
+WE textures/test/gmod.png
+EA textures/test/gmod.png
 
 F 20,20,20
 C 200,200,200

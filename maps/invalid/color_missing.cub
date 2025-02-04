@@ -1,7 +1,7 @@
-NO textures/test/north.xpm
-SO textures/test/south.xpm
-WE textures/test/west.xpm
-EA textures/test/east.xpm
+NO textures/test/gmod.png
+SO textures/test/gmod.png
+WE textures/test/gmod.png
+EA textures/test/gmod.png
 
 C 200,200,200
 
