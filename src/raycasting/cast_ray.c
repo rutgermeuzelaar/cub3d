@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/21 17:41:21 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 19:00:17 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/06 22:26:40 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,6 @@ t_ray_collision	cast_ray(t_ray *ray, t_map *map, mlx_image_t *minimap)
 	t_vector2dint		point_1;
 	t_vector2dint		point_2;
 
-	if (ray->angle <= FLT_EPSILON || almost_equal(ray->angle, M_PI))
-	{
-		return ((t_ray_collision){false, ray->position, 0, 0});
-	}
 	init_cast(ray, &cast_xl);
 	cast_ray_helper(&cast_xl, map, minimap, ray);
 	point_1.x = ray->position.x * TILE_SIZE;

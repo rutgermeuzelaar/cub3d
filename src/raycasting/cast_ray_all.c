@@ -6,12 +6,13 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/10 12:46:01 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/04 20:28:07 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/06 22:35:37 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _XOPEN_SOURCE
 #include <math.h>
+#include <assert.h>
 #include "color.h"
 #include "raycasting_structs.h"
 #include "shapes.h"
@@ -21,32 +22,16 @@
 #include "cub3d.h"
 #include "textures.h"
 
-static float	fix_fisheye(const float player_angle, const float ray_angle, \
-				const float distance)
-{
-	float	angle_delta;
-
-	angle_delta = player_angle - ray_angle;
-	if (angle_delta < 0)
-	{
-		angle_delta += 2 * M_PI;
-	}
-	if (angle_delta > (M_PI * 2))
-	{
-		angle_delta -= M_PI * 2;
-	}
-	return (cos(angle_delta) * distance);
-}
-
 static void	draw_ray_stripe(t_game *game, t_ray *ray, \
 			t_ray_collision collision, const int ray_index)
 {
 	const float				ray_thickness = round(WINDOW_WIDTH / \
 							game->player.ray_count);
-	const float				distance = fix_fisheye(game->player.dir_angle, \
-							ray->angle, collision.distance);
+	const float				distance = cos(game->player.dir_angle - \
+							ray->angle) * collision.distance;
 	t_textured_rectangle	stripe;
 
+	assert(distance > 0);
 	stripe.texture_y = 0;
 	stripe.height = (WINDOW_HEIGHT * TILE_SIZE) / (distance * TILE_SIZE);
 	stripe.scale_distance = stripe.height;
