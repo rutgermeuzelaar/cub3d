@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:56:44 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 14:49:51 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:32:40 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_surrounding(char **map, int y, int x)
 {
 	if (y == 0 || y == (arrlen(map) - 1))
 		return (ERROR);
-	else if (x == 0 || (size_t)x == ft_strlen(map[y] - 1))
+	else if (x == 0 || (size_t)x == (ft_strlen(map[y]) - 1))
 		return (ERROR);
 	if (map[y - 1][x] == '\0' || ft_strchr("10NSEW", map[y - 1][x]) == NULL)
 		return (ERROR);
@@ -40,26 +40,11 @@ int	check_double_newline(char *str)
 	{
 		if (str[i] == '\n' && str[i + 1] && str[i + 1] == '\n')
 			return (ERROR);
+		else if (str[i] == '\n' && str[i + 1] == '\0')
+			return (ERROR);
 		i++;
 	}
 	return (SUCCESS);
-}
-
-char	**assign_prefixes(void)
-{
-	char	**ret;
-
-	ret = (char **)ft_calloc(6, sizeof(char *));
-	if (!ret)
-		return (NULL);
-	ret[0] = "NO";
-	ret[1] = "SO";
-	ret[2] = "WE";
-	ret[3] = "EA";
-	ret[4] = "F";
-	ret[5] = "C";
-	ret[6] = NULL;
-	return (ret);
 }
 
 int	*assign_intarr(void)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/19 17:11:19 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 17:50:13 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/06 17:31:01 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_game
 	t_map			map;
 	t_color			floor;
 	t_color			ceiling;
-	int				*res;
 	mlx_texture_t	**textures;
 	mlx_t			*mlx;
 	mlx_image_t		*screen;
@@ -55,6 +54,5 @@ int				map_dimensions(t_game *game);
 int				get_map(t_game *game);
 int				find_all_prefix(char *str, int *i);
 void			free_function(t_game *game);
-int				texture_loading_main(t_ray_collision *collision);
 mlx_texture_t	*error_texture(void);
 #endif

@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:41:32 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/01/27 13:53:21 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:09:46 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ char	**assign_prefixes(void);
 int		check_double_newline(char *str);
 int		check_surrounding(char **map, int y, int x);
 char	*change_crlf_to_lf(char *str);
+int		arr_free_xl(void **arr, void (*free_func)(void *));
 
 #endif

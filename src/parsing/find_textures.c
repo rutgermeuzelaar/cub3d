@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   find_textures.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 15:59:46 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 20:59:09 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   find_textures.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/06 17:56:37 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ int	assign_texture(mlx_texture_t **texture, char *str)
 	size -= i;
 	texture_path = ft_substr(str, i, size);
 	if (!texture_path)
-		return (printf("sys error\n"), SYS_ERROR);
+		return (printf("Error allocation\n"), SYS_ERROR);
 	*texture = mlx_load_png(texture_path);
 	if (!*texture)
 	{
-		printf("making error texture\n");
 		*texture = error_texture();
 		if (!*texture)
 			return (printf("Error Textures\n"), free(texture_path), SYS_ERROR);
@@ -78,7 +77,7 @@ int	texture_parsing(t_game *game)
 	int				j;
 	int				i2;
 
-	game->textures = ft_calloc((5 + 1), sizeof(mlx_texture_t *));
+	game->textures = ft_calloc((4 + 1), sizeof(mlx_texture_t *));
 	if (!game->textures)
 		return (SYS_ERROR);
 	i = 0;
@@ -95,6 +94,5 @@ int	texture_parsing(t_game *game)
 		}
 		i++;
 	}
-	printf("textures were applied\n");
 	return (SUCCESS);
 }

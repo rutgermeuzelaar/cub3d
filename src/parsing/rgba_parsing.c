@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:18:12 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 13:53:53 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/06 15:02:35 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	*rgb_to_int(char *rgb)
 	arr = ft_split(rgb + i, ',');
 	if (!arr || arrlen(arr) != 3)
 		return (NULL);
-	ret = ft_calloc(3, sizeof(int));
+	ret = ft_calloc(3 + 1, sizeof(int));
 	if (!ret)
 		return (arr_free((void **)arr), NULL);
 	while (arr[i])
