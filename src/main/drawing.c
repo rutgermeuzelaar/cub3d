@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 17:30:19 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/02/06 13:27:23 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:10:25 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	draw_routine(void *param)
 	t_game *const	game = (t_game *)param;
 
 	draw_background(game->screen, game->floor, game->ceiling);
-	ft_memset(game->minimap->pixels, (int)WHITE, game->minimap->height * \
+	ft_memset(game->minimap->pixels, (uint32_t)WHITE, game->minimap->height * \
 	game->minimap->width * BPP);
 	draw_minimap(&game->map, game->minimap);
 	draw_player(&game->player, game->minimap);
