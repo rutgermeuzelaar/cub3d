@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:57:09 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/06 16:14:25 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,9 @@
 #include "raycasting.h"
 #include "color.h"
 
-/**
- * ray_count WINDOW_WIDTH / ray_count needs to be a even number. 
- * You get empty columns on the edges of the screen otherwise. 
- */
 bool	init_player(t_player *const player, float spawn_x, float spawn_y)
 {
-	player->ray_count = 256;
+	player->ray_count = WINDOW_WIDTH;
 	player->rays = ft_calloc(player->ray_count, sizeof(t_ray));
 	if (!player->rays)
 	{
