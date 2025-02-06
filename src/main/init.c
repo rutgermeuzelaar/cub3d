@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   init.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 17:48:37 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/01 01:16:22 by rmeuzela          #+#    #+#             */
+/*   Updated: 2025/02/06 13:34:19 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ bool	init_game(t_game *const game, char *map_name)
 	{
 		return (false);
 	}
+	(void)printf("finished parsing\n");
 	if (!init_mlx_objects(game))
 	{
 		free_pointer_array((void **)game->map.map, game->map.height);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   rgba_parsing.c                                     :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/13 15:18:12 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:48:15 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   rgba_parsing.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/13 15:18:12 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/06 13:53:53 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ int	*rgb_to_int(char *rgb)
 	while (arr[i])
 	{
 		ret[i] = ft_atoi(arr[i]);
+		if (ret[i] > 255 || ret[i] < 0)
+		{
+			arr_free((void **)arr);
+			return (free(ret), NULL);
+		}
 		i++;
 	}
 	ret[i] = '\0';
+	arr_free((void **)arr);
 	return (ret);
 }
 

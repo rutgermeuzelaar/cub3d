@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   pre_parse_map.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/22 13:51:11 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:51:29 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   pre_parse_map.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/22 13:51:11 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/06 14:48:59 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	check_double_player(char *str)
 			return (ERROR);
 		i++;
 	}
+	if (playercount < 1)
+		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -86,7 +88,7 @@ int	pre_parse_map(char *map)
 	if (check_unwanted_chars(map) != SUCCESS)
 		return (printf("found unwanted char\n"), ERROR);
 	if (check_double_player(map) != SUCCESS)
-		return (printf("too many players\n"), ERROR);
+		return (printf("invalid player amount\n"), ERROR);
 	if (check_closed_map(map) != SUCCESS)
 		return (printf("map isnt closed error\n"), ERROR);
 	return (SUCCESS);

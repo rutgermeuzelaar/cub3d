@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   pre_parse_colors.c                                 :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/20 17:18:14 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:51:11 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   pre_parse_colors.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/20 17:18:14 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/06 13:54:19 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	loop_colors(char *str, int *i, int *num)
 
 	count = 0;
 	if (!ft_isdigit(str[*i]))
-		return (0);
+		return (1);
 	(*num)++;
 	while (str[*i] && ft_isdigit(str[*i]))
 	{

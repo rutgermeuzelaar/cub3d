@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   pre_parse_utils.c                                  :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/22 15:56:44 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:51:42 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   pre_parse_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/22 15:56:44 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/06 14:49:51 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 int	check_surrounding(char **map, int y, int x)
 {
 	if (y == 0 || y == (arrlen(map) - 1))
-		return (printf("\n-1\n"), ERROR);
+		return (ERROR);
 	else if (x == 0 || (size_t)x == ft_strlen(map[y] - 1))
-		return (printf("\n-1\n"), ERROR);
-	if (ft_strchr("10NSEW", map[y - 1][x]) == NULL)
-		return (printf("\n1\n"), ERROR);
-	if (ft_strchr("10NSEW", map[y + 1][x]) == NULL)
-		return (printf("\n2\n"), ERROR);
-	if (ft_strchr("10NSEW", map[y][x - 1]) == NULL)
-		return (printf("\n3\n"), ERROR);
-	if (ft_strchr("10NSEW", map[y][x + 1]) == NULL)
-		return (printf("\n4\n"), ERROR);
+		return (ERROR);
+	if (map[y - 1][x] == '\0' || ft_strchr("10NSEW", map[y - 1][x]) == NULL)
+		return (ERROR);
+	if (map[y + 1][x] == '\0' || ft_strchr("10NSEW", map[y + 1][x]) == NULL)
+		return (ERROR);
+	if (map[y][x - 1] == '\0' || ft_strchr("10NSEW", map[y][x - 1]) == NULL)
+		return (ERROR);
+	if (map[y][x + 1] == '\0' || ft_strchr("10NSEW", map[y][x + 1]) == NULL)
+		return (ERROR);
 	return (SUCCESS);
 }
 

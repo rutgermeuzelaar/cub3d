@@ -6,12 +6,13 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/01/22 13:51:53 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/06 13:54:14 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "utilities.h"
+#include <stdio.h>
 
 int	pre_parsing(char *str)
 {
