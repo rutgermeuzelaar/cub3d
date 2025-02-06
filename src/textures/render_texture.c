@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 15:15:36 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/04 20:20:46 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/06 15:44:08 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,16 @@ void	draw_textured_rectangle(t_game *game, t_textured_rectangle rectangle, \
 	i = 0;
 	rectangle.texture = get_texture_cardinal(collision.cardinal, \
 	game->textures);
-	rectangle.texture_x = modf(collision.point.x, &temp) * \
-	rectangle.texture->width;
+	if (collision.cardinal == EAST || collision.cardinal == WEST)
+	{
+		rectangle.texture_x = modf(collision.point.y, &temp) * \
+		rectangle.texture->height;
+	}
+	else
+	{
+		rectangle.texture_x = modf(collision.point.x, &temp) * \
+		rectangle.texture->width;
+	}
 	while (i < (int)rectangle.width)
 	{
 		draw_texture_slice(game, collision, rectangle);
