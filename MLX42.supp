@@ -44,3 +44,11 @@
 	fun:*dl*
 	...
 }
+
+{
+	X11
+	Memcheck:Leak
+	...
+	obj:*/libX11.so.6.4.0
+	...
+}
