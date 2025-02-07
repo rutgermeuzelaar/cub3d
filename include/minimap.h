@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:04:20 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/04 17:53:49 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/07 20:17:58 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,18 @@
 # ifndef LINE_WEIGHT_PX
 #  define LINE_WEIGHT_PX 1
 # endif
+# ifndef EMPTY_TILE
+#  define EMPTY_TILE '@'
+# endif
+# ifndef WALL_TILE
+#  define WALL_TILE '1'
+# endif
+# ifndef WALK_TILE
+#  define WALK_TILE '0'
+# endif
 
 void	draw_minimap(t_map *const map, mlx_image_t *minimap);
 void	draw_partial_minimap(mlx_image_t *minimap, mlx_image_t *screen, \
 		t_vector2d position, t_map *map);
+bool	pad_map(t_map *map);
 #endif

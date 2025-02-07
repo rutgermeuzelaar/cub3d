@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:09:28 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/04 17:59:32 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/07 20:25:08 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,39 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include "libft.h"
 #include "MLX42/MLX42.h"
 #include "minimap.h"
 #include "map.h"
 #include "shapes.h"
 #include "color.h"
 
+static uint32_t	set_fill_helper(const char texture)
+{
+	if (texture == WALK_TILE)
+	{
+		return (GRAY);
+	}
+	if (texture == WALL_TILE)
+	{
+		return (BLACK);
+	}
+	if (texture == EMPTY_TILE)
+	{
+		return (WHITE);
+	}
+	if (ft_strchr("NESW", texture))
+	{
+		return (RED);
+	}
+	return (PINK);
+}
+
 static void	set_fill(char texture, t_vector2dint index2d, mlx_image_t *image)
 {
-	uint32_t		color;
+	const uint32_t	color = set_fill_helper(texture);
 	t_dimensions	dimensions;
 
-	color = GRAY;
-	if (texture == '1')
-		color = BLACK;
 	dimensions.height = TILE_SIZE;
 	dimensions.width = TILE_SIZE;
 	if (index2d.x == 0)

@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 13:54:14 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parsing.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/22 13:35:14 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/07 20:28:07 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "cub3d.h"
 #include "utilities.h"
-#include <stdio.h>
+#include "minimap.h"
 
 int	pre_parsing(char *str)
 {
@@ -61,5 +62,7 @@ int	parsing(t_game *game, char *arg)
 	ret = map_dimensions(game);
 	if (ret != SUCCESS)
 		return (ret);
+	if (!pad_map(&game->map))
+		return (ERROR);
 	return (SUCCESS);
 }
