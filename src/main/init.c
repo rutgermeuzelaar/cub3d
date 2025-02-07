@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/07 20:50:40 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/07 23:36:44 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include "minimap.h"
 #include "utilities.h"
 #include "player.h"
+#include "terminate.h"
 
 static bool	init_mlx_objects(t_game *const game)
 {
@@ -79,30 +80,32 @@ static bool	set_mlx_attributes(t_game *game)
 	return (true);
 }
 
-bool	init_game(t_game *const game, char *map_name)
+bool	init_game(t_game *const game, char *map_name, \
+		t_termination *termination)
 {
 	if (parsing(game, map_name) != SUCCESS)
 	{
 		return (false);
 	}
-	(void)printf("finished parsing\n");
+	termination->current_layer = 2;
 	if (!init_mlx_objects(game))
 	{
-		free_pointer_array((void **)game->map.map, game->map.height);
+		terminate_layered((void *)game, *termination);
 		return (false);
 	}
+	termination->current_layer++;
 	if (!init_player(&game->player, game->map.player_x + 0.5, \
 	game->map.player_y + 0.5, game->map.cardinal))
 	{
-		free_pointer_array((void **)game->map.map, game->map.height);
-		mlx_terminate(game->mlx);
+		terminate_layered((void *)game, *termination);
 		return (false);
 	}
+	termination->current_layer++;
 	if (!set_mlx_attributes(game))
 	{
-		free_pointer_array((void **)game->map.map, game->map.height);
-		mlx_terminate(game->mlx);
+		terminate_layered((void *)game, *termination);
 		return (false);
 	}
+	termination->current_layer++;
 	return (true);
 }

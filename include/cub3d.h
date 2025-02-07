@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 17:31:01 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/19 17:11:19 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/07 23:17:48 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "player.h"
 # include "map.h"
 # include "color.h"
+# include "terminate.h"
 
 typedef struct s_game
 {
@@ -40,7 +41,8 @@ typedef struct s_game
 	t_player		player;
 }	t_game;
 
-bool			init_game(t_game *const game, char *map_name);
+bool			init_game(t_game *const game, char *map_name, \
+				t_termination *termination);
 void			draw_routine(void *param);
 
 //parsing

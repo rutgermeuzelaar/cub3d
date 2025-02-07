@@ -26,7 +26,8 @@ MAIN_SRCDIR := src
 MAIN_OBJDIR := build
 SRCDIR := $(addprefix $(MAIN_SRCDIR)/, $(MODULES))
 OBJDIR := $(addprefix $(MAIN_OBJDIR)/, $(MODULES))
-SRC_MAIN := $(addprefix main/, cub3d.c init.c struct_free.c drawing.c)
+SRC_MAIN := $(addprefix main/, cub3d.c init.c struct_free.c drawing.c \
+terminate.c)
 SRC_PARSING := $(addprefix parsing/, get_next_line.c parsing.c \
 find_file_contents.c rgba_parsing.c find_textures.c get_map.c )
 SRC_PRE_PARSING := $(addprefix pre_parsing/,  pre_parse_prefix.c \

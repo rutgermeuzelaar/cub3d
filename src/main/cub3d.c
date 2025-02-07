@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 17:13:18 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 13:34:12 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/07 23:18:08 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 #include "cub3d.h"
 #include "MLX42/MLX42.h"
 #include "utilities.h"
+#include "terminate.h"
 
 int	main(int argc, char **argv)
 {
-	t_game	game;
+	t_game			game;
+	t_termination	termination;
 
-	(void)game;
+	termination.layers = (t_terminate_func[]){terminate_map, \
+	terminate_textures, terminate_mlx_wrapper, terminate_player};
+	termination.current_layer = 0;
 	if (argc != 2 || argv[1] == NULL || check_os_compatibility() == 1)
 		return (EXIT_FAILURE);
-	if (!init_game(&game, argv[1]))
+	if (!init_game(&game, argv[1], &termination))
 	{
 		return (EXIT_FAILURE);
 	}
