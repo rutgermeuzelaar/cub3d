@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 14:03:38 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/07 20:50:14 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ typedef struct s_player
 
 void	move_angle_right(t_player *player);
 void	move_angle_left(t_player *player);
-bool	init_player(t_player *const player, float spawn_x, float spawn_y);
+bool	init_player(t_player *const player, float spawn_x, float spawn_y, \
+		t_cardinal_direction cardinal);
 void	move_player(void *param);
 void	draw_player(const t_player *const player, mlx_image_t *minimap);
 bool	collide_circle(const t_vector2d position, t_map *map, \

@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/07 20:28:35 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/07 20:50:40 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ bool	init_game(t_game *const game, char *map_name)
 		return (false);
 	}
 	if (!init_player(&game->player, game->map.player_x + 0.5, \
-	game->map.player_y + 0.5))
+	game->map.player_y + 0.5, game->map.cardinal))
 	{
 		free_pointer_array((void **)game->map.map, game->map.height);
 		mlx_terminate(game->mlx);

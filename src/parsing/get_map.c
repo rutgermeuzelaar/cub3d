@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/14 13:28:51 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:49:54 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/07 20:44:39 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,30 @@ int	find_pos(char *str)
 	return (-1);
 }
 
+static void	set_player_direction(t_map *map, const char symbol)
+{
+	t_cardinal_direction	cardinal;
+
+	cardinal = CARDINAL_NONE;
+	if (symbol == 'N')
+	{
+		cardinal = NORTH;
+	}
+	if (symbol == 'E')
+	{
+		cardinal = EAST;
+	}
+	if (symbol == 'S')
+	{
+		cardinal = SOUTH;
+	}
+	if (symbol == 'W')
+	{
+		cardinal = WEST;
+	}
+	map->cardinal = cardinal;
+}
+
 int	map_dimensions(t_game *game)
 {
 	int		i;
@@ -48,6 +72,7 @@ int	map_dimensions(t_game *game)
 		{
 			ppos[1] = find_pos(game->map.map[i]);
 			ppos[0] = i;
+			set_player_direction(&game->map, game->map.map[i][ppos[1]]);
 		}
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 15:15:36 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/06 15:44:08 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/07 21:16:04 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ static mlx_texture_t	*get_texture_cardinal(t_cardinal_direction cardinal, \
 	}
 	if (cardinal == EAST)
 	{
-		return (textures[1]);
+		return (textures[3]);
 	}
 	if (cardinal == SOUTH)
 	{
-		return (textures[2]);
+		return (textures[1]);
 	}
 	if (cardinal == WEST)
 	{
-		return (textures[3]);
+		return (textures[2]);
 	}
 	return (NULL);
 }

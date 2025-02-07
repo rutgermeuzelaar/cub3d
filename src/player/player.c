@@ -6,12 +6,14 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/06 16:14:25 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/07 20:58:27 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _XOPEN_SOURCE
 #include <math.h>
 #include <stdbool.h>
+#include <assert.h>
 #include "shapes.h"
 #include "libft.h"
 #include "player.h"
@@ -21,7 +23,29 @@
 #include "raycasting.h"
 #include "color.h"
 
-bool	init_player(t_player *const player, float spawn_x, float spawn_y)
+static void	set_player_angle(t_player *player, t_cardinal_direction cardinal)
+{
+	assert(cardinal != CARDINAL_NONE && cardinal != CARDINAL_COUNT);
+	if (cardinal == NORTH)
+	{
+		player->dir_angle = M_PI_2 * 3;
+	}
+	if (cardinal == EAST)
+	{
+		player->dir_angle = M_PI_2 * 4;
+	}
+	if (cardinal == SOUTH)
+	{
+		player->dir_angle = M_PI_2;
+	}
+	if (cardinal == WEST)
+	{
+		player->dir_angle = M_PI_2 * 2;
+	}
+}
+
+bool	init_player(t_player *const player, float spawn_x, float spawn_y, \
+		t_cardinal_direction cardinal)
 {
 	player->ray_count = WINDOW_WIDTH;
 	player->rays = ft_calloc(player->ray_count, sizeof(t_ray));
@@ -35,7 +59,7 @@ bool	init_player(t_player *const player, float spawn_x, float spawn_y)
 	player->y = spawn_y;
 	player->height = 0.25;
 	player->width = 0.25;
-	player->dir_angle = 0;
+	set_player_angle(player, cardinal);
 	set_ray_angles(player->rays, player);
 	player->dir_x = cos(player->dir_angle);
 	player->dir_y = sin(player->dir_angle);
