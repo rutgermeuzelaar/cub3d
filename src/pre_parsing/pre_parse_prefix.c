@@ -23,7 +23,9 @@ int	all_prefixes_found(int *arr)
 	while (i < 6)
 	{
 		if (arr[i] == 0)
+		{
 			return (1);
+		}
 		i++;
 	}
 	return (0);
@@ -56,7 +58,7 @@ int	is_prefix(const char *str, int *index)
 	return (-1);
 }
 
-int	check_for_input(char *str, int *i)
+int	check_for_input(char *str, int *i, int *arr)
 {
 	while (str[*i] != '\0' && str[*i] != '\n')
 	{
@@ -64,25 +66,26 @@ int	check_for_input(char *str, int *i)
 			return (printf("Error invalid whitespace\n"), 1);
 		else if (str[*i] == ' ')
 		{
-			(*i) += skip_whitespaces(str + *i);
-			return (0);
+			while (str[*i] != '\n' && str[*i] != '\0')
+				(*i)++;
+			return (SUCCESS);
 		}
 		(*i)++;
 	}
 	if (str[*i] && str[*i] == '\n' && str[*i + 1] && !ft_isspace(str[*i + 1])
-		&& is_prefix(str + *i + 1, NULL) < 0)
-		return (printf("died at after newline == prefix or space\n"), 1);
-	return (0);
+		&& is_prefix(str + *i + 1, NULL) < 0 && all_prefixes_found(arr))
+		return (printf("died at after newline == prefix or space on \n%s\n", str + *i), 1);
+	return (SUCCESS);
 }
 
-int	one_of_each(int *arr, char *str, int *i)
+int	one_of_each(int *arr, int arr_i, char *str, int *i)
 {
 	int	ret;
 
 	ret = 0;
-	if (*arr == 1)
+	if (arr[arr_i] == 1)
 		return (printf("Error duplicate prefix\n"), 1);
-	*arr = 1;
+	arr[arr_i]= 1;
 	if (check_color_formatting(str, i) < 0)
 		return (printf("Error color format\n"), 1);
 	while (str[*i] && str[*i] == ' ')
@@ -90,10 +93,10 @@ int	one_of_each(int *arr, char *str, int *i)
 	if (str[*i] == '\f' || str[*i] == '\n'
 		|| str[*i] == '\r' || str[*i] == '\t' || str[*i] == '\v')
 		return (printf("invalid whitespace found or no texture\n"), 1);
-	ret = check_for_input(str, i);
+	ret = check_for_input(str, i, arr);
 	if (ret != 0)
 		return (printf("prototype function input found wrong doing\n"), 1);
-	return (0);
+	return (SUCCESS);
 }
 
 int	find_all_prefix(char *str, int *i)
@@ -109,15 +112,15 @@ int	find_all_prefix(char *str, int *i)
 	while (str[*i])
 	{
 		ret = is_prefix(str + *i, i);
-		if (ret >= 0 && one_of_each(track + ret, str, i))
+		if (ret >= 0 && one_of_each(track, ret, str, i))
 			return (free(track), ERROR);
 		else if (ret < 0)
-			return (free(track), ERROR);
+			return (printf("Error ret value on\n%s\n", str + *i), free(track), ERROR);
 		if (all_prefixes_found(track) == 0)
 			return (free(track), SUCCESS);
 		(*i)++;
 		(*i) += skip_whitespaces(str + *i);
 	}
 	free(track);
-	return (printf("Error prefixes not found\n"), 1);
+	return (printf("Error prefixes not found\n"), ERROR);
 }

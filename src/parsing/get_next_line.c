@@ -35,6 +35,8 @@ char	*reading_f(int fd, char *tempstr)
 			break ;
 		buffer[bytesread] = '\0';
 		tempstr = ft_strjoin2(tempstr, buffer);
+		if (!tempstr)
+			return (free(buffer), NULL);
 	}
 	free(buffer);
 	return (tempstr);
