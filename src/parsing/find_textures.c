@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 17:56:37 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:16:45 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ mlx_texture_t	*error_texture(void)
 {
 	mlx_texture_t	*ret;
 
-	ret = mlx_load_png("textures/gmod.png");
+	ret = mlx_load_png("textures/test/gmod.png");
 	if (!ret)
 		return (NULL);
 	return (ret);

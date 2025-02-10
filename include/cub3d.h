@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/19 17:11:19 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/07 23:17:48 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/10 17:08:00 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void			draw_routine(void *param);
 char			*get_next_line(int fd);
 int				fc_parsing(t_game *game);
 int				parsing(t_game *game, char *arg);
+void			parsing_free(t_game *game);
+void			pre_parsing_free(t_game *game);
 int				texture_parsing(t_game *game);
 int				get_file_contents(t_game *game_s, char *str);
 int				find_fd(char *str, char *folder, char *format);

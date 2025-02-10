@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parsing.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/22 13:35:14 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/07 20:28:07 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/10 17:09:13 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,21 @@ int	parsing(t_game *game, char *arg)
 
 	ret = get_file_contents(game, arg);
 	if (ret != SUCCESS)
-		return (ret);
+		return (parsing_free(game), ret);
 	ret = pre_parsing(game->file_content);
 	if (ret != SUCCESS)
-		return (ERROR);
+		return (pre_parsing_free(game), ERROR);
 	ret = find_keywords(game);
 	if (ret != SUCCESS)
-		return (ret);
+		return (parsing_free(game), ret);
 	ret = get_map(game);
 	if (ret != SUCCESS)
-		return (ret);
+		return (parsing_free(game), ret);
 	ret = map_dimensions(game);
 	if (ret != SUCCESS)
-		return (ret);
+		return (parsing_free(game), ret);
 	if (!pad_map(&game->map))
-		return (ERROR);
+		return (parsing_free(game), ERROR);
+	free(game->file_content);
 	return (SUCCESS);
 }
