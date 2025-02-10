@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:46:56 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 17:10:34 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:38:25 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ char	*ft_strjoin2(char *s1, char const *s2)
 	if (!s1)
 	{
 		s1 = (char *)ft_calloc(1, sizeof(char));
-		s1[0] = '\0';
+		if (!s1)
+			return (NULL);
 	}
 	dst = (char *)ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (dst == NULL)
-		return (NULL);
+		return (free(s1), NULL);
 	while (s1[i])
 	{
 		dst[i] = s1[i];
