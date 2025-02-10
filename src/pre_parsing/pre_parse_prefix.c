@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 14:29:58 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 17:50:53 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:35:03 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	check_for_input(char *str, int *i, int *arr)
 	}
 	if (str[*i] && str[*i] == '\n' && str[*i + 1] && !ft_isspace(str[*i + 1])
 		&& is_prefix(str + *i + 1, NULL) < 0 && all_prefixes_found(arr))
-		return (printf("died at after newline == prefix or space on \n%s\n", str + *i), 1);
+		return (printf("Error incorrect formatting\n"), 1);
 	return (SUCCESS);
 }
 
@@ -92,10 +92,10 @@ int	one_of_each(int *arr, int arr_i, char *str, int *i)
 		(*i)++;
 	if (str[*i] == '\f' || str[*i] == '\n'
 		|| str[*i] == '\r' || str[*i] == '\t' || str[*i] == '\v')
-		return (printf("invalid whitespace found or no texture\n"), 1);
+		return (printf("Error invalid whitespace\n"), 1);
 	ret = check_for_input(str, i, arr);
 	if (ret != 0)
-		return (printf("prototype function input found wrong doing\n"), 1);
+		return (1);
 	return (SUCCESS);
 }
 
@@ -107,7 +107,7 @@ int	find_all_prefix(char *str, int *i)
 	ret = 0;
 	track = assign_intarr();
 	if (!track)
-		return (-1);
+		return (printf("Error Allocation"), -1);
 	*i += skip_whitespaces(str);
 	while (str[*i])
 	{
@@ -115,12 +115,12 @@ int	find_all_prefix(char *str, int *i)
 		if (ret >= 0 && one_of_each(track, ret, str, i))
 			return (free(track), ERROR);
 		else if (ret < 0)
-			return (printf("Error ret value on\n%s\n", str + *i), free(track), ERROR);
+			return (printf("Error in formatting\n"), free(track), ERROR);
 		if (all_prefixes_found(track) == 0)
 			return (free(track), SUCCESS);
 		(*i)++;
 		(*i) += skip_whitespaces(str + *i);
 	}
 	free(track);
-	return (printf("Error prefixes not found\n"), ERROR);
+	return (printf("Error prefix(es) not found\n"), ERROR);
 }

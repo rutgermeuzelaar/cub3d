@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 14:59:15 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:15:35 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,19 @@ char	*check_folder(char *a, char *b)
 
 int	find_fd(char *str, char *folder, char *format)
 {
-	int	fd;
+	int		fd;
+	char	*folder_copy;
 
 	fd = 0;
 	folder = check_folder(folder, str);
-	if (!str)
+	if (!folder)
 		return (SYS_ERROR);
-	folder = file_check(folder, format);
+	folder_copy = file_check(folder, format);
+	if (!folder_copy)
+		return (free(folder), SYS_ERROR);
 	fd = open(folder, O_RDONLY);
 	if (fd < 0)
-		return (free(folder), printf("error FD\n"), SYS_ERROR);
+		return (free(folder), SYS_ERROR);
 	return (free(folder), fd);
 }
 
@@ -73,6 +76,8 @@ char	*find_contents(char *argv)
 	char	*line;
 
 	fd = find_fd(argv, "maps/", ".cub");
+	if (fd < 0)
+		return (printf("Error FD\n"), NULL);
 	str = NULL;
 	while (1)
 	{
@@ -80,6 +85,8 @@ char	*find_contents(char *argv)
 		if (line != NULL)
 		{
 			str = ft_strjoin2(str, line);
+			if (!str)
+				return (printf("Error gnl\n"), free(line), NULL);
 			free(line);
 		}
 		else if (line == NULL)
@@ -104,7 +111,7 @@ int	get_file_contents(t_game *game_s, char *str)
 	free(str_config);
 	map = ft_split(str_config_lf, '\n');
 	if (!map)
-		return (free(str_config_lf), SYS_ERROR);
+		return (printf("Error allocation\n"), free(str_config_lf), SYS_ERROR);
 	game_s->file_content = str_config_lf;
 	game_s->map.map = map;
 	return (SUCCESS);

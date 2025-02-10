@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:18:12 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 15:02:35 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:13:21 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	*rgb_to_int(char *rgb)
 		ret[i] = ft_atoi(arr[i]);
 		if (ret[i] > 255 || ret[i] < 0)
 		{
+			printf("Error invalid color num\n");
 			arr_free((void **)arr);
 			return (free(ret), NULL);
 		}

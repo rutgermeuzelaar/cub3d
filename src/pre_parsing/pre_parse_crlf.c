@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   pre_parse_crlf.c                                   :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/27 00:17:29 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:52:08 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   pre_parse_crlf.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/27 00:17:29 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/10 13:15:46 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*change_crlf_to_lf(char *str)
 	len = lf_file_len(str);
 	ret = (char *)ft_calloc(len + 1, sizeof(char));
 	if (!ret)
-		return (NULL);
+		return (printf("Error allocation\n"), NULL);
 	while (str[i])
 	{
 		if (str[i] == '\r' && str[i + 1] == '\n')

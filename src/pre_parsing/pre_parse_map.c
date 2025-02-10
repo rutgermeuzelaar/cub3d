@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:51:11 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/06 14:48:59 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/10 13:00:31 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int	pre_parse_map(char *map)
 	i = 0;
 	(void)i;
 	if (check_double_newline(map) != SUCCESS)
-		return (printf("found double newline in map\n"), ERROR);
+		return (printf("Error found double newline in map\n"), ERROR);
 	if (check_unwanted_chars(map) != SUCCESS)
-		return (printf("found unwanted char\n"), ERROR);
+		return (printf("Error found unwanted char in map\n"), ERROR);
 	if (check_double_player(map) != SUCCESS)
-		return (printf("invalid player amount\n"), ERROR);
+		return (printf("Error invalid player amount\n"), ERROR);
 	if (check_closed_map(map) != SUCCESS)
-		return (printf("map isnt closed error\n"), ERROR);
+		return (printf("Error map isnt closed\n"), ERROR);
 	return (SUCCESS);
 }
 
@@ -104,9 +104,9 @@ int	check_map_format(char *str)
 	while (str[i] && str[i] != '1' && str[i] != ' ' && str[i] != '0')
 		i++;
 	if (str[i] == '\0')
-		return (printf("map parsing endfile error\n"), ERROR);
+		return (printf("Error map doesnt exist\n"), ERROR);
 	else if (str[i - 1] != '\n')
-		return (printf("character before map error\n"), ERROR);
+		return (printf("Error invalid char before map\n"), ERROR);
 	ret = pre_parse_map(str + i);
 	if (ret != SUCCESS)
 		return (ERROR);

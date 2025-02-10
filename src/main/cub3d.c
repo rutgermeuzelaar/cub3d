@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/07 23:18:08 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/19 17:13:18 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/10 13:24:13 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	terminate_textures, terminate_mlx_wrapper, terminate_player};
 	termination.current_layer = 0;
 	if (argc != 2 || argv[1] == NULL || check_os_compatibility() == 1)
-		return (EXIT_FAILURE);
+		return (printf("Error arguments\n"), EXIT_FAILURE);
 	if (!init_game(&game, argv[1], &termination))
 	{
 		return (EXIT_FAILURE);
