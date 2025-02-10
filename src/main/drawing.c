@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/31 17:30:19 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/02/06 18:10:25 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   drawing.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/31 17:30:19 by rmeuzela      #+#    #+#                 */
+/*   Updated: 2025/02/10 17:54:45 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	draw_routine(void *param)
 	t_game *const	game = (t_game *)param;
 
 	draw_background(game->screen, game->floor, game->ceiling);
-	ft_memset(game->minimap->pixels, (uint32_t)WHITE, game->minimap->height * \
-	game->minimap->width * BPP);
+	draw_rectangle(game->minimap, (t_rectangle){0, 0, game->minimap->width, \
+	game->minimap->height}, get_tile_color(TILE_EMPTY));
 	draw_minimap(&game->map, game->minimap);
 	draw_player(&game->player, game->minimap);
 	draw_movement_cross(game->player.dir_angle, (t_vector2d){game->player.x, \

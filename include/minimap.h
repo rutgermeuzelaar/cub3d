@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:04:20 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/07 20:17:58 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/10 17:51:59 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,19 @@
 #  define WALK_TILE '0'
 # endif
 
-void	draw_minimap(t_map *const map, mlx_image_t *minimap);
-void	draw_partial_minimap(mlx_image_t *minimap, mlx_image_t *screen, \
-		t_vector2d position, t_map *map);
-bool	pad_map(t_map *map);
+typedef enum e_tile
+{
+	TILE_NONE = -1,
+	TILE_EMPTY = 0,
+	TILE_WALK,
+	TILE_WALL,
+	TILE_SPAWN,
+	TILE_COUNT
+}	t_tile;
+
+uint32_t	get_tile_color(t_tile tile);
+void		draw_minimap(t_map *const map, mlx_image_t *minimap);
+void		draw_partial_minimap(mlx_image_t *minimap, mlx_image_t *screen, \
+			t_vector2d position, t_map *map);
+bool		pad_map(t_map *map);
 #endif

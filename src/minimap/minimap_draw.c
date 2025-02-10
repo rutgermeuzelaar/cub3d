@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/26 22:09:28 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/07 20:25:08 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/10 18:24:31 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <assert.h>
 #include "libft.h"
 #include "MLX42/MLX42.h"
 #include "minimap.h"
@@ -21,30 +22,47 @@
 #include "shapes.h"
 #include "color.h"
 
-static uint32_t	set_fill_helper(const char texture)
+static t_tile	texture_to_tile(const char texture)
 {
-	if (texture == WALK_TILE)
+	if (texture == '0')
 	{
-		return (GRAY);
+		return (TILE_WALK);
 	}
-	if (texture == WALL_TILE)
+	if (texture == '1')
 	{
-		return (BLACK);
+		return (TILE_WALL);
 	}
-	if (texture == EMPTY_TILE)
+	if (texture == '@' || texture == ' ')
 	{
-		return (WHITE);
+		return (TILE_EMPTY);
 	}
 	if (ft_strchr("NESW", texture))
 	{
-		return (RED);
+		return (TILE_SPAWN);
 	}
-	return (PINK);
+	assert(false);
+	return (TILE_NONE);
+}
+
+uint32_t	get_tile_color(t_tile tile)
+{
+	const uint32_t	colors[TILE_COUNT] = {
+	[TILE_EMPTY] = get_rgba(0xe9ecef, 255),
+	[TILE_WALK] = GRAY,
+	[TILE_WALL] = BLACK,
+	[TILE_SPAWN] = PINK
+	};
+
+	if (tile == TILE_NONE || tile == TILE_COUNT)
+	{
+		return (-1);
+	}
+	return (colors[tile]);
 }
 
 static void	set_fill(char texture, t_vector2dint index2d, mlx_image_t *image)
 {
-	const uint32_t	color = set_fill_helper(texture);
+	const uint32_t	color = get_tile_color(texture_to_tile(texture));
 	t_dimensions	dimensions;
 
 	dimensions.height = TILE_SIZE;
@@ -77,7 +95,7 @@ void	draw_minimap(t_map *const map, mlx_image_t *minimap)
 	while (y < map->height)
 	{
 		x = 0;
-		while (x < map->width)
+		while (x < ft_strlen(map->map[y]))
 		{
 			set_fill(map->map[y][x], \
 			(t_vector2dint){x * TILE_SIZE, y * TILE_SIZE}, minimap);
