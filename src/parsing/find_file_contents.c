@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_file_contents.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 13:15:35 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:27:51 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ char	*file_check(char *file, char *format)
 	len = ft_strlen(file);
 	str2 = NULL;
 	if (len < 10 || file == NULL)
-		return (free(file), NULL);
+		return (NULL);
 	str2 = ft_strrchr(file, '.');
 	if (str2 == NULL)
-		return (free(file), NULL);
+		return (NULL);
 	if (ft_strncmp(str2, format, 4) == SUCCESS)
 		return (file);
 	else
-		return (free(file), NULL);
+		return (NULL);
 }
 
 char	*check_folder(char *a, char *b)
@@ -63,7 +63,7 @@ int	find_fd(char *str, char *folder, char *format)
 	folder_copy = file_check(folder, format);
 	if (!folder_copy)
 		return (free(folder), SYS_ERROR);
-	fd = open(folder, O_RDONLY);
+	fd = open(folder_copy, O_RDONLY);
 	if (fd < 0)
 		return (free(folder), SYS_ERROR);
 	return (free(folder), fd);

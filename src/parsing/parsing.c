@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 17:09:13 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/12 17:36:30 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	parsing(t_game *game, char *arg)
 
 	ret = get_file_contents(game, arg);
 	if (ret != SUCCESS)
-		return (parsing_free(game), ret);
+		return (ret);
 	ret = pre_parsing(game->file_content);
 	if (ret != SUCCESS)
 		return (pre_parsing_free(game), ERROR);
