@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_parse_prefix.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 14:29:58 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 13:35:03 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/12 00:50:11 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	one_of_each(int *arr, int arr_i, char *str, int *i)
 	ret = 0;
 	if (arr[arr_i] == 1)
 		return (printf("Error duplicate prefix\n"), 1);
-	arr[arr_i]= 1;
+	arr[arr_i] = 1;
 	if (check_color_formatting(str, i) < 0)
 		return (printf("Error color format\n"), 1);
 	while (str[*i] && str[*i] == ' ')
