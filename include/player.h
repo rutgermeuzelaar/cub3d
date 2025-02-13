@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   player.h                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/30 20:59:29 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/07 20:50:14 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   player.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 20:59:29 by rmeuzela          #+#    #+#             */
+/*   Updated: 2025/02/13 01:28:22 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,6 @@ void	move_player(void *param);
 void	draw_player(const t_player *const player, mlx_image_t *minimap);
 bool	collide_circle(const t_vector2d position, t_map *map, \
 		const float radius);
+void	mouse_support(mlx_t *mlx, t_player *player, mlx_image_t *screen);
+
 #endif

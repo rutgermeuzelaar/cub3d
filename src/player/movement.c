@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   movement.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/31 15:06:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:56:29 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   movement.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/31 15:06:32 by rmeuzela          #+#    #+#             */
+/*   Updated: 2025/02/13 01:27:53 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,4 +149,5 @@ void	move_player(void *param)
 		game->player.x = new_position.x;
 		game->player.y = new_position.y;
 	}
+	mouse_support(game->mlx, &game->player, game->screen);
 }
