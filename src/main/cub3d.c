@@ -6,12 +6,13 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/13 14:33:15 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/13 16:57:05 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 #include "cub3d.h"
 #include "MLX42/MLX42.h"
 #include "utilities.h"
@@ -22,6 +23,7 @@ int	main(int argc, char **argv)
 	t_game			game;
 	t_termination	termination;
 
+	ft_memset(&game, 0, sizeof(t_game));
 	termination.layers = (t_terminate_func[]){terminate_map, \
 	terminate_textures, terminate_mlx_wrapper, terminate_player};
 	termination.current_layer = 0;
