@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 16:00:38 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/13 15:22:22 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/13 15:31:26 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ static char	*find_contents(const char *argv)
 
 int	get_file_contents(t_game *game_s, const char *str)
 {
-	char	**map;
 	char	*str_config;
 	char	*str_config_lf;
 
@@ -109,10 +108,9 @@ int	get_file_contents(t_game *game_s, const char *str)
 	if (!str_config_lf)
 		return (free(str_config), SYS_ERROR);
 	free(str_config);
-	map = ft_split(str_config_lf, '\n');
-	if (!map)
+	game_s->map.map = ft_split(str_config_lf, '\n');
+	if (!game_s->map.map)
 		return (printf("Error allocation\n"), free(str_config_lf), SYS_ERROR);
 	game_s->file_content = str_config_lf;
-	game_s->map.map = map;
 	return (SUCCESS);
 }
