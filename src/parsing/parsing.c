@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/12 17:36:30 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:16:47 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include "utilities.h"
 #include "minimap.h"
 
-int	pre_parsing(char *str)
+static int	pre_parsing(const char *str)
 {
 	int	ret;
 	int	i;
@@ -24,13 +24,13 @@ int	pre_parsing(char *str)
 	ret = find_all_prefix(str, &i);
 	if (ret != SUCCESS)
 		return (ret);
-	ret = check_map_format(str + i);
+	ret = check_map_format(str, i);
 	if (ret != SUCCESS)
 		return (ret);
 	return (SUCCESS);
 }
 
-int	find_keywords(t_game *game)
+static int	find_keywords(t_game *game)
 {
 	int	ret;
 
@@ -43,7 +43,7 @@ int	find_keywords(t_game *game)
 	return (SUCCESS);
 }
 
-int	parsing(t_game *game, char *arg)
+int	parsing(t_game *game, const char *arg)
 {
 	int	ret;
 

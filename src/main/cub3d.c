@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/19 17:13:18 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 13:24:13 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/19 17:13:18 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/13 16:57:05 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 #include "cub3d.h"
 #include "MLX42/MLX42.h"
 #include "utilities.h"
@@ -22,6 +23,7 @@ int	main(int argc, char **argv)
 	t_game			game;
 	t_termination	termination;
 
+	ft_memset(&game, 0, sizeof(t_game));
 	termination.layers = (t_terminate_func[]){terminate_map, \
 	terminate_textures, terminate_mlx_wrapper, terminate_player};
 	termination.current_layer = 0;
@@ -32,53 +34,6 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	mlx_loop(game.mlx);
-	free_function(&game);
+	terminate_layered((void *)&game, termination);
 	return (EXIT_SUCCESS);
 }
-
-// typedef struct s_color_pair
-// {
-// 	const char		*name;
-// 	const uint32_t	value;
-// }	t_color_pair;
-
-// int	main(void)
-// {
-// 	const t_color_pair colors[] = {
-// 		(t_color_pair){"LIGHTGRAY", LIGHTGRAY},
-// 		(t_color_pair){"GRAY", GRAY},
-// 		(t_color_pair){"DARKGRAY", DARKGRAY},
-// 		(t_color_pair){"YELLOW", YELLOW},
-// 		(t_color_pair){"GOLD", GOLD},
-// 		(t_color_pair){"ORANGE", ORANGE},
-// 		(t_color_pair){"PINK", PINK},
-// 		(t_color_pair){"RED", RED},
-// 		(t_color_pair){"MAROON", MAROON},
-// 		(t_color_pair){"GREEN", GREEN},
-// 		(t_color_pair){"LIME", LIME},
-// 		(t_color_pair){"DARKGREEN", DARKGREEN},
-// 		(t_color_pair){"SKYBLUE", SKYBLUE},
-// 		(t_color_pair){"BLUE", BLUE},
-// 		(t_color_pair){"DARKBLUE", DARKBLUE},
-// 		(t_color_pair){"PURPLE", PURPLE},
-// 		(t_color_pair){"VIOLET", VIOLET},
-// 		(t_color_pair){"DARKPURPLE", DARKPURPLE},
-// 		(t_color_pair){"BEIGE", BEIGE},
-// 		(t_color_pair){"BROWN", BROWN},
-// 		(t_color_pair){"DARKBROWN", DARKBROWN},
-// 		(t_color_pair){"WHITE", WHITE},
-// 		(t_color_pair){"BLACK", BLACK},
-// 		(t_color_pair){"BLANK", BLANK},
-// 		(t_color_pair){"MAGENTA", MAGENTA},
-// 	};
-
-// 	int	i;
-
-// 	i = 0;
-// 	while (i < 25)
-// 	{
-// 		printf("# define %s %u\n", colors[i].name, colors[i].value);
-// 		i++;
-// 	}
-// 	return (EXIT_SUCCESS);
-// }

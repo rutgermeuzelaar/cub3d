@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_parse_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:51:11 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 17:36:50 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:20:28 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 #include "utilities.h"
 #include "libft.h"
 
-int	check_double_player(char *str)
+static int	check_double_player(const char *str, const size_t start)
 {
 	int	i;
 	int	playercount;
 
-	i = 0;
+	i = start;
 	playercount = 0;
 	while (str[i])
 	{
@@ -34,11 +34,11 @@ int	check_double_player(char *str)
 	return (SUCCESS);
 }
 
-int	check_unwanted_chars(char *str)
+static int	check_unwanted_chars(const char *str, const size_t start)
 {
 	int	i;
 
-	i = 0;
+	i = start;
 	while (str[i])
 	{
 		if (ft_strchr("10\n NSEW", str[i]) == NULL)
@@ -48,7 +48,7 @@ int	check_unwanted_chars(char *str)
 	return (SUCCESS);
 }
 
-int	check_closed_map(char *map)
+static int	check_closed_map(const char *map, const size_t start)
 {
 	char	**arr_map;
 	int		i;
@@ -56,7 +56,7 @@ int	check_closed_map(char *map)
 
 	i = 0;
 	j = 0;
-	arr_map = ft_split(map, '\n');
+	arr_map = ft_split(map + start, '\n');
 	if (!arr_map)
 		return (SYS_ERROR);
 	while (arr_map[i])
@@ -77,29 +77,25 @@ int	check_closed_map(char *map)
 	return (SUCCESS);
 }
 
-int	pre_parse_map(char *map)
+static int	pre_parse_map(const char *map, const size_t start)
 {
-	int	i;
-
-	i = 0;
-	(void)i;
-	if (check_double_newline(map) != SUCCESS)
+	if (check_double_newline(map, start) != SUCCESS)
 		return (printf("Error found double newline in map\n"), ERROR);
-	if (check_unwanted_chars(map) != SUCCESS)
+	if (check_unwanted_chars(map, start) != SUCCESS)
 		return (printf("Error found unwanted char in map\n"), ERROR);
-	if (check_double_player(map) != SUCCESS)
+	if (check_double_player(map, start) != SUCCESS)
 		return (printf("Error invalid player amount\n"), ERROR);
-	if (check_closed_map(map) != SUCCESS)
+	if (check_closed_map(map, start) != SUCCESS)
 		return (printf("Error map isnt closed\n"), ERROR);
 	return (SUCCESS);
 }
 
-int	check_map_format(char *str)
+int	check_map_format(const char *str, const size_t start)
 {
 	int	i;
 	int	ret;
 
-	i = 0;
+	i = start;
 	ret = 0;
 	while (str[i] && str[i] != '1' && str[i] != ' ' && str[i] != '0')
 		i++;
@@ -107,7 +103,7 @@ int	check_map_format(char *str)
 		return (printf("Error map doesnt exist\n"), ERROR);
 	else if (str[i - 1] != '\n')
 		return (printf("Error invalid char before map\n"), ERROR);
-	ret = pre_parse_map(str + i);
+	ret = pre_parse_map(str, i);
 	if (ret != SUCCESS)
 		return (ERROR);
 	return (ret);

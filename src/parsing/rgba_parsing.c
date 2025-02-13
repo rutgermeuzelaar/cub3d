@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgba_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:18:12 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 13:13:21 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:17:33 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include "cub3d.h"
 #include "utilities.h"
 
-int	*rgb_to_int(char *rgb)
+static int	*rgb_to_int(char *rgb)
 {
 	int		*ret;
 	char	**arr;
@@ -46,7 +46,7 @@ int	*rgb_to_int(char *rgb)
 	return (ret);
 }
 
-int	get_rgb_value(char *rgb, t_color *game)
+static int	get_rgb_value(char *rgb, t_color *game)
 {
 	int		i;
 	int		*ret;

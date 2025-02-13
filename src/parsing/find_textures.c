@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 17:16:45 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:19:40 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include "cub3d.h"
 #include "utilities.h"
 
-int	found_texture_prefix(char *str)
+static int	found_texture_prefix(char *str)
 {
 	if (str[0] == '\0')
 		return (0);
@@ -33,7 +33,7 @@ int	found_texture_prefix(char *str)
 	return (0);
 }
 
-mlx_texture_t	*error_texture(void)
+static mlx_texture_t	*error_texture(void)
 {
 	mlx_texture_t	*ret;
 
@@ -43,7 +43,7 @@ mlx_texture_t	*error_texture(void)
 	return (ret);
 }
 
-int	assign_texture(mlx_texture_t **texture, char *str)
+static int	assign_texture(mlx_texture_t **texture, char *str)
 {
 	int		i;
 	int		size;

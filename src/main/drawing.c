@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/31 17:30:19 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/10 17:54:45 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/13 17:18:29 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,6 @@ static void	draw_background(mlx_image_t *screen, const t_color floor, \
 	floor.rgba);
 }
 
-static void	draw_movement_cross(const float angle, t_vector2d position, \
-		mlx_image_t *minimap)
-{
-	const float	quarter = RADIAN * 45;
-	const float	radius = 0.4;
-	t_vector2d	circle_point_1;
-	t_vector2d	circle_point_2;
-	int			i;
-
-	i = 0;
-	while (i < 4)
-	{
-		circle_point_1 = position;
-		circle_point_2 = position;
-		circle_point_1.x += cos(angle + quarter * (i + 1)) * radius;
-		circle_point_1.y += sin(angle + quarter * (i + 1)) * radius;
-		circle_point_2.x += position.x - circle_point_1.x;
-		circle_point_2.y += position.y - circle_point_1.y;
-		draw_line((t_vector2dint){circle_point_1.x * TILE_SIZE, \
-		circle_point_1.y * TILE_SIZE}, (t_vector2dint){circle_point_2.x * \
-		TILE_SIZE, circle_point_2.y * TILE_SIZE}, minimap, RED);
-		i++;
-	}
-}
-
 void	draw_routine(void *param)
 {
 	t_game *const	game = (t_game *)param;
@@ -66,8 +41,6 @@ void	draw_routine(void *param)
 	game->minimap->height}, get_tile_color(TILE_EMPTY));
 	draw_minimap(&game->map, game->minimap);
 	draw_player(&game->player, game->minimap);
-	draw_movement_cross(game->player.dir_angle, (t_vector2d){game->player.x, \
-	game->player.y}, game->minimap);
 	cast_ray_all(game);
 	draw_partial_minimap(game->minimap, game->screen, (t_vector2d){\
 	game->player.x, game->player.y}, &game->map);

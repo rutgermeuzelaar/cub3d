@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   find_file_contents.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/12 17:27:51 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   find_file_contents.c                               :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 16:00:38 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/13 16:53:36 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*file_check(char *file, char *format)
 		return (NULL);
 }
 
-char	*check_folder(char *a, char *b)
+char	*check_folder(const char *a, const char *b)
 {
 	char	*str;
 
@@ -51,7 +51,7 @@ char	*check_folder(char *a, char *b)
 	return (str);
 }
 
-int	find_fd(char *str, char *folder, char *format)
+int	find_fd(const char *str, char *folder, char *format)
 {
 	int		fd;
 	char	*folder_copy;
@@ -69,7 +69,7 @@ int	find_fd(char *str, char *folder, char *format)
 	return (free(folder), fd);
 }
 
-char	*find_contents(char *argv)
+static char	*find_contents(const char *argv)
 {
 	int		fd;
 	char	*str;
@@ -96,9 +96,8 @@ char	*find_contents(char *argv)
 	return (str);
 }
 
-int	get_file_contents(t_game *game_s, char *str)
+int	get_file_contents(t_game *game_s, const char *str)
 {
-	char	**map;
 	char	*str_config;
 	char	*str_config_lf;
 
@@ -106,13 +105,12 @@ int	get_file_contents(t_game *game_s, char *str)
 	if (!str_config)
 		return (ERROR);
 	str_config_lf = change_crlf_to_lf(str_config);
-	if (!str_config)
+	if (!str_config_lf)
 		return (free(str_config), SYS_ERROR);
 	free(str_config);
-	map = ft_split(str_config_lf, '\n');
-	if (!map)
+	game_s->map.map = ft_split(str_config_lf, '\n');
+	if (!game_s->map.map)
 		return (printf("Error allocation\n"), free(str_config_lf), SYS_ERROR);
 	game_s->file_content = str_config_lf;
-	game_s->map.map = map;
 	return (SUCCESS);
 }

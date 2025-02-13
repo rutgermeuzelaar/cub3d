@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/19 17:11:19 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 17:08:00 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:23:48 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,21 @@ typedef struct s_game
 	t_player		player;
 }	t_game;
 
-bool			init_game(t_game *const game, char *map_name, \
+bool			init_game(t_game *const game, const char *map_name, \
 				t_termination *termination);
 void			draw_routine(void *param);
 
 //parsing
 char			*get_next_line(int fd);
 int				fc_parsing(t_game *game);
-int				parsing(t_game *game, char *arg);
+int				parsing(t_game *game, const char *arg);
 void			parsing_free(t_game *game);
 void			pre_parsing_free(t_game *game);
 int				texture_parsing(t_game *game);
-int				get_file_contents(t_game *game_s, char *str);
-int				find_fd(char *str, char *folder, char *format);
+int				get_file_contents(t_game *game_s, const char *str);
+int				find_fd(const char *str, char *folder, char *format);
 int				map_dimensions(t_game *game);
 int				get_map(t_game *game);
-int				find_all_prefix(char *str, int *i);
+int				find_all_prefix(const char *str, int *i);
 void			free_function(t_game *game);
-mlx_texture_t	*error_texture(void);
 #endif

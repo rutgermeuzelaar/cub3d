@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   get_map.c                                          :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/14 13:28:51 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/07 20:44:39 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   get_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/14 13:28:51 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/13 23:17:02 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "cub3d.h"
 #include "utilities.h"
 
-int	find_pos(char *str)
+static int	find_pos(char *str)
 {
 	int	i;
 

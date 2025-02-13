@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/07 23:36:44 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/13 15:17:13 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static bool	set_mlx_attributes(t_game *game)
 	return (true);
 }
 
-bool	init_game(t_game *const game, char *map_name, \
+bool	init_game(t_game *const game, const char *map_name, \
 		t_termination *termination)
 {
 	if (parsing(game, map_name) != SUCCESS)
@@ -106,6 +106,5 @@ bool	init_game(t_game *const game, char *map_name, \
 		terminate_layered((void *)game, *termination);
 		return (false);
 	}
-	termination->current_layer++;
 	return (true);
 }
