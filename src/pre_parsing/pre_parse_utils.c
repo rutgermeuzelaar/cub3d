@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pre_parse_utils.c                                  :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 15:56:44 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 13:26:29 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   pre_parse_utils.c                                  :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/22 15:56:44 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/13 16:34:09 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ int	check_surrounding(char **map, int y, int x)
 	return (SUCCESS);
 }
 
-int	check_double_newline(char *str)
+int	check_double_newline(const char *str, const size_t start)
 {
 	int	i;
 
-	i = 0;
+	i = start;
 	while (str[i])
 	{
 		if (str[i] == '\n' && str[i + 1] && str[i + 1] == '\n')

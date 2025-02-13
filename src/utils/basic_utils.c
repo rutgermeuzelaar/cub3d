@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   basic_utils.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/22 13:46:56 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 16:38:25 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   basic_utils.c                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/22 13:46:56 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/13 16:24:52 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	ft_isspace(char c)
 	return (0);
 }
 
-int	skip_whitespaces(char *str)
+int	skip_whitespaces(const char *str)
 {
 	int	i;
 

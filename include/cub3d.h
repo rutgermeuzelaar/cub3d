@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/19 17:11:19 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/13 15:20:51 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/13 16:19:30 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int				get_file_contents(t_game *game_s, const char *str);
 int				find_fd(const char *str, char *folder, char *format);
 int				map_dimensions(t_game *game);
 int				get_map(t_game *game);
-int				find_all_prefix(char *str, int *i);
+int				find_all_prefix(const char *str, int *i);
 void			free_function(t_game *game);
 mlx_texture_t	*error_texture(void);
 #endif

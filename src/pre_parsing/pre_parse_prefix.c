@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   pre_parse_prefix.c                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/14 14:29:58 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/12 00:50:11 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   pre_parse_prefix.c                                 :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/14 14:29:58 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/13 16:30:09 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	is_prefix(const char *str, int *index)
 	return (-1);
 }
 
-int	check_for_input(char *str, int *i, int *arr)
+int	check_for_input(const char *str, int *i, int *arr)
 {
 	while (str[*i] != '\0' && str[*i] != '\n')
 	{
@@ -78,7 +78,7 @@ int	check_for_input(char *str, int *i, int *arr)
 	return (SUCCESS);
 }
 
-int	one_of_each(int *arr, int arr_i, char *str, int *i)
+static int	one_of_each(int *arr, int arr_i, const char *str, int *i)
 {
 	int	ret;
 
@@ -99,7 +99,7 @@ int	one_of_each(int *arr, int arr_i, char *str, int *i)
 	return (SUCCESS);
 }
 
-int	find_all_prefix(char *str, int *i)
+int	find_all_prefix(const char *str, int *i)
 {
 	int		ret;
 	int		*track;

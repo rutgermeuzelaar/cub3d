@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/01 20:41:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/13 15:23:08 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/13 16:34:31 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_pointer_array(void **array, const int size);
 int		arr_free(void **arr);
 int		print_arr(char **arr);
 char	*ft_strjoin2(char *s1, char const *s2);
-int		skip_whitespaces(char *str);
+int		skip_whitespaces(const char *str);
 int		ft_isspace(char c);
 int		get_rgba(int color_hex, int alpha);
 int		arrlen(char **arr);
@@ -45,11 +45,11 @@ char	*check_folder(const char *a, const char *b);
 char	*file_check(char *file, char *format);
 char	**ft_arrndup(char **arr, size_t size);
 int		check_os_compatibility(void);
-int		check_color_formatting(char *str, int *i);
-int		check_map_format(char *str);
+int		check_color_formatting(const char *str, int *i);
+int		check_map_format(const char *str, const size_t start);
 int		*assign_intarr(void);
 char	**assign_prefixes(void);
-int		check_double_newline(char *str);
+int		check_double_newline(const char *str, const size_t start);
 int		check_surrounding(char **map, int y, int x);
 char	*change_crlf_to_lf(char *str);
 int		arr_free_xl(void **arr, void (*free_func)(void *));
