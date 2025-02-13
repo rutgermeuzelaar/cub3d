@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   find_file_contents.c                               :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/12 17:27:51 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   find_file_contents.c                               :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/06 16:00:38 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/13 15:05:21 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	get_file_contents(t_game *game_s, char *str)
 	if (!str_config)
 		return (ERROR);
 	str_config_lf = change_crlf_to_lf(str_config);
-	if (!str_config)
+	if (!str_config_lf)
 		return (free(str_config), SYS_ERROR);
 	free(str_config);
 	map = ft_split(str_config_lf, '\n');
