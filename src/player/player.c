@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/07 20:58:27 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/13 17:18:44 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,16 +68,11 @@ bool	init_player(t_player *const player, float spawn_x, float spawn_y, \
 
 void	draw_player(const t_player *const player, mlx_image_t *minimap)
 {
-	t_vector2dint	direction;
 	t_rectangle		player_icon;
 
-	direction.x = (player->x + (player->dir_x)) * TILE_SIZE;
-	direction.y = (player->y + (player->dir_y)) * TILE_SIZE;
 	player_icon.x = (player->x - player->width / 2) * TILE_SIZE;
 	player_icon.y = (player->y - player->height / 2) * TILE_SIZE;
 	player_icon.height = player->height * TILE_SIZE;
 	player_icon.width = player->width * TILE_SIZE;
 	draw_rectangle(minimap, player_icon, player->color.rgba);
-	draw_line((t_vector2dint){player->x * TILE_SIZE, player->y * TILE_SIZE}, \
-	direction, minimap, player->color.rgba);
 }
