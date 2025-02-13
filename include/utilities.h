@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   utilities.h                                        :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/01 20:41:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/13 16:34:31 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   utilities.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/01 20:41:32 by rmeuzela          #+#    #+#             */
+/*   Updated: 2025/02/13 23:26:14 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,8 @@ int		check_os_compatibility(void);
 int		check_color_formatting(const char *str, int *i);
 int		check_map_format(const char *str, const size_t start);
 int		*assign_intarr(void);
-char	**assign_prefixes(void);
 int		check_double_newline(const char *str, const size_t start);
 int		check_surrounding(char **map, int y, int x);
 char	*change_crlf_to_lf(char *str);
-int		arr_free_xl(void **arr, void (*free_func)(void *));
 
 #endif

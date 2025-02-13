@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   pre_parse_map.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/22 13:51:11 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/13 16:53:19 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   pre_parse_map.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/22 13:51:11 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/13 23:20:28 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	check_unwanted_chars(const char *str, const size_t start)
 	return (SUCCESS);
 }
 
-int	check_closed_map(const char *map, const size_t start)
+static int	check_closed_map(const char *map, const size_t start)
 {
 	char	**arr_map;
 	int		i;

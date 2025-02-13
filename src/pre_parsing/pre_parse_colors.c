@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   pre_parse_colors.c                                 :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/20 17:18:14 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/13 16:31:51 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   pre_parse_colors.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/20 17:18:14 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/13 23:20:10 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "utilities.h"
 #include "libft.h"
 
-int	comma_condition(const char *str, int *i, int *comma)
+static int	comma_condition(const char *str, int *i, int *comma)
 {
 	if (str[*i] == ',' && str[*i + 1] == ',')
 		return (1);
@@ -26,7 +26,7 @@ int	comma_condition(const char *str, int *i, int *comma)
 	return (0);
 }
 
-int	loop_colors(const char *str, int *i, int *num)
+static int	loop_colors(const char *str, int *i, int *num)
 {
 	int	count;
 
@@ -44,7 +44,7 @@ int	loop_colors(const char *str, int *i, int *num)
 	return (0);
 }
 
-int	loop_color_format(const char *str, int i)
+static int	loop_color_format(const char *str, int i)
 {
 	int	comma;
 	int	num;

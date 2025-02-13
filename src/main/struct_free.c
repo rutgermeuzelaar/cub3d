@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:13:05 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/10 17:07:34 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:22:15 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,23 @@
 #include "player.h"
 #include "cub3d.h"
 #include "utilities.h"
+
+static int	arr_free_xl(void **arr, void (*free_func)(void *))
+{
+	int	i;
+
+	i = 0;
+	if (!arr)
+		return (ERROR);
+	while (arr[i])
+	{
+		free_func(arr[i]);
+		i++;
+	}
+	free(arr);
+	arr = NULL;
+	return (SUCCESS);
+}
 
 static void	free_textures(void *param)
 {
@@ -45,23 +62,6 @@ void	parsing_free(t_game *game)
 		arr_free_xl((void **)game->textures, free_textures);
 	printf("free'd parsing\n");
 	return ;
-}
-
-int	arr_free_xl(void **arr, void (*free_func)(void *))
-{
-	int	i;
-
-	i = 0;
-	if (!arr)
-		return (ERROR);
-	while (arr[i])
-	{
-		free_func(arr[i]);
-		i++;
-	}
-	free(arr);
-	arr = NULL;
-	return (SUCCESS);
 }
 
 void	free_function(t_game *game)
