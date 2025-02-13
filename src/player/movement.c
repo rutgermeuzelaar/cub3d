@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 15:06:32 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:56:29 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/13 17:22:12 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,21 @@ t_cardinal_direction	get_cardinal(t_vector2dint direction_vector)
 static float	get_movement_angle(t_cardinal_direction cardinal, \
 				const float angle)
 {
-	const float	quarter = RADIAN * 45;
-
 	if (cardinal == NORTH || cardinal == SOUTH)
 	{
 		return (angle);
 	}
 	if (cardinal == NORTH_EAST || cardinal == SOUTH_WEST)
 	{
-		return (angle + quarter);
+		return (angle + M_PI_4);
 	}
 	if (cardinal == EAST || cardinal == WEST)
 	{
-		return (angle + quarter * 2);
+		return (angle + M_PI_4 * 2);
 	}
 	if (cardinal == SOUTH_EAST || cardinal == NORTH_WEST)
 	{
-		return (angle + quarter * 3);
+		return (angle + M_PI_4 * 3);
 	}
 	return (angle);
 }
