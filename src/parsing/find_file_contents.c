@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/06 16:00:38 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/13 15:05:21 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/13 15:22:22 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*file_check(char *file, char *format)
 		return (NULL);
 }
 
-char	*check_folder(char *a, char *b)
+char	*check_folder(const char *a, const char *b)
 {
 	char	*str;
 
@@ -51,7 +51,7 @@ char	*check_folder(char *a, char *b)
 	return (str);
 }
 
-int	find_fd(char *str, char *folder, char *format)
+int	find_fd(const char *str, char *folder, char *format)
 {
 	int		fd;
 	char	*folder_copy;
@@ -69,7 +69,7 @@ int	find_fd(char *str, char *folder, char *format)
 	return (free(folder), fd);
 }
 
-char	*find_contents(char *argv)
+static char	*find_contents(const char *argv)
 {
 	int		fd;
 	char	*str;
@@ -96,7 +96,7 @@ char	*find_contents(char *argv)
 	return (str);
 }
 
-int	get_file_contents(t_game *game_s, char *str)
+int	get_file_contents(t_game *game_s, const char *str)
 {
 	char	**map;
 	char	*str_config;

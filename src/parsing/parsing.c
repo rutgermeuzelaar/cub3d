@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/22 13:35:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/12 17:36:30 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parsing.c                                          :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/12/22 13:35:14 by nleusden      #+#    #+#                 */
+/*   Updated: 2025/02/13 15:17:54 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	find_keywords(t_game *game)
 	return (SUCCESS);
 }
 
-int	parsing(t_game *game, char *arg)
+int	parsing(t_game *game, const char *arg)
 {
 	int	ret;
 

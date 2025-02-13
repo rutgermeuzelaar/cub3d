@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utilities.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/01 20:41:32 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/02/06 17:09:46 by nleusden         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   utilities.h                                        :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/01/01 20:41:32 by rmeuzela      #+#    #+#                 */
+/*   Updated: 2025/02/13 15:23:08 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		skip_whitespaces(char *str);
 int		ft_isspace(char c);
 int		get_rgba(int color_hex, int alpha);
 int		arrlen(char **arr);
-char	*check_folder(char *a, char *b);
+char	*check_folder(const char *a, const char *b);
 char	*file_check(char *file, char *format);
 char	**ft_arrndup(char **arr, size_t size);
 int		check_os_compatibility(void);
