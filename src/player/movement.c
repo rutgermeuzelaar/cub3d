@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/31 15:06:32 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/02/13 01:27:53 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/14 00:02:26 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,12 +137,10 @@ void	move_player(void *param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 	{
 		move_angle_left(&game->player);
-		set_ray_angles(game->player.rays, &game->player);
 	}
 	if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 	{
 		move_angle_right(&game->player);
-		set_ray_angles(game->player.rays, &game->player);
 	}
 	if (!collide_circle(new_position, &game->map, 0.05))
 	{
