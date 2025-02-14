@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   get_next_line.c                                    :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nleusden@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/12/22 13:33:14 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/01/31 18:46:47 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/22 13:33:14 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/14 13:58:36 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*newlinecut(char *str)
 	return (line);
 }
 
-char	*skipfunction(char *tempstr)
+char	*skipfunction(char *tempstr, int *error)
 {
 	char	*tempstr2;
 	int		i;
@@ -87,7 +87,10 @@ char	*skipfunction(char *tempstr)
 		return (free(tempstr), NULL);
 	tempstr2 = (char *)ft_calloc(sizeof(char), (ft_strlen(tempstr) - i + 1));
 	if (!tempstr2)
-		return (NULL);
+	{
+		(*error) = 1;
+		return (free(tempstr), NULL);
+	}
 	i++;
 	while (tempstr[i])
 		tempstr2[j++] = tempstr[i++];
@@ -100,13 +103,19 @@ char	*get_next_line(int fd)
 {
 	static char	*tempstr[1024];
 	char		*line;
+	int			errorcode;
 
+	errorcode = 0;
 	if (fd < 0 || !BUFFER_SIZE)
 		return (NULL);
 	tempstr[fd] = reading_f(fd, tempstr[fd]);
 	if (!tempstr[fd])
 		return (NULL);
 	line = newlinecut(tempstr[fd]);
-	tempstr[fd] = skipfunction(tempstr[fd]);
+	if (!line)
+		return (free(tempstr[fd]), NULL);
+	tempstr[fd] = skipfunction(tempstr[fd], &errorcode);
+	if (!tempstr[fd] && errorcode != 0)
+		return (free(line), NULL);
 	return (line);
 }
