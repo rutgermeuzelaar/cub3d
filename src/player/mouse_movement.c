@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse_movement.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 00:37:43 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/14 00:10:41 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:50:16 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	mouse_support(mlx_t *mlx, t_player *player, mlx_image_t *screen)
 	mlx_set_mouse_pos(mlx, screen->width / 2, screen->height / 2);
 	x = pos[0] - (screen->width / 2);
 	if (x < 0)
-		rotate_player(player, -1, 0.03f);
+		rotate_player(player, x, 0.001f);
 	else if (x > 0)
-		rotate_player(player, 1, 0.03f);
+		rotate_player(player, x, 0.001f);
 	set_ray_angles(player->rays, player);
 }
