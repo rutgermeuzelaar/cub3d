@@ -6,7 +6,7 @@
 /*   By: rmeuzela <rmeuzela@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/12/31 16:20:18 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/13 17:18:44 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/14 19:57:19 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ bool	init_player(t_player *const player, float spawn_x, float spawn_y, \
 	player->ray_color.rgba = YELLOW;
 	player->x = spawn_x;
 	player->y = spawn_y;
-	player->height = 0.25;
-	player->width = 0.25;
+	player->height = 0.5;
+	player->width = 0.5;
 	set_player_angle(player, cardinal);
 	set_ray_angles(player->rays, player);
 	player->dir_x = cos(player->dir_angle);
