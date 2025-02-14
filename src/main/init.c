@@ -6,12 +6,13 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/01 01:16:22 by rmeuzela      #+#    #+#                 */
-/*   Updated: 2025/02/13 15:17:13 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/02/14 19:51:55 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <assert.h>
 #include "MLX42/MLX42.h"
 #include "map.h"
 #include "cub3d.h"
@@ -46,6 +47,7 @@ static bool	init_mlx_objects(t_game *const game)
 
 static void	mlx_stop_loop(void *param)
 {
+	assert(param != NULL);
 	mlx_close_window((mlx_t *)param);
 }
 
@@ -76,7 +78,7 @@ static bool	set_mlx_attributes(t_game *game)
 		return (false);
 	}
 	mlx_key_hook(game->mlx, mlx_esc, game->mlx);
-	mlx_close_hook(game->mlx, mlx_stop_loop, NULL);
+	mlx_close_hook(game->mlx, mlx_stop_loop, game->mlx);
 	return (true);
 }
 
