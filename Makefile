@@ -60,7 +60,7 @@ $(OBJDIR): | $(MAIN_OBJDIR)
 $(OBJ): $(MAIN_OBJDIR)/%.o: $(MAIN_SRCDIR)/%.c | $(OBJDIR)
 	@$(CC) $(CFLAGS) -c -o $@ $<
 
-$(NAME): $(OBJ) $(LIBS)
+$(NAME): $(LIBS) $(OBJ)
 	@$(CC) $(OBJ) $(LIBS) $(LFLAGS) -o $(NAME)
 	@echo "${GREEN}BUILT PROGRAM${NO_COLOUR}"
 
