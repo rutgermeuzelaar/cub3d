@@ -19,8 +19,8 @@ SO textures/test/test.png
                         WE textures/test/hack.png
         EA textures/test/gmod.png            
 
-        F 20,           20,             20
-C 200,          200,200
+        F 20,20,20
+C 200,200,200
 
 11111
 10001
