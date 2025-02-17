@@ -6,7 +6,7 @@
 /*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/18 00:04:59 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/18 00:31:57 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ static char	*find_contents(const char *argv)
 			break ;
 	}
 	close(fd);
+	if (str == NULL)
+		return (printf("Error file contents\n"), NULL);
 	return (str);
 }
 
@@ -103,10 +105,10 @@ int	get_file_contents(t_game *game_s, const char *str)
 
 	str_config = find_contents(str);
 	if (!str_config)
-		return (printf("Error file contents\n"), ERROR);
+		return (ERROR);
 	str_config_lf = change_crlf_to_lf(str_config);
 	if (!str_config_lf)
-		return (printf("Error file contents"), free(str_config), SYS_ERROR);
+		return (printf("Error changing format\n"), free(str_config), SYS_ERROR);
 	free(str_config);
 	game_s->map.map = ft_split(str_config_lf, '\n');
 	if (!game_s->map.map)
