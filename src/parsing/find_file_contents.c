@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   find_file_contents.c                               :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: nleusden <nilsleusden@gmail.com>             +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2025/01/06 16:00:38 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/13 16:53:36 by rmeuzela      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   find_file_contents.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
+/*   Updated: 2025/02/18 00:04:59 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ int	get_file_contents(t_game *game_s, const char *str)
 
 	str_config = find_contents(str);
 	if (!str_config)
-		return (ERROR);
+		return (printf("Error file contents\n"), ERROR);
 	str_config_lf = change_crlf_to_lf(str_config);
 	if (!str_config_lf)
-		return (free(str_config), SYS_ERROR);
+		return (printf("Error file contents"), free(str_config), SYS_ERROR);
 	free(str_config);
 	game_s->map.map = ft_split(str_config_lf, '\n');
 	if (!game_s->map.map)
