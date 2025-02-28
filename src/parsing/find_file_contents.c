@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_file_contents.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:00:38 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/18 00:31:57 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/28 13:25:23 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static char	*find_contents(const char *argv)
 	}
 	close(fd);
 	if (str == NULL)
-		return (printf("Error file contents\n"), NULL);
+		return (printf("Error file empty\n"), NULL);
 	return (str);
 }
 
