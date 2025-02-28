@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_parse_colors.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/20 17:18:14 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/13 23:20:10 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/28 16:47:28 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int	check_color_formatting(const char *str, int *i)
 		(*i) += 1;
 	else
 		return (1);
-	i2 += ((*i) + 1);
+	i2 += (*i);
 	while (str[i2] && str[i2] == ' ')
 		i2++;
 	if (loop_color_format(str, i2) != 0)

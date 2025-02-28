@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/13 23:19:40 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/02/28 17:02:52 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ static int	assign_texture(mlx_texture_t **texture, char *str)
 	char	*texture_path;
 	int		texture_index;
 
-	(void)texture_index;
-	texture_index = found_texture_prefix(str);
+	texture_index = (found_texture_prefix(str) - 1);
+	if (texture_index < 0)
+		return (SYS_ERROR);
 	i = (skip_whitespaces(str + 2) + 2);
 	size = i;
 	while (str[size] && !ft_isspace(str[size]))
@@ -60,11 +61,11 @@ static int	assign_texture(mlx_texture_t **texture, char *str)
 	texture_path = ft_substr(str, i, size);
 	if (!texture_path)
 		return (printf("Error allocation\n"), SYS_ERROR);
-	*texture = mlx_load_png(texture_path);
-	if (!*texture)
+	texture[texture_index] = mlx_load_png(texture_path);
+	if (!texture[texture_index])
 	{
-		*texture = error_texture();
-		if (!*texture)
+		texture[texture_index] = error_texture();
+		if (!texture[texture_index])
 			return (printf("Error Textures\n"), free(texture_path), SYS_ERROR);
 	}
 	return (free(texture_path), SUCCESS);
@@ -88,7 +89,7 @@ int	texture_parsing(t_game *game)
 		j = skip_whitespaces(file[i]);
 		if (file[i][j] && found_texture_prefix(file[i] + j))
 		{
-			if (assign_texture(&game->textures[i2], file[i] + j) != SUCCESS)
+			if (assign_texture(game->textures, file[i] + j) != SUCCESS)
 				return (arr_free((void **)game->textures), ERROR);
 			i2++;
 		}
