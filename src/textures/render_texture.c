@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/01/23 15:15:36 by nleusden      #+#    #+#                 */
-/*   Updated: 2025/02/07 21:16:04 by rmeuzela      ########   odam.nl         */
+/*   Updated: 2025/03/03 13:40:58 by rmeuzela      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static t_color	get_texel(mlx_texture_t *texture, const int x, const int y)
 	t_color			texel;
 	int				i;
 
+	(void)texture_surface;
 	i = 0;
 	i = (y * texture->width + x) * BPP;
 	assert((int)i / BPP <= (int)texture_surface);

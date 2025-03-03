@@ -17,7 +17,7 @@ VALGRIND_FLAGS := --suppressions=MLX42.supp --track-fds=yes \
 --leak-check=full --show-leak-kinds=all --track-origins=yes
 GLFW_NAME := $(shell if [ ! -f /usr/local/lib/libglfw3.a ]; then echo "glfw"; \
 else echo "glfw3"; fi)
-CFLAGS = -Wall -Wextra -Werror -g -O3 $(HEADERS) #-fsanitize=address -v
+CFLAGS = -Wall -Wextra -Werror -g -O3 -DNDEBUG $(HEADERS) #-fsanitize=address -v
 LFLAGS := -ldl -l$(GLFW_NAME) -pthread -lm
 
 MODULES := main parsing utils minimap shapes player raycasting pre_parsing \
