@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/28 17:02:52 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/03 13:47:33 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	texture_parsing(t_game *game)
 	i = 0;
 	i2 = 0;
 	file = game->map.map;
-	while (file[i] && i2 < 6)
+	while (file[i] && i2 < 5)
 	{
 		j = skip_whitespaces(file[i]);
 		if (file[i][j] && found_texture_prefix(file[i] + j))
