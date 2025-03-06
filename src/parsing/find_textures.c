@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 15:59:46 by nleusden          #+#    #+#             */
-/*   Updated: 2025/03/03 13:47:33 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/06 14:28:31 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	texture_parsing(t_game *game)
 		if (file[i][j] && found_texture_prefix(file[i] + j))
 		{
 			if (assign_texture(game->textures, file[i] + j) != SUCCESS)
-				return (arr_free((void **)game->textures), ERROR);
+				return (ERROR);
 			i2++;
 		}
 		i++;
