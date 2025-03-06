@@ -1,0 +1,11 @@
+SO ./textures/minecraft/zombie.png
+EA ./textures/minecraft/creeper.png
+NO ./textures/minecraft/skeleton.png
+WE ./textures/minecraft/enderman.png
+
+F 220,100,50
+C 225,30,75
+
+ 1
+1N1
+ 1
