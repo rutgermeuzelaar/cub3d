@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pre_parse_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:51:11 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/13 23:20:28 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/06 16:04:14 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,7 @@ int	check_map_format(const char *str, const size_t start)
 
 	i = start;
 	ret = 0;
-	while (str[i] && str[i] != '1' && str[i] != ' ' && str[i] != '0')
-		i++;
+	i += skip_whitespaces(str + i);
 	if (str[i] == '\0')
 		return (printf("Error map doesnt exist\n"), ERROR);
 	else if (str[i - 1] != '\n')

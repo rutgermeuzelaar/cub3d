@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgba_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 15:18:12 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/13 23:17:33 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:46:19 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	*rgb_to_int(char *rgb)
 	return (ret);
 }
 
-static int	get_rgb_value(char *rgb, t_color *game)
+static int	get_rgb_value(char *rgb, t_color *game, int *found)
 {
 	int		i;
 	int		*ret;
@@ -61,6 +61,7 @@ static int	get_rgb_value(char *rgb, t_color *game)
 	color.bytes.green = ret[1];
 	color.bytes.blue = ret[2];
 	*game = color;
+	(*found) = 1;
 	free(ret);
 	return (SUCCESS);
 }
@@ -71,17 +72,20 @@ int	fc_parsing(t_game *game)
 	int		j;
 	char	**file;
 	int		ret;
+	int		found[2];
 
 	i = 0;
 	file = game->map.map;
 	ret = 0;
+	found[0] = 0;
+	found[1] = 0;
 	while (file[i])
 	{
 		j = skip_whitespaces(file[i]);
-		if (file[i][j] && file[i][j] == 'F')
-			ret = get_rgb_value(file[i] + j + 1, &game->floor);
-		else if (file[i][j] && file[i][j] == 'C')
-			ret = get_rgb_value(file[i] + j + 1, &game->ceiling);
+		if (file[i][j] && file[i][j] == 'F' && !found[0])
+			ret = get_rgb_value(file[i] + j + 1, &game->floor, &found[0]);
+		else if (file[i][j] && file[i][j] == 'C' && !found[1])
+			ret = get_rgb_value(file[i] + j + 1, &game->ceiling, &found[1]);
 		if (ret != SUCCESS)
 			return (ret);
 		i++;
