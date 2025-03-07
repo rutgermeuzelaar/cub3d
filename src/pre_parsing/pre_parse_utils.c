@@ -6,13 +6,46 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 15:56:44 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/14 12:55:02 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/07 12:17:21 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "utilities.h"
 #include "libft.h"
+
+static char	*ft_strrchr2(const char *c, int b, int index)
+{
+	while (index >= 0)
+	{
+		if ((unsigned char)c[index] == (unsigned char)b)
+			return ((char *)(c + index));
+		index--;
+	}
+	return (0);
+}
+
+int	skip_junk(const char *str, size_t start)
+{
+	int				i;
+	const int		temp = start + skip_whitespaces(str + start);
+	char			*newline;
+
+	i = 0;
+	if (str[temp] != '1')
+		return (temp);
+	newline = ft_strrchr2(str, '\n', temp);
+	if (!newline)
+		return (temp);
+	newline++;
+	while (newline + i < str + temp)
+	{
+		if (newline[i] != ' ')
+			return (temp);
+		i++;
+	}
+	return (temp - i);
+}
 
 int	check_surrounding(char **map, int y, int x)
 {

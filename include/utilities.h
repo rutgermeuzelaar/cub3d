@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 20:41:32 by rmeuzela          #+#    #+#             */
-/*   Updated: 2025/02/13 23:26:14 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/07 12:13:34 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ int		*assign_intarr(void);
 int		check_double_newline(const char *str, const size_t start);
 int		check_surrounding(char **map, int y, int x);
 char	*change_crlf_to_lf(char *str);
+int		skip_junk(const char *str, size_t start);
 
 #endif

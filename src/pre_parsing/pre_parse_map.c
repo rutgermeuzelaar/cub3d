@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:51:11 by nleusden          #+#    #+#             */
-/*   Updated: 2025/03/06 16:19:05 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/07 12:13:04 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,7 @@ int	check_map_format(const char *str, const size_t start)
 
 	i = start;
 	ret = 0;
-	while ((str[i] == '\f' || str[i] == '\n'
-		|| str[i] == '\r' || str[i] == '\t' || str[i] == '\v'))
-		i++;
+	i = skip_junk(str, start);
 	if (str[i] == '\0')
 		return (printf("Error map doesnt exist\n"), ERROR);
 	else if (str[i - 1] != '\n')
