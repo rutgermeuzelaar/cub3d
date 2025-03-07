@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:13:05 by nleusden          #+#    #+#             */
-/*   Updated: 2025/03/07 12:36:06 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/07 12:42:24 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,7 @@ static int	arr_free_xl(void **arr, void (*free_func)(void *))
 {
 	int	i;
 
-	
 	i = 0;
-	
 	if (!arr)
 		return (ERROR);
 	while (i < 5)
@@ -67,4 +65,3 @@ void	parsing_free(t_game *game)
 	printf("free'd parsing\n");
 	return ;
 }
-
