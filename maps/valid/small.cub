@@ -1,0 +1,11 @@
+SO ./textures/minecraft/zombie.png
+EA ./textures/minecraft/creeper.png
+NO ./textures/minecraft/skeleton.png
+WE ./textures/wolfenstein/barrel.png
+
+F 220,100,50
+C 225,30,75
+
+ 11
+1E01
+ 11
