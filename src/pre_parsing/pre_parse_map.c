@@ -6,7 +6,7 @@
 /*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/22 13:51:11 by nleusden          #+#    #+#             */
-/*   Updated: 2025/03/07 12:13:04 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/07 12:28:02 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ static int	check_closed_map(const char *map, const size_t start)
 
 static int	pre_parse_map(const char *map, const size_t start)
 {
+	if (check_unwanted_chars(map, start) != SUCCESS)
+		return (printf("Error found unwanted char in/before map\n"), ERROR);
 	if (check_double_newline(map, start) != SUCCESS)
 		return (printf("Error found double newline in map\n"), ERROR);
-	if (check_unwanted_chars(map, start) != SUCCESS)
-		return (printf("Error found unwanted char in map\n"), ERROR);
 	if (check_double_player(map, start) != SUCCESS)
 		return (printf("Error invalid player amount\n"), ERROR);
 	if (check_closed_map(map, start) != SUCCESS)

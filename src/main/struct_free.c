@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nleusden <nilsleusden@gmail.com>           +#+  +:+       +#+        */
+/*   By: nleusden <nleusden@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 13:13:05 by nleusden          #+#    #+#             */
-/*   Updated: 2025/02/13 23:22:15 by nleusden         ###   ########.fr       */
+/*   Updated: 2025/03/07 12:36:06 by nleusden         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ static int	arr_free_xl(void **arr, void (*free_func)(void *))
 {
 	int	i;
 
+	
 	i = 0;
+	
 	if (!arr)
 		return (ERROR);
-	while (arr[i])
+	while (i < 5)
 	{
 		free_func(arr[i]);
 		i++;
@@ -40,6 +42,8 @@ static void	free_textures(void *param)
 	mlx_texture_t	*texture;
 
 	texture = (mlx_texture_t *)param;
+	if (param == NULL)
+		return ;
 	mlx_delete_texture(texture);
 }
 
@@ -64,12 +68,3 @@ void	parsing_free(t_game *game)
 	return ;
 }
 
-void	free_function(t_game *game)
-{
-	arr_free((void **)game->map.map);
-	mlx_terminate(game->mlx);
-	free(game->player.rays);
-	arr_free_xl((void **)game->textures, free_textures);
-	printf("free'd resources\n");
-	return ;
-}
