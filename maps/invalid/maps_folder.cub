@@ -1,0 +1,13 @@
+NO maps/valid/small.cub
+SO maps/valid/hackerz.cub
+WE maps/invalid/junk.cub
+EA maps/invalid/duplicate_textures.cub
+
+F 220,100,0
+C 225,30,0
+
+111111
+100101
+101001
+1100N1
+111111
